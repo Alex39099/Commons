@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>commons-parent</artifactId>
+        <groupId>me.alexqp</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>me.alexqp</groupId>
+    <artifactId>commons-dist</artifactId>
+    <version>${project.parent.version}</version>
+    <packaging>jar</packaging>
+
+    <build>
+        <directory>../target</directory>
+        <finalName>Commons_v${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>org.bstats:bstats-bukkit</includes>
+                            </artifactSet>
+                            <relocations>
+                                <relocation>
+                                    <relocation>
+                                        <pattern>org.bstats.bukkit</pattern>
+                                        <shadedPattern>me.alexqp.commons.bstats</shadedPattern>
+                                    </relocation>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>me.alexqp</groupId>
+            <artifactId>commons-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+</project>
