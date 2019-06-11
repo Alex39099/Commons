@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.alexqp</groupId>
     <artifactId>commons-core</artifactId>
     <version>${project.parent.version}</version>
     <packaging>jar</packaging>
@@ -20,6 +19,18 @@
             <artifactId>spigot-api</artifactId>
             <version>1.14.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>1.5</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>17.0.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

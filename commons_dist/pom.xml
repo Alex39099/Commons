@@ -8,7 +8,6 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>me.alexqp</groupId>
     <artifactId>commons-dist</artifactId>
     <version>${project.parent.version}</version>
     <packaging>jar</packaging>
@@ -33,10 +32,8 @@
                             </artifactSet>
                             <relocations>
                                 <relocation>
-                                    <relocation>
-                                        <pattern>org.bstats.bukkit</pattern>
-                                        <shadedPattern>me.alexqp.commons.bstats</shadedPattern>
-                                    </relocation>
+                                    <pattern>org.bstats.bukkit</pattern>
+                                    <shadedPattern>me.alexqp.commons.bstats</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

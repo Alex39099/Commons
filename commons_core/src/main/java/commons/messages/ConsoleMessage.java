@@ -1,6 +1,6 @@
 package commons.messages;
 
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
