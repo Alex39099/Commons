@@ -18,7 +18,7 @@ public class ConfigChecker {
     private final String forceDoubleMsg = "value must be a double";
     private final String doubleMsg = forceDoubleMsg + " or integer";
     private final String forceLongMsg = "value must be a long";
-    private final String longMsg = forceLongMsg + " alue must be a long (or integer)";
+    private final String longMsg = forceLongMsg + " or integer";
 
     private JavaPlugin plugin;
 
