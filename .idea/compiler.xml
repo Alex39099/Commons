@@ -12,8 +12,12 @@
         <sourceOutputDir name="../target/generated-sources/annotations" />
         <sourceTestOutputDir name="../target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="commons-dist" />
         <module name="commons_dist" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="commons_dist" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
