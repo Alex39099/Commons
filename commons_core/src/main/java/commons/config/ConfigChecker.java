@@ -37,8 +37,7 @@ public class ConfigChecker {
         } else if (errorType.equals(ConsoleErrorType.ERROR)) {
             new ConsoleErrorMessage(plugin, sectionName, path, msg);
         } else {
-            if (plugin instanceof Debugable)
-                new DebugMessage(this.getClass(), (Debugable) plugin, "Something is not quite right with section = " + sectionName + " -> " + path + "! Msg = " + msg);
+            new DebugMessage(this.getClass(), plugin, "Something is not quite right with section = " + sectionName + " -> " + path + "! Msg = " + msg);
         }
     }
 
