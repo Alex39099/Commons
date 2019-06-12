@@ -28,7 +28,10 @@
                         </goals>
                         <configuration>
                             <artifactSet>
-                                <includes>org.bstats:bstats-bukkit</includes>
+                                <includes>
+                                    <include>org.bstats:bstats-bukkit</include>
+                                    <include>me.alexqp:commons-*</include>
+                                </includes>
                             </artifactSet>
                             <relocations>
                                 <relocation>
