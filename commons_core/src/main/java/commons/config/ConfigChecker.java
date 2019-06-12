@@ -3,6 +3,7 @@ package commons.config;
 import commons.messages.ConsoleErrorMessage;
 import commons.messages.ConsoleWarningMessage;
 import commons.messages.DebugMessage;
+import commons.messages.Debugable;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -36,7 +37,8 @@ public class ConfigChecker {
         } else if (errorType.equals(ConsoleErrorType.ERROR)) {
             new ConsoleErrorMessage(plugin, sectionName, path, msg);
         } else {
-            new DebugMessage(this.getClass(), plugin, "Something is not quite right with section = " + sectionName + " -> " + path + "! Msg = " + msg);
+            if (plugin instanceof Debugable)
+                new DebugMessage(this.getClass(), (Debugable) plugin, "Something is not quite right with section = " + sectionName + " -> " + path + "! Msg = " + msg);
         }
     }
 
