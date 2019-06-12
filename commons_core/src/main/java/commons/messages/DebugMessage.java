@@ -49,7 +49,7 @@ public class DebugMessage {
 
 
     /**
-     * Sends a debug-msg to the console if plugin is instance of debugable like [Plugin-Name] [DEBUG] Msg
+     * Sends a debug-msg to the console if plugin is instance of debugable like [Plugin-Name] [DEBUG] Class-Name: Msg
      * @param javaclass the java class (preferably which calls the constructor)
      * @param plugin the JavaPlugin (must be instanceof Debugable)
      * @param msg the msg to send
