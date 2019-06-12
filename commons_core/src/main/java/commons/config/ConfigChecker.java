@@ -4,6 +4,7 @@ import commons.messages.ConsoleErrorMessage;
 import commons.messages.ConsoleWarningMessage;
 import commons.messages.DebugMessage;
 import commons.messages.Debugable;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -183,6 +184,44 @@ public class ConfigChecker {
         return value;
     }
 
+
+    /**
+     *
+     * @param section the section to check.
+     * @param path the path within the section.
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @param forceDouble should config value be strictly double?
+     * @return true if config value is set correctly, false otherwise
+     */
+    public boolean checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final boolean forceDouble) {
+        String doubleMsg;
+        if (forceDouble)
+            doubleMsg = this.forceDoubleMsg;
+        else
+            doubleMsg = this.doubleMsg;
+
+        if (section.contains(path)) {
+            if (!(section.isDouble(path) || (section.isInt(path) && !forceDouble))) {
+                this.attemptConsoleMsg(errorType, section.getName(),path, null, doubleMsg);
+                return false;
+            }
+            return true;
+        }
+        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        return false;
+    }
+
+    /**
+     *
+     * @param section the section to check.
+     * @param path the path within the section.
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @return true if config value is set correctly (int or double), false otherwise
+     */
+    public boolean checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+        return this.checkDouble(section, path, errorType, false);
+    }
+
     /**
      *
      * @param section the section to check.
@@ -245,5 +284,42 @@ public class ConfigChecker {
         }
         this.attemptConsoleMsg(errorType, section.getName(), path, value, noPathMsg);
         return value;
+    }
+
+    /**
+     *
+     * @param section the section to check.
+     * @param path the path within the section.
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @param forceLong should config value be strictly double?
+     * @return true if config value is set correctly, false otherwise
+     */
+    public boolean checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final boolean forceLong) {
+        String longMsg;
+        if (forceLong)
+            longMsg = this.forceLongMsg;
+        else
+            longMsg = this.longMsg;
+
+        if (section.contains(path)) {
+            if (!(section.isLong(path) || (section.isInt(path) && !forceLong))) {
+                this.attemptConsoleMsg(errorType, section.getName(), path, null, longMsg);
+                return false;
+            }
+            return true;
+        }
+        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        return false;
+    }
+
+    /**
+     *
+     * @param section the section to check.
+     * @param path the path within the section.
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @return true if config value is set correctly (int or long), false otherwise
+     */
+    public boolean checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+        return this.checkLong(section, path, errorType, false);
     }
 }
