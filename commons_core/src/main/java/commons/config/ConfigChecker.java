@@ -3,8 +3,6 @@ package commons.config;
 import commons.messages.ConsoleErrorMessage;
 import commons.messages.ConsoleWarningMessage;
 import commons.messages.DebugMessage;
-import commons.messages.Debugable;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,12 +22,8 @@ public class ConfigChecker {
 
     private JavaPlugin plugin;
 
-    public ConfigChecker(JavaPlugin plugin, FileConfiguration config) {
-        this.plugin = plugin;
-    }
-
     public ConfigChecker(JavaPlugin plugin) {
-        this(plugin, plugin.getConfig());
+        this.plugin = plugin;
     }
 
     private void attemptConsoleMsg(ConsoleErrorType errorType, String sectionName, String path, Object value, String msg) {
