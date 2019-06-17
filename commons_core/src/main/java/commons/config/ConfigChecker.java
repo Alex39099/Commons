@@ -4,9 +4,10 @@ import commons.messages.ConsoleErrorMessage;
 import commons.messages.ConsoleWarningMessage;
 import commons.messages.DebugMessage;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.Nullable;
 
+import java.io.Console;
 import java.util.Objects;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -19,6 +20,8 @@ public class ConfigChecker {
     private final String doubleMsg = forceDoubleMsg + " or integer";
     private final String forceLongMsg = "value must be a long";
     private final String longMsg = forceLongMsg + " or integer";
+    private final String stringMsg = "value must be a string";
+    private final String configSectionMsg = "value must be a configurationSection";
 
     private JavaPlugin plugin;
 
@@ -315,5 +318,63 @@ public class ConfigChecker {
      */
     public boolean checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
         return this.checkLong(section, path, errorType, false);
+    }
+
+    /**
+     *
+     * @param section the section to check.
+     * @param path the path within the section.
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @param value the default value
+     * @return config value (if set correctly) or value
+     */
+    public String checkString(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, String value) {
+        if (section.contains(path)) {
+            if (!section.isString(path)) {
+                this.attemptConsoleMsg(errorType, section.getName(), path, value, stringMsg);
+                return value;
+            }
+            return section.getString(path);
+        }
+        this.attemptConsoleMsg(errorType, section.getName(), path, value, noPathMsg);
+        return value;
+    }
+
+    /**
+     *
+     * @param section the section to check.
+     * @param path the path within the section.
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @return true if config value is set correctly, false otherwise
+     */
+    public boolean checkString(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+        if (section.contains(path)) {
+            if (!section.isString(path)) {
+                this.attemptConsoleMsg(errorType, section.getName(), path, null, stringMsg);
+                return false;
+            }
+            return true;
+        }
+        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        return false;
+    }
+
+    /**
+     *
+     * @param section the section to check.
+     * @param path the path within the section.
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @return ConfigurationSection (if set correctly) or null
+     */
+    @Nullable public ConfigurationSection checkConfigSection(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+        if (section.contains(path)) {
+            if (!section.isConfigurationSection(path)) {
+                this.attemptConsoleMsg(errorType, section.getName(), path, null, configSectionMsg);
+                return null;
+            }
+            return section.getConfigurationSection((path));
+        }
+        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        return null;
     }
 }

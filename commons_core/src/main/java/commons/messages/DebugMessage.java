@@ -3,6 +3,7 @@ package commons.messages;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -58,5 +59,14 @@ public class DebugMessage {
         if (plugin instanceof Debugable) {
             new DebugMessage(javaclass, (Debugable) plugin, msg);
         }
+    }
+
+    /**
+     *
+     * @param p the player
+     * @return String like "Name (UUID)"
+     */
+    public static String getPlayerString(Player p) {
+        return p.getName() + " (" + p.getUniqueId() + ")";
     }
 }
