@@ -16,5 +16,8 @@
         <module name="commons_dist" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="commons_dist" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
