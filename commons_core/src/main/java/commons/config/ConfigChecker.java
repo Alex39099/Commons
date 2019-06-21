@@ -5,6 +5,7 @@ import commons.messages.ConsoleErrorMessage;
 import commons.messages.ConsoleWarningMessage;
 import commons.messages.DebugMessage;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,9 +25,15 @@ public class ConfigChecker {
     private final String configSectionMsg = "value must be a configurationSection";
 
     private JavaPlugin plugin;
+    private String configFileName;
 
     public ConfigChecker(JavaPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    public ConfigChecker(JavaPlugin plugin, FileConfiguration configFile) {
+        this(plugin);
+        this.configFileName = configFile.getName();
     }
 
     private void attemptConsoleMsg(ConsoleErrorType errorType, String sectionName, String path, Object value, String msg) {
@@ -47,7 +54,7 @@ public class ConfigChecker {
         if (sectionName.isEmpty())
             return plugin.getName();
 
-        return sectionName;
+        return configFileName;
     }
 
     /**
