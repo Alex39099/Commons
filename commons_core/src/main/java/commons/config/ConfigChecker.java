@@ -51,10 +51,12 @@ public class ConfigChecker {
     }
 
     private String getSaveSectionName(String sectionName) {
-        if (sectionName.isEmpty())
+        if (sectionName.isEmpty()) {
+            if (configFileName != null)
+                return configFileName;
             return plugin.getName();
-
-        return configFileName;
+        }
+        return sectionName;
     }
 
     /**
