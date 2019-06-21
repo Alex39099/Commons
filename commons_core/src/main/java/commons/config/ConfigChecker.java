@@ -31,16 +31,23 @@ public class ConfigChecker {
 
     private void attemptConsoleMsg(ConsoleErrorType errorType, String sectionName, String path, Object value, String msg) {
         if (errorType.equals(ConsoleErrorType.WARN)) {
-            new ConsoleWarningMessage(plugin, sectionName, path, msg + " (used default value " + Objects.toString(value, "") + " instead)");
+            new ConsoleWarningMessage(plugin, this.getSaveSectionName(sectionName), path, msg + " (used default value " + Objects.toString(value, "") + " instead)");
         } else if (errorType.equals(ConsoleErrorType.ERROR)) {
-            new ConsoleErrorMessage(plugin, sectionName, path, msg);
+            new ConsoleErrorMessage(plugin, this.getSaveSectionName(sectionName), path, msg);
         } else {
-            new DebugMessage(this.getClass(), plugin, "Something is not quite right with section = " + sectionName + " -> " + path + "! Msg = " + msg);
+            new DebugMessage(this.getClass(), plugin, "Something is not quite right with section = " + this.getSaveSectionName(sectionName) + " -> " + path + "! Msg = " + msg);
         }
     }
 
     private String getRangeMsg(Range<?> range) {
         return "value must be element of " + range.toString();
+    }
+
+    private String getSaveSectionName(String sectionName) {
+        if (sectionName.isEmpty())
+            return plugin.getName();
+
+        return sectionName;
     }
 
     /**
