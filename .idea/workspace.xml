@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="Added DataHandler and ConfigurationSerializable-Support&#10;&#10;+ ConfigChecker#checkConfigurationSerializable: boolean&#10;+ ConfigChecker#checkConfigurationSerializable: ConfigurationSerializableCheckable">
-      <change afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigurationSerializableCheckable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/LoadSaveException.java" afterDir="false" />
+    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,14 +36,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11798">
-              <caret line="698" column="47" selection-start-line="698" selection-start-column="47" selection-end-line="698" selection-end-column="47" />
+            <state relative-caret-position="-8325">
+              <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#31283#31313#1" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigurationSerializableCheckable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,7 +75,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
+            <state relative-caret-position="2516">
               <caret line="179" column="53" selection-start-line="179" selection-start-column="53" selection-end-line="179" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -89,15 +84,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="45" lean-forward="true" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+            <state relative-caret-position="678">
+              <caret line="131" column="31" lean-forward="true" selection-start-line="131" selection-start-column="31" selection-end-line="131" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#357#402#0" expanded="true" />
-                <element signature="e#5223#5253#0" expanded="true" />
+                <element signature="e#5223#5253#1" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -106,12 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/LoadSaveException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-              <folding>
-                <element signature="e#148#149#0" expanded="true" />
-                <element signature="e#173#174#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -131,11 +122,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/messages/DebugMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+            <state relative-caret-position="952">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#228#273#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -175,10 +165,10 @@
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" />
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigCheckable.java" />
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/messages/DebugMessage.java" />
-        <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigurationSerializableCheckable.java" />
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java" />
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/LoadSaveException.java" />
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" />
+        <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigurationSerializableCheckable.java" />
       </list>
     </option>
   </component>
@@ -221,10 +211,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-1688" />
+    <option name="y" value="18" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -233,6 +223,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -324,7 +315,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -543,7 +533,21 @@
       <option name="project" value="LOCAL" />
       <updated>1561409101609</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added DataHandler and ConfigurationSerializable-Support&#10;&#10;+ ConfigChecker#checkConfigurationSerializable: boolean&#10;+ ConfigChecker#checkConfigurationSerializable: ConfigurationSerializableCheckable">
+      <created>1561670419906</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1561670419906</updated>
+    </task>
+    <task id="LOCAL-00028" summary="made checkConfigSection public">
+      <created>1561671697473</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1561671697473</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -556,11 +560,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1688" y="18" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5072698" visible="true" weight="0.32089552" />
-      <window_info id="Structure" order="1" sideWeight="0.4927302" side_tool="true" visible="true" weight="0.32089552" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.506159" visible="true" weight="0.37286064" />
+      <window_info id="Structure" order="1" sideWeight="0.493841" side_tool="true" visible="true" weight="0.37286064" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -568,7 +572,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.2112676" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.21836506" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -576,13 +580,13 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053304" side_tool="true" weight="0.2112676" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32936078" />
       <window_info anchor="bottom" id="GitHub Pull Requests" order="11" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" visible="true" weight="0.1098081" />
+      <window_info anchor="right" id="Maven" order="4" visible="true" weight="0.12591687" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
@@ -621,7 +625,8 @@
     <MESSAGE value="# fixed dump mistake of last fix" />
     <MESSAGE value="first commit for file" />
     <MESSAGE value="Added DataHandler and ConfigurationSerializable-Support&#10;&#10;+ ConfigChecker#checkConfigurationSerializable: boolean&#10;+ ConfigChecker#checkConfigurationSerializable: ConfigurationSerializableCheckable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added DataHandler and ConfigurationSerializable-Support&#10;&#10;+ ConfigChecker#checkConfigurationSerializable: boolean&#10;+ ConfigChecker#checkConfigurationSerializable: ConfigurationSerializableCheckable" />
+    <MESSAGE value="made checkConfigSection public" />
+    <option name="LAST_COMMIT_MESSAGE" value="made checkConfigSection public" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -690,6 +695,7 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigCheckable.java" />
     <entry file="file://$PROJECT_DIR$/commons_dist/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
@@ -714,6 +720,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2516">
+          <caret line="179" column="53" selection-start-line="179" selection-start-column="53" selection-end-line="179" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/LoadSaveException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -724,38 +747,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="179" column="53" selection-start-line="179" selection-start-column="53" selection-end-line="179" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/messages/DebugMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="952">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#228#273#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigCheckable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="32" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigurationSerializableCheckable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8325">
+          <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -764,34 +779,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="45" lean-forward="true" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+        <state relative-caret-position="678">
+          <caret line="131" column="31" lean-forward="true" selection-start-line="131" selection-start-column="31" selection-end-line="131" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#357#402#0" expanded="true" />
-            <element signature="e#5223#5253#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/LoadSaveException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding>
-            <element signature="e#148#149#0" expanded="true" />
-            <element signature="e#173#174#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11798">
-          <caret line="698" column="47" selection-start-line="698" selection-start-column="47" selection-end-line="698" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#31283#31313#1" expanded="true" />
+            <element signature="e#5223#5253#1" expanded="true" />
           </folding>
         </state>
       </provider>

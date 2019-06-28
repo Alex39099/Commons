@@ -1,8 +1,9 @@
 package commons.dataHandler;
 
-class LoadSaveException extends Exception {
+@SuppressWarnings("WeakerAccess")
+public class LoadSaveException extends Exception {
 
-    LoadSaveException(String msg) {
+    public LoadSaveException(String msg) {
         super(msg);
     }
 
