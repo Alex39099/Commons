@@ -28,22 +28,30 @@ public abstract class AlexSubCommand implements TabExecutor {
     private String prefix = "";
     private String helpLine;
     private Permission permission;
-    private String usageLine;
-    private String noPermissionLine;
+    private String usageLine = "";
+    private String noPermissionLine = "";
 
-    private boolean isPlayerCmd;
-    private boolean isConsoleCmd;
+    private boolean isPlayerCmd = true;
+    private boolean isConsoleCmd = true;
 
     private HashMap<String, AlexSubCommand> subCommands = new HashMap<>();
 
-    protected AlexSubCommand(String name, String helpLine, Permission perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
+    protected AlexSubCommand(String name, String helpLine) {
         this.name = name;
         this.helpLine = helpLine;
+    }
+
+    protected AlexSubCommand(String name, String helpLine, boolean isPlayerCmd, boolean isConsoleCmd) {
+        this(name, helpLine);
+        this.isPlayerCmd = isPlayerCmd;
+        this.isConsoleCmd = isConsoleCmd;
+    }
+
+    protected AlexSubCommand(String name, String helpLine, Permission perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
+        this(name, helpLine, isPlayerCmd, isConsoleCmd);
         this.permission = perm;
         this.usageLine = usageLine;
         this.noPermissionLine = noPermissionLine;
-        this.isPlayerCmd = isPlayerCmd;
-        this.isConsoleCmd = isConsoleCmd;
     }
 
     /**
@@ -67,10 +75,10 @@ public abstract class AlexSubCommand implements TabExecutor {
     public String getPrefix() {
         return this.prefix;
     }
-    String getHelpLine() {
+    protected String getHelpLine() {
         return this.helpLine;
     }
-    Permission getPermission() {
+    protected Permission getPermission() {
         return this.permission;
     }
     private String getUsageLine() {
@@ -79,26 +87,46 @@ public abstract class AlexSubCommand implements TabExecutor {
     private String getNoPermissionLine() {
         return this.noPermissionLine;
     }
-    Map<String, AlexSubCommand> getSubCommands() {
+    protected Map<String, AlexSubCommand> getSubCommands() {
         return this.subCommands;
     }
 
-    public void setHelpLine(String helpLine) {
+    public AlexSubCommand setHelpLine(String helpLine) {
         this.helpLine = helpLine;
+        return this;
     }
-    public void setUsageLine(String usageLine) {
+    public AlexSubCommand setUsageLine(String usageLine) {
         this.usageLine = usageLine;
+        return this;
     }
-    public void setPrefix(String prefix) {
+    public AlexSubCommand setNoPermissionLine(String noPermissionLine) {
+        this.noPermissionLine = noPermissionLine;
+        return this;
+    }
+    public AlexSubCommand setPermission(Permission permission) {
+        this.permission = permission;
+        return this;
+    }
+    public AlexSubCommand setIsPlayerCmd(boolean isPlayerCmd) {
+        this.isPlayerCmd = isPlayerCmd;
+        return this;
+    }
+    public AlexSubCommand setIsConsoleCmd(boolean isConsoleCmd) {
+        this.isConsoleCmd = isConsoleCmd;
+        return this;
+    }
+
+    public AlexSubCommand setPrefix(String prefix) {
         this.prefix = prefix;
+        return this;
     }
 
     // =========================================================================================
 
-    boolean canExecute(CommandSender sender) {
+    protected boolean canExecute(CommandSender sender) {
         if (((sender instanceof Player) && this.isPlayerCmd)
                 || (sender instanceof ConsoleCommandSender) && this.isConsoleCmd)
-            return sender.hasPermission(this.getPermission());
+            return permission == null || sender.hasPermission(this.getPermission());
         return false;
     }
 
@@ -144,7 +172,7 @@ public abstract class AlexSubCommand implements TabExecutor {
         else if ((sender instanceof ConsoleCommandSender) && !this.isConsoleCmd)
             sendColorMessage(sender, prefix + "&4You have to be a player to perform that command.");
 
-        else if (!sender.hasPermission(this.permission))
+        else if (this.permission != null && !sender.hasPermission(this.permission))
             sendColorMessage(sender, prefix + this.getNoPermissionLine());
 
         else
@@ -170,7 +198,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @param sender the CommandSender
      * @return a list of additional options added to the available subCommandNames on tab-complete
      */
-    List<String> additionalTabCompleterOptions(CommandSender sender) {
+    protected List<String> additionalTabCompleterOptions(CommandSender sender) {
         return new ArrayList<>();
     }
 

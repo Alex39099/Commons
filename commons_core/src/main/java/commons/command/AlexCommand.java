@@ -3,17 +3,36 @@ package commons.command;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings({"unused"})
 public class AlexCommand extends AlexSubCommand {
 
-    private String[] credits;
-    private String[] helpCmdHeader;
+    private List<String> credits = new ArrayList<>();
+    private List<String> helpCmdHeader = new ArrayList<>();
 
-    public AlexCommand(String name, String[] credits, String[] helpCmdHeader, Permission perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
+    public AlexCommand(String name, JavaPlugin plugin, ChatColor pluginColor) {
+        super(name, "");
+        this.setPrefix("[" + pluginColor + plugin.getName() + ChatColor.RESET + "] ");
+        credits.add("version " + plugin.getDescription().getVersion() + ", author alex_qp");
+    }
+
+    public AlexCommand(String name, List<String> credits, List<String> helpCmdHeader, Permission perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
         super(name, "", perm, usageLine, noPermissionLine, isPlayerCmd, isConsoleCmd);
         this.credits = credits;
         this.helpCmdHeader = helpCmdHeader;
+    }
+
+    public AlexCommand setCredits(List<String> credits) {
+        this.credits = credits;
+        return this;
+    }
+    public AlexCommand setHelpCmdHeader(List<String> helpCmdHeader) {
+        this.helpCmdHeader = helpCmdHeader;
+        return this;
     }
 
     private void credits(CommandSender sender) {
