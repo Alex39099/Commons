@@ -34,6 +34,21 @@ public class AlexCommand extends AlexSubCommand {
         this.helpCmdHeader = helpCmdHeader;
         return this;
     }
+    public AlexCommand addCreditLine(String line) {
+        credits.add(line);
+        return this;
+    }
+    public AlexCommand addHelpCmdHeaderLine(String line) {
+        helpCmdHeader.add(line);
+        return this;
+    }
+
+    public boolean removeCreditLine(String line) {
+        return credits.remove(line);
+    }
+    public boolean removeHelpCmdHeaderLine(String line) {
+        return helpCmdHeader.remove(line);
+    }
 
     private void credits(CommandSender sender) {
         for (String creditLine : credits) {
