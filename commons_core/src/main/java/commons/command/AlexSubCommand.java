@@ -275,10 +275,6 @@ public abstract class AlexSubCommand implements TabExecutor {
             // get possibilities out of arg
             StringUtil.copyPartialMatches(args[0], this.getSubCommandNames(sender), completions);
             StringUtil.copyPartialMatches(args[0], this.additionalTabCompleterOptions(sender), completions);
-        } else {
-            new DebugMessage(this.getClass(), debugable, "TabCompletion: args.length == 0 -> tabCompletion = subCommandNames");
-            completions = new ArrayList<>(this.getSubCommandNames(sender));
-            completions.addAll(this.additionalTabCompleterOptions(sender));
         }
         Collections.sort(completions);
         return completions;
