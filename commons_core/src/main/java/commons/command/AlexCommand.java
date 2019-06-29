@@ -22,7 +22,7 @@ public class AlexCommand extends AlexSubCommand {
         credits.add("version " + plugin.getDescription().getVersion() + ", author alex_qp");
     }
 
-    public AlexCommand(String name, List<String> credits, List<String> helpCmdHeader, Permission perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
+    public AlexCommand(String name, List<String> credits, List<String> helpCmdHeader, String perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
         super(name, "", perm, usageLine, noPermissionLine, isPlayerCmd, isConsoleCmd);
         this.credits = credits;
         this.helpCmdHeader = helpCmdHeader;

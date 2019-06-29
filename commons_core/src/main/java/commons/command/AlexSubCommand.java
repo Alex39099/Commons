@@ -31,7 +31,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     private String prefix = "";
     private String helpLine;
-    private Permission permission;
+    private String permission;
     private String usageLine = "";
     private String noPermissionLine = "";
 
@@ -51,7 +51,7 @@ public abstract class AlexSubCommand implements TabExecutor {
         this.isConsoleCmd = isConsoleCmd;
     }
 
-    protected AlexSubCommand(String name, String helpLine, Permission perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
+    protected AlexSubCommand(String name, String helpLine, String perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
         this(name, helpLine, isPlayerCmd, isConsoleCmd);
         this.permission = perm;
         this.usageLine = usageLine;
@@ -95,7 +95,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     protected String getHelpLine() {
         return this.helpLine;
     }
-    protected Permission getPermission() {
+    protected String getPermission() {
         return this.permission;
     }
     protected String getUsageLine() {
@@ -120,7 +120,7 @@ public abstract class AlexSubCommand implements TabExecutor {
         this.noPermissionLine = noPermissionLine;
         return this;
     }
-    public AlexSubCommand setPermission(Permission permission) {
+    public AlexSubCommand setPermission(String permission) {
         this.permission = permission;
         return this;
     }
