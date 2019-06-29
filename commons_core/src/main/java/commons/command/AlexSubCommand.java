@@ -59,6 +59,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     private String prefix = "";
     private String helpLine;
+    private String cmdParamLine = "";
     private String permission;
     private String usageLine = "";
     private String noPermissionLine = "";
@@ -123,6 +124,9 @@ public abstract class AlexSubCommand implements TabExecutor {
     protected String getHelpLine() {
         return this.helpLine;
     }
+    protected String getCmdParamLine() {
+        return this.cmdParamLine;
+    }
     protected String getPermission() {
         return this.permission;
     }
@@ -138,6 +142,10 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     public AlexSubCommand setHelpLine(String helpLine) {
         this.helpLine = helpLine;
+        return this;
+    }
+    public AlexSubCommand setCmdParamLine(String paramLine) {
+        this.cmdParamLine = " " + paramLine;
         return this;
     }
     public AlexSubCommand setUsageLine(String usageLine) {

@@ -84,7 +84,7 @@ public class AlexCommand extends AlexSubCommand {
 
         for (AlexSubCommand subCommand : this.getSubCommands().values()) {
             if (subCommand.canExecute(sender)) {
-                sendColorMessage(sender, this.getCommandLineWithPrefix(label, subCommand.getName(), subCommand.getHelpLine()));
+                sendColorMessage(sender, this.getCommandLineWithPrefix(label, subCommand.getName() + subCommand.getCmdParamLine(), subCommand.getHelpLine()));
             } else {
                 new DebugMessage(this.getClass(), debugable, "Help: sender has no permission for subCommand " + subCommand.getName() + ", skipped therefore for help-output");
             }
