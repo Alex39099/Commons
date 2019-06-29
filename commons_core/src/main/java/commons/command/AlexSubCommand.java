@@ -23,6 +23,10 @@ public abstract class AlexSubCommand implements TabExecutor {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
     }
 
+    protected void sendPrefixColorMessage(CommandSender sender, String msg) {
+        sendColorMessage(sender, this.getPrefix() + msg);
+    }
+
     private String name;
 
     private String prefix = "";
