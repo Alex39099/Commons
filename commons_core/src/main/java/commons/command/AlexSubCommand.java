@@ -268,9 +268,8 @@ public abstract class AlexSubCommand implements TabExecutor {
             // check for subCommands
             AlexSubCommand subCommand = this.getSubCommandForString(args[0]);
             if (subCommand != null) {
-                String[] newArgs = Arrays.copyOfRange(args, 2, args.length);
-                new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion. Proceed with " + newArgs);
-                return subCommand.getTabCompletion(sender, newArgs);
+                new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion.");
+                return subCommand.getTabCompletion(sender, Arrays.copyOfRange(args, 1, args.length));
             }
 
             // get possibilities out of arg
@@ -279,6 +278,7 @@ public abstract class AlexSubCommand implements TabExecutor {
             new DebugMessage(this.getClass(), debugable, "TabCompletion: args.length == 0 -> tabCompletion = subCommandNames");
             completions = new ArrayList<>(this.getSubCommandNames(sender));
         }
+        completions.addAll(this.additionalTabCompleterOptions(sender));
         Collections.sort(completions);
         return completions;
     }
