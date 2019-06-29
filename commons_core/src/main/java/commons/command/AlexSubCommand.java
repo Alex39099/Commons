@@ -158,14 +158,25 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     private void internalExecute(CommandSender sender, String label, String[] args) {
 
-        // check for subcommands
+        if (!this.checkForSubCommands(sender, label, args) && !this.checkForPermission(sender)) {
+            if (!this.execute(sender, label, args)) {
+                sendColorMessage(sender, prefix + this.getUsageLine());
+            }
+        }
+    }
+
+    private boolean checkForSubCommands(CommandSender sender, String label, String[] args) {
         if (args.length > 0) {
             AlexSubCommand subCommand = this.getSubCommandForString(args[0]);
             if (subCommand != null) {
                 subCommand.internalExecute(sender, label, Arrays.copyOfRange(args, 1, args.length));
+                return true;
             }
         }
+        return false;
+    }
 
+    private boolean checkForPermission(CommandSender sender) {
         if ((sender instanceof Player) && !this.isPlayerCmd) {
             sendColorMessage(sender, prefix + this.getNoPermissionLine());
 
@@ -174,16 +185,11 @@ public abstract class AlexSubCommand implements TabExecutor {
 
         } else if (this.permission != null && !sender.hasPermission(this.permission)) {
             sendColorMessage(sender, prefix + this.getNoPermissionLine());
-
         } else {
-            if (!this.execute(sender, label, args)) {
-                sendColorMessage(sender, prefix + this.getUsageLine());
-            }
+            return true;
         }
+        return false;
     }
-
-
-    // returns if usage was right
 
     /**
      * Gets called when no subCommand for this subCommand was found and sender can perform the command.
