@@ -65,6 +65,19 @@ public abstract class AlexSubCommand implements TabExecutor {
         this.prefix = parent.getPrefix();
     }
 
+    /**
+     * Constructor for heritage of an AlexCommand. This will inherit prefix, noPermisisonLine and set usageLine to the usageLinePrefixDummy
+     * @param name the subCommand name
+     * @param helpLine the helpLine
+     * @param alexCommand the alexCommand from which values are inherited
+     */
+    protected AlexSubCommand(String name, String helpLine, AlexCommand alexCommand) {
+        this(name, helpLine);
+        this.prefix = alexCommand.getPrefix();
+        this.noPermissionLine = alexCommand.getNoPermissionLine();
+        this.usageLine = alexCommand.getUsagePrefixDummy();
+    }
+
     // =========================================================================================
     //  GETTER / SETTER
     // =========================================================================================
@@ -81,10 +94,10 @@ public abstract class AlexSubCommand implements TabExecutor {
     protected Permission getPermission() {
         return this.permission;
     }
-    private String getUsageLine() {
+    protected String getUsageLine() {
         return this.usageLine;
     }
-    private String getNoPermissionLine() {
+    protected String getNoPermissionLine() {
         return this.noPermissionLine;
     }
     protected Map<String, AlexSubCommand> getSubCommands() {

@@ -8,11 +8,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings({"unused"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class AlexCommand extends AlexSubCommand {
 
     private List<String> credits = new ArrayList<>();
     private List<String> helpCmdHeader = new ArrayList<>();
+
+    private String usagePrefix = "";
 
     public AlexCommand(String name, JavaPlugin plugin, ChatColor pluginColor) {
         super(name, "");
@@ -26,6 +28,14 @@ public class AlexCommand extends AlexSubCommand {
         this.helpCmdHeader = helpCmdHeader;
     }
 
+    public String getUsagePrefixDummy() {
+        return this.usagePrefix;
+    }
+
+    public AlexCommand setUsagePrefixDummy(String prefix) {
+        this.usagePrefix = prefix;
+        return this;
+    }
     public AlexCommand setCredits(List<String> credits) {
         this.credits = credits;
         return this;
@@ -50,22 +60,22 @@ public class AlexCommand extends AlexSubCommand {
         return helpCmdHeader.remove(line);
     }
 
-    private void credits(CommandSender sender) {
+    protected void credits(CommandSender sender) {
         for (String creditLine : credits) {
             sendColorMessage(sender, this.getPrefix() + creditLine);
         }
     }
 
-    private static String getCommandLine(String label, String cmdName, String explanation) {
+    protected static String getCommandLine(String label, String cmdName, String explanation) {
         String prefix = "" + ChatColor.BOLD + ChatColor.GOLD + "/" + label;
         return prefix + cmdName + ": " + ChatColor.WHITE + explanation;
     }
 
-    private String getCommandLineWithPrefix(String label, String cmdName, String explanation) {
+    protected String getCommandLineWithPrefix(String label, String cmdName, String explanation) {
         return this.getPrefix() + getCommandLine(label, cmdName, explanation);
     }
 
-    private void help(CommandSender sender, String label) {
+    protected void help(CommandSender sender, String label) {
         for (String helpLine : this.helpCmdHeader) {
             sendColorMessage(sender, this.getPrefix() + helpLine);
         }
