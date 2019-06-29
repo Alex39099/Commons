@@ -77,7 +77,7 @@ public class AlexCommand extends AlexSubCommand {
     }
 
     @Override
-    boolean execute(CommandSender sender, String label, String[] args) {
+    protected boolean execute(CommandSender sender, String label, String[] args) {
         if (args.length == 0)
             this.credits(sender);
 

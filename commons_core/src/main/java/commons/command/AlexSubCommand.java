@@ -198,7 +198,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @param args the args that may concern this subCommand
      * @return true if usage was right, false otherwise
      */
-    abstract boolean execute(CommandSender sender, String label, String[] args);
+    protected abstract boolean execute(CommandSender sender, String label, String[] args);
 
     /**
      * Gets called when no subCommand for this subCommand was found and adds the returned list to the available subCommandNames on tab-complete.
