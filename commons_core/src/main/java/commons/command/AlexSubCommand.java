@@ -5,36 +5,49 @@ import commons.messages.Debugable;
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import sun.security.ssl.Debug;
 
 import java.util.*;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class AlexSubCommand implements TabExecutor {
 
-    // TEST may problems with sendColorMessage!!!
-    public static String getPrefix(JavaPlugin plugin, ChatColor pluginColor) {
-        return "[" + pluginColor + plugin.getName() + ChatColor.RESET + "]";
-    }
-
+    /**
+     * Sends a colored message (WITHOUT PREFIX) to the given sender (translateAlternate..)
+     * @param sender the commandSender
+     * @param msg the msg with color codes
+     */
     protected static void sendColorMessage(CommandSender sender, String msg) {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
     }
 
+    /**
+     * Sends multiple colored messages (WITHOUT PREFIX) to the given sender (translateAlternate..)
+     * @param sender the commandSender
+     * @param messages a list of messages with color codes
+     */
     protected static void sendColorMessage(CommandSender sender, List<String> messages) {
         for (String msg : messages) {
             sendColorMessage(sender, msg);
         }
     }
 
+    /**
+     * Sends a colored message (with prefix) to the given sender (translateAlternate..)
+     * @param sender the commandSender
+     * @param msg the msg with colorCodes
+     */
     protected void sendPrefixColorMessage(CommandSender sender, String msg) {
         sendColorMessage(sender, this.getPrefix() + msg);
     }
 
+    /**
+     * Sends multiple colored messages (with prefix) to the given sender (translateAlternate..)
+     * @param sender the commandSender
+     * @param messages a list of messages with color codes
+     */
     protected void sendPrefixColorMessage(CommandSender sender, List<String> messages) {
         for (String msg : messages) {
             sendPrefixColorMessage(sender, msg);
@@ -169,6 +182,12 @@ public abstract class AlexSubCommand implements TabExecutor {
         return this;
     }
 
+    /**
+     * Sets the prefix of the cmd
+     * @param prefix the prefix (should have blank at the end)
+     * @return the instance
+     */
+    @SuppressWarnings("UnusedReturnValue")
     public AlexSubCommand setPrefix(String prefix) {
         this.prefix = prefix;
         return this;
@@ -176,6 +195,11 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     // =========================================================================================
 
+    /**
+     * Get if a sender can execute the cmd
+     * @param sender the commandSender
+     * @return if commandSender is able to perform this cmd (does not check permission if not set)
+     */
     protected boolean canExecute(CommandSender sender) {
         if (((sender instanceof Player) && this.isPlayerCmd)
                 || (sender instanceof ConsoleCommandSender) && this.isConsoleCmd)
@@ -194,6 +218,11 @@ public abstract class AlexSubCommand implements TabExecutor {
         return list;
     }
 
+    /**
+     * Gets a set subCommand by name
+     * @param arg the subCmd's name
+     * @return the subCmd or null if not found
+     */
     @Nullable private AlexSubCommand getSubCommandForString(String arg) {
         for (String name : this.getSubCommands().keySet()) {
             if (name.equalsIgnoreCase(arg))
@@ -202,6 +231,11 @@ public abstract class AlexSubCommand implements TabExecutor {
         return null;
     }
 
+    /**
+     * Adds a subCommand if not yet present.
+     * @param subCommand the subCommand to add
+     * @return true if subCmd was added
+     */
     public boolean addSubCommand(AlexSubCommand subCommand) {
         if (subCommands.containsKey(subCommand.getName()))
             return false;
@@ -209,6 +243,7 @@ public abstract class AlexSubCommand implements TabExecutor {
         return true;
     }
 
+    // executes at first, should check for other subCommands and then for permission -> execute method -> may send usageLine
     private void internalExecute(CommandSender sender, String label, String[] args) {
 
         if (!this.checkForSubCommands(sender, label, args) && this.checkForPermission(sender)) {
@@ -219,6 +254,8 @@ public abstract class AlexSubCommand implements TabExecutor {
         }
     }
 
+    // checks for subCommands for the given args (used in internalExecute)
+    // returns true if a subCmd was found
     private boolean checkForSubCommands(CommandSender sender, String label, String[] args) {
         if (args.length > 0) {
             AlexSubCommand subCommand = this.getSubCommandForString(args[0]);
@@ -232,6 +269,8 @@ public abstract class AlexSubCommand implements TabExecutor {
         return false;
     }
 
+    // checks for permission of sender, sends messages accordingly.
+    // returns if sender can perform this subCmd
     private boolean checkForPermission(CommandSender sender) {
         if ((sender instanceof Player) && !this.isPlayerCmd) {
             sendColorMessage(sender, prefix + this.getNoPermissionLine());
@@ -266,7 +305,12 @@ public abstract class AlexSubCommand implements TabExecutor {
         return new ArrayList<>();
     }
 
-    // this should get overwritten for last subcommand!
+    /**
+     * Gets the tabCompletion by args and may call another tabCompletion with shorten args, this should only get overwritten by last subCmd!
+     * @param sender the consoleSender
+     * @param args the args
+     * @return a list of tabCompletions
+     */
     @SuppressWarnings({"WeakerAccess"})
     protected List<String> getTabCompletion(CommandSender sender, String[] args) {
         List<String> completions = new ArrayList<>();
@@ -288,6 +332,14 @@ public abstract class AlexSubCommand implements TabExecutor {
         return completions;
     }
 
+    /**
+     * Re-directs method to internalExecute. Do not touch
+     * @param sender the commandSender
+     * @param command the command
+     * @param label the label
+     * @param args the args
+     * @return always true
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         new DebugMessage(this.getClass(), debugable, "onCommand called.");
@@ -295,6 +347,14 @@ public abstract class AlexSubCommand implements TabExecutor {
         return true;
     }
 
+    /**
+     * Re-directs method to getTabCompletion. Do not touch
+     * @param sender the commandSender
+     * @param command the command
+     * @param alias the alias (not used)
+     * @param args the args
+     * @return a list of tabCompletions returned by getTabCompletion
+     */
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         new DebugMessage(this.getClass(), debugable, "onTabComplete called");

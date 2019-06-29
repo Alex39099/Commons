@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess", "FieldCanBeLocal"})
 public class ConfigChecker {
 
     private final String noPathMsg = "path is not existent.";
