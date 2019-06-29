@@ -1,13 +1,15 @@
 package commons.command;
 
+import commons.messages.DebugMessage;
+import commons.messages.Debugable;
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import sun.security.ssl.Debug;
 
 import java.util.*;
 
@@ -23,9 +25,35 @@ public abstract class AlexSubCommand implements TabExecutor {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
     }
 
+    protected static void sendColorMessage(CommandSender sender, List<String> messages) {
+        for (String msg : messages) {
+            sendColorMessage(sender, msg);
+        }
+    }
+
     protected void sendPrefixColorMessage(CommandSender sender, String msg) {
         sendColorMessage(sender, this.getPrefix() + msg);
     }
+
+    protected void sendPrefixColorMessage(CommandSender sender, List<String> messages) {
+        for (String msg : messages) {
+            sendPrefixColorMessage(sender, msg);
+        }
+    }
+
+    protected final Debugable debugable = new Debugable() {
+
+
+        @Override
+        public String getName() {
+            return "ALEXSUBCOMMAND-API";
+        }
+
+        @Override
+        public boolean getDebug() {
+            return true;
+        }
+    };
 
     private String name;
 
@@ -176,6 +204,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     private void internalExecute(CommandSender sender, String label, String[] args) {
 
         if (!this.checkForSubCommands(sender, label, args) && !this.checkForPermission(sender)) {
+            new DebugMessage(this.getClass(), debugable, "sender has permission, proceed with execute method...");
             if (!this.execute(sender, label, args)) {
                 sendColorMessage(sender, prefix + this.getUsageLine());
             }
@@ -186,10 +215,12 @@ public abstract class AlexSubCommand implements TabExecutor {
         if (args.length > 0) {
             AlexSubCommand subCommand = this.getSubCommandForString(args[0]);
             if (subCommand != null) {
+                new DebugMessage(this.getClass(), debugable, "found sub-command" + subCommand.getName());
                 subCommand.internalExecute(sender, label, Arrays.copyOfRange(args, 1, args.length));
                 return true;
             }
         }
+        new DebugMessage(this.getClass(), debugable, "found not sub-command, proceed with internalExecute...");
         return false;
     }
 
@@ -236,12 +267,15 @@ public abstract class AlexSubCommand implements TabExecutor {
 
             // check for subCommands
             AlexSubCommand subCommand = this.getSubCommandForString(args[0]);
-            if (subCommand != null)
+            if (subCommand != null) {
+                new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion");
                 return subCommand.getTabCompletion(sender, Arrays.copyOfRange(args, 1, args.length));
+            }
 
             // get possibilities out of arg
             StringUtil.copyPartialMatches(args[0], this.getSubCommandNames(sender), completions);
         } else {
+            new DebugMessage(this.getClass(), debugable, "TabCompletion: args.length == 0 -> tabCompletion = subCommandNames");
             completions = new ArrayList<>(this.getSubCommandNames(sender));
         }
         Collections.sort(completions);
@@ -250,12 +284,14 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        new DebugMessage(this.getClass(), debugable, "onCommand called.");
         this.internalExecute(sender, label, args);
         return true;
     }
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+        new DebugMessage(this.getClass(), debugable, "onTabComplete called");
         return this.getTabCompletion(sender, args);
     }
 }

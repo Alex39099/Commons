@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -21,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="78" column="21" lean-forward="true" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+            <state relative-caret-position="377">
+              <caret line="668" column="42" selection-start-line="668" selection-start-column="42" selection-end-line="668" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,13 +80,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1217">
-              <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+            <state relative-caret-position="660">
+              <caret line="293" column="77" selection-start-line="293" selection-start-column="77" selection-end-line="293" selection-end-column="77" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1454#1455#0" expanded="true" />
+                <element signature="e#1489#1490#0" expanded="true" />
+                <element signature="e#1544#1545#0" expanded="true" />
+                <element signature="e#1580#1581#0" expanded="true" />
                 <element signature="e#2942#2943#0" expanded="true" />
                 <element signature="e#2974#2975#0" expanded="true" />
                 <element signature="e#3006#3007#0" expanded="true" />
@@ -106,7 +112,7 @@
                 <element signature="e#3638#3764#0" />
                 <element signature="e#3769#3899#0" />
                 <element signature="e#3905#4010#0" />
-                <element signature="e#8244#8245#0" expanded="true" />
+                <element signature="e#9414#9415#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -115,8 +121,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2091">
-              <caret line="131" column="31" selection-start-line="131" selection-start-column="31" selection-end-line="131" selection-end-column="31" />
+            <state relative-caret-position="265">
+              <caret line="95" column="68" selection-start-line="95" selection-start-column="51" selection-end-line="95" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -133,11 +139,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+            <state relative-caret-position="783">
+              <caret line="88" column="68" selection-start-line="88" selection-start-column="68" selection-end-line="88" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#233#278#0" expanded="true" />
@@ -145,6 +151,8 @@
                 <element signature="method#setHelpCmdHeader#0;class#AlexCommand#0" />
                 <element signature="method#addCreditLine#0;class#AlexCommand#0" />
                 <element signature="method#addHelpCmdHeaderLine#0;class#AlexCommand#0" />
+                <element signature="e#1615#1616#0" expanded="true" />
+                <element signature="e#1658#1659#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -176,6 +184,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>setPrefix</find>
+      <find>addSu</find>
+      <find>loadConfiguration</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -632,7 +642,21 @@
       <option name="project" value="LOCAL" />
       <updated>1561803110990</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="added sendPrefixColorMessage">
+      <created>1561803425568</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1561803425568</updated>
+    </task>
+    <task id="LOCAL-00037" summary="made permission a string">
+      <created>1561803700096</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1561803700096</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView">
@@ -648,8 +672,8 @@
     <frame x="-1688" y="18" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.46744573" visible="true" weight="0.3777506" />
-      <window_info id="Structure" order="1" sideWeight="0.53255427" side_tool="true" visible="true" weight="0.3777506" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.46676302" visible="true" weight="0.3777506" />
+      <window_info id="Structure" order="1" sideWeight="0.533237" side_tool="true" visible="true" weight="0.3777506" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -657,7 +681,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.34042552" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.21836506" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.22508399" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -665,7 +689,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053304" side_tool="true" weight="0.21052632" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32936078" />
-      <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.32922733" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.31852654" />
       <window_info anchor="bottom" id="GitHub Pull Requests" order="11" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -688,8 +712,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="# finally fixed" />
-    <MESSAGE value="- removed constructor for JavaPlugin&#10;+ added JavaDoc" />
     <MESSAGE value="# dummy" />
     <MESSAGE value="# fixed problems now missing DebugMsg constructor for JavaPlugin" />
     <MESSAGE value="+ readded DebugMsg constructor for JavaPlugin" />
@@ -713,7 +735,9 @@
     <MESSAGE value="restructured" />
     <MESSAGE value="made execute(..) protected" />
     <MESSAGE value="added usagePrefixDummy, made some methods protected" />
-    <option name="LAST_COMMIT_MESSAGE" value="added usagePrefixDummy, made some methods protected" />
+    <MESSAGE value="added sendPrefixColorMessage" />
+    <MESSAGE value="made permission a string" />
+    <option name="LAST_COMMIT_MESSAGE" value="made permission a string" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -807,16 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2091">
-          <caret line="131" column="31" selection-start-line="131" selection-start-column="31" selection-end-line="131" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/LoadSaveException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -828,6 +842,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
           <caret line="62" selection-start-line="62" selection-end-line="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="95" column="68" selection-start-line="95" selection-start-column="51" selection-end-line="95" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -846,35 +870,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="78" column="21" lean-forward="true" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+        <state relative-caret-position="377">
+          <caret line="668" column="42" selection-start-line="668" selection-start-column="42" selection-end-line="668" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#233#278#0" expanded="true" />
-            <element signature="method#setCredits#0;class#AlexCommand#0" />
-            <element signature="method#setHelpCmdHeader#0;class#AlexCommand#0" />
-            <element signature="method#addCreditLine#0;class#AlexCommand#0" />
-            <element signature="method#addHelpCmdHeaderLine#0;class#AlexCommand#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1217">
-          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+        <state relative-caret-position="660">
+          <caret line="293" column="77" selection-start-line="293" selection-start-column="77" selection-end-line="293" selection-end-column="77" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1454#1455#0" expanded="true" />
+            <element signature="e#1489#1490#0" expanded="true" />
+            <element signature="e#1544#1545#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
             <element signature="e#2942#2943#0" expanded="true" />
             <element signature="e#2974#2975#0" expanded="true" />
             <element signature="e#3006#3007#0" expanded="true" />
@@ -896,7 +909,24 @@
             <element signature="e#3638#3764#0" />
             <element signature="e#3769#3899#0" />
             <element signature="e#3905#4010#0" />
-            <element signature="e#8244#8245#0" expanded="true" />
+            <element signature="e#9414#9415#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="88" column="68" selection-start-line="88" selection-start-column="68" selection-end-line="88" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#233#278#0" expanded="true" />
+            <element signature="method#setCredits#0;class#AlexCommand#0" />
+            <element signature="method#setHelpCmdHeader#0;class#AlexCommand#0" />
+            <element signature="method#addCreditLine#0;class#AlexCommand#0" />
+            <element signature="method#addHelpCmdHeaderLine#0;class#AlexCommand#0" />
+            <element signature="e#1615#1616#0" expanded="true" />
+            <element signature="e#1658#1659#0" expanded="true" />
           </folding>
         </state>
       </provider>

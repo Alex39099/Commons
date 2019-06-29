@@ -1,5 +1,7 @@
 package commons.command;
 
+import commons.messages.DebugMessage;
+import commons.messages.Debugable;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permission;
@@ -81,21 +83,29 @@ public class AlexCommand extends AlexSubCommand {
         }
 
         for (AlexSubCommand subCommand : this.getSubCommands().values()) {
-            if (subCommand.canExecute(sender))
+            if (subCommand.canExecute(sender)) {
                 sendColorMessage(sender, this.getCommandLineWithPrefix(label, subCommand.getName(), subCommand.getHelpLine()));
+            } else {
+                new DebugMessage(this.getClass(), debugable, "Help: sender has no permission for subCommand " + subCommand.getName() + ", skipped therefore for help-output");
+            }
+
         }
     }
 
     @Override
     protected boolean execute(CommandSender sender, String label, String[] args) {
-        if (args.length == 0)
+        if (args.length == 0) {
+            new DebugMessage(this.getClass(), debugable, "Execute: args.length == 0 -> send credits");
             this.credits(sender);
+        }
+
 
         if (args.length >= 1) {
-
-            if (args[0].equalsIgnoreCase("help"))
+            new DebugMessage(this.getClass(), debugable, "Execute: at least one arg -> check for help");
+            if (args[0].equalsIgnoreCase("help")) {
+                new DebugMessage(this.getClass(), debugable, "Execute: args[0] equals help, proceed with help...");
                 this.help(sender, label);
-
+            }
         }
         return false;
     }
