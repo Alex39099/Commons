@@ -70,7 +70,7 @@ public class AlexCommand extends AlexSubCommand {
 
     protected static String getCommandLine(String label, String cmdName, String explanation) {
         String prefix = "" + ChatColor.BOLD + ChatColor.GOLD + "/" + label;
-        return prefix + cmdName + ": " + ChatColor.WHITE + explanation;
+        return prefix + " " + cmdName + ": " + ChatColor.WHITE + explanation;
     }
 
     protected String getCommandLineWithPrefix(String label, String cmdName, String explanation) {
@@ -97,16 +97,23 @@ public class AlexCommand extends AlexSubCommand {
         if (args.length == 0) {
             new DebugMessage(this.getClass(), debugable, "Execute: args.length == 0 -> send credits");
             this.credits(sender);
+            return true;
         }
 
 
-        if (args.length >= 1) {
-            new DebugMessage(this.getClass(), debugable, "Execute: at least one arg -> check for help");
-            if (args[0].equalsIgnoreCase("help")) {
-                new DebugMessage(this.getClass(), debugable, "Execute: args[0] equals help, proceed with help...");
-                this.help(sender, label);
-            }
+        new DebugMessage(this.getClass(), debugable, "Execute: at least one arg -> check for help");
+        if (args[0].equalsIgnoreCase("help")) {
+            new DebugMessage(this.getClass(), debugable, "Execute: args[0] equals help, proceed with help...");
+            this.help(sender, label);
+            return true;
         }
         return false;
+    }
+
+    @Override
+    protected List<String> additionalTabCompleterOptions(CommandSender sender) {
+        List<String> list = new ArrayList<>();
+        list.add("help");
+        return list;
     }
 }

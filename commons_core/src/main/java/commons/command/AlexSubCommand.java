@@ -268,8 +268,9 @@ public abstract class AlexSubCommand implements TabExecutor {
             // check for subCommands
             AlexSubCommand subCommand = this.getSubCommandForString(args[0]);
             if (subCommand != null) {
-                new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion");
-                return subCommand.getTabCompletion(sender, Arrays.copyOfRange(args, 1, args.length));
+                String[] newArgs = Arrays.copyOfRange(args, 2, args.length);
+                new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion. Proceed with " + newArgs);
+                return subCommand.getTabCompletion(sender, newArgs);
             }
 
             // get possibilities out of arg
