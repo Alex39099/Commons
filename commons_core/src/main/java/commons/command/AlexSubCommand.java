@@ -51,7 +51,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
         @Override
         public boolean getDebug() {
-            return true;
+            return false;
         }
     };
 
