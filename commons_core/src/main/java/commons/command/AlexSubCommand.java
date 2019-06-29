@@ -203,7 +203,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     private void internalExecute(CommandSender sender, String label, String[] args) {
 
-        if (!this.checkForSubCommands(sender, label, args) && !this.checkForPermission(sender)) {
+        if (!this.checkForSubCommands(sender, label, args) && this.checkForPermission(sender)) {
             new DebugMessage(this.getClass(), debugable, "sender has permission, proceed with execute method...");
             if (!this.execute(sender, label, args)) {
                 sendColorMessage(sender, prefix + this.getUsageLine());
@@ -220,7 +220,7 @@ public abstract class AlexSubCommand implements TabExecutor {
                 return true;
             }
         }
-        new DebugMessage(this.getClass(), debugable, "found not sub-command, proceed with internalExecute...");
+        new DebugMessage(this.getClass(), debugable, "found no sub-command, proceed with internalExecute...");
         return false;
     }
 
