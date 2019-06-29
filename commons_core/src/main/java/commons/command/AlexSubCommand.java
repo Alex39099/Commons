@@ -166,18 +166,20 @@ public abstract class AlexSubCommand implements TabExecutor {
             }
         }
 
-        if ((sender instanceof Player) && !this.isPlayerCmd)
+        if ((sender instanceof Player) && !this.isPlayerCmd) {
             sendColorMessage(sender, prefix + this.getNoPermissionLine());
 
-        else if ((sender instanceof ConsoleCommandSender) && !this.isConsoleCmd)
+        } else if ((sender instanceof ConsoleCommandSender) && !this.isConsoleCmd) {
             sendColorMessage(sender, prefix + "&4You have to be a player to perform that command.");
 
-        else if (this.permission != null && !sender.hasPermission(this.permission))
+        } else if (this.permission != null && !sender.hasPermission(this.permission)) {
             sendColorMessage(sender, prefix + this.getNoPermissionLine());
 
-        else
-            if (this.execute(sender, label, args))
+        } else {
+            if (!this.execute(sender, label, args)) {
                 sendColorMessage(sender, prefix + this.getUsageLine());
+            }
+        }
     }
 
 
