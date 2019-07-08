@@ -694,7 +694,7 @@ public class ConfigChecker {
             this.attemptConsoleMsg(errorType, section.getName(), path, " of " + value.getClass().getSimpleName(), noPathMsg);
             return value;
         }
-        if (!value.checkConfigSection(this, section, path, errorType)) {
+        if (value.checkConfigSection(this, section, path, errorType)) {
             @SuppressWarnings("unchecked")
             T retValue = (T) section.get(path);
             return retValue;
