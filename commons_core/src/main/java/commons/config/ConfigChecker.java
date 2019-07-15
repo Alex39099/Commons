@@ -7,6 +7,7 @@ import commons.messages.DebugMessage;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -23,6 +24,7 @@ public class ConfigChecker {
     public final String longMsg = forceLongMsg + " or integer";
     public final String stringMsg = "value must be a string";
     public final String configSectionMsg = "value must be a configurationSection";
+    public final String vectorMsg = "value must be a vector";
 
     private JavaPlugin plugin;
     private String configFileName;
@@ -708,5 +710,29 @@ public class ConfigChecker {
             return retValue;
         }
         return value;
+    }
+
+    public Vector checkVector(final ConfigurationSection section, final String path, ConsoleErrorType errorType, Vector value) {
+        if (section.contains(path)) {
+            if (!section.isVector(path)) {
+                this.attemptConsoleMsg(errorType, section.getName(), path, value, vectorMsg);
+                return value;
+            }
+            return section.getVector(path);
+        }
+        this.attemptConsoleMsg(errorType, section.getName(), path, value, noPathMsg);
+        return value;
+    }
+
+    public boolean checkVector(final ConfigurationSection section, final String path, ConsoleErrorType errorType) {
+        if (section.contains(path)) {
+            if (!section.isVector(path)) {
+                this.attemptConsoleMsg(errorType, section.getName(), path, null, intMsg);
+                return false;
+            }
+            return true;
+        }
+        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        return false;
     }
 }
