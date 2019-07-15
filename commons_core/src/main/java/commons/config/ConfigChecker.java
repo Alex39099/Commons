@@ -36,6 +36,14 @@ public class ConfigChecker {
         this.configFileName = configFile.getName();
     }
 
+    /**
+     * Attempts to send a console msg.
+     * @param errorType the errorType (controls console msg)
+     * @param sectionName the sectionName
+     * @param path the path
+     * @param value the defValue (can be null)
+     * @param msg the specific error msg
+     */
     public void attemptConsoleMsg(ConsoleErrorType errorType, String sectionName, String path, Object value, String msg) {
         if (errorType.equals(ConsoleErrorType.WARN)) {
             new ConsoleWarningMessage(plugin, this.getSaveSectionName(sectionName), path, msg + " (used default value " + Objects.toString(value, "") + " instead)");
