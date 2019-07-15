@@ -712,6 +712,14 @@ public class ConfigChecker {
         return value;
     }
 
+    /**
+     *
+     * @param section the section to check.
+     * @param path the path within the section.
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @param value the default value
+     * @return config value (if set correctly) or value
+     */
     public Vector checkVector(final ConfigurationSection section, final String path, ConsoleErrorType errorType, Vector value) {
         if (section.contains(path)) {
             if (!section.isVector(path)) {
@@ -724,6 +732,13 @@ public class ConfigChecker {
         return value;
     }
 
+    /**
+     *
+     * @param section the section to check.
+     * @param path the path within the section.
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @return true if config value is set correctly, false otherwise
+     */
     public boolean checkVector(final ConfigurationSection section, final String path, ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isVector(path)) {
