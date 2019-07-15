@@ -14,15 +14,15 @@ import java.util.Objects;
 @SuppressWarnings({"unused", "WeakerAccess", "FieldCanBeLocal"})
 public class ConfigChecker {
 
-    private final String noPathMsg = "path is not existent.";
-    private final String booleanMsg = "value must be a boolean";
-    private final String intMsg = "value must be an integer";
-    private final String forceDoubleMsg = "value must be a double";
-    private final String doubleMsg = forceDoubleMsg + " or integer";
-    private final String forceLongMsg = "value must be a long";
-    private final String longMsg = forceLongMsg + " or integer";
-    private final String stringMsg = "value must be a string";
-    private final String configSectionMsg = "value must be a configurationSection";
+    public final String noPathMsg = "path is not existent.";
+    public final String booleanMsg = "value must be a boolean";
+    public final String intMsg = "value must be an integer";
+    public final String forceDoubleMsg = "value must be a double";
+    public final String doubleMsg = forceDoubleMsg + " or integer";
+    public final String forceLongMsg = "value must be a long";
+    public final String longMsg = forceLongMsg + " or integer";
+    public final String stringMsg = "value must be a string";
+    public final String configSectionMsg = "value must be a configurationSection";
 
     private JavaPlugin plugin;
     private String configFileName;
@@ -36,7 +36,7 @@ public class ConfigChecker {
         this.configFileName = configFile.getName();
     }
 
-    private void attemptConsoleMsg(ConsoleErrorType errorType, String sectionName, String path, Object value, String msg) {
+    public void attemptConsoleMsg(ConsoleErrorType errorType, String sectionName, String path, Object value, String msg) {
         if (errorType.equals(ConsoleErrorType.WARN)) {
             new ConsoleWarningMessage(plugin, this.getSaveSectionName(sectionName), path, msg + " (used default value " + Objects.toString(value, "") + " instead)");
         } else if (errorType.equals(ConsoleErrorType.ERROR)) {
