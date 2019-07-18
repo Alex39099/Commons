@@ -20,6 +20,8 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @param msg the msg with color codes
      */
     protected static void sendColorMessage(CommandSender sender, String msg) {
+        if (msg == null || msg.isEmpty())
+            return;
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
     }
 
@@ -40,6 +42,8 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @param msg the msg with colorCodes
      */
     protected void sendPrefixColorMessage(CommandSender sender, String msg) {
+        if (msg == null || msg.isEmpty())
+            return;
         sendColorMessage(sender, this.getPrefix() + msg);
     }
 
