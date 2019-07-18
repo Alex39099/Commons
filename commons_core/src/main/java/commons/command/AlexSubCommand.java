@@ -56,6 +56,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     protected final Debugable debugable = new Debugable() {
 
+        private boolean debug = false;
 
         @Override
         public String getName() {
@@ -64,9 +65,15 @@ public abstract class AlexSubCommand implements TabExecutor {
 
         @Override
         public boolean getDebug() {
-            return false;
+            return debug;
+        }
+
+        public void setDebug(boolean debug) {
+            this.debug = debug;
         }
     };
+
+
 
     private String name;
 
