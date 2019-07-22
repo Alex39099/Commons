@@ -78,15 +78,16 @@ public abstract class AlexSubCommand implements TabExecutor {
     };
 
 
-
     private String name;
-
     private String prefix = "";
+
     private String helpLine;
     private String cmdParamLine = "";
+
     private String permission;
-    private String usageLine = "";
     private String noPermissionLine = "";
+
+    private String usageLine = "";
 
     private boolean isPlayerCmd = true;
     private boolean isConsoleCmd = true;
@@ -168,26 +169,62 @@ public abstract class AlexSubCommand implements TabExecutor {
         this.helpLine = helpLine;
         return this;
     }
+
+    /**
+     * Sets the CmdParamLine used in the help-cmd. (/cmd name *this*: helpLine)
+     * @param paramLine the parameter line
+     * @return the edited AlexSubCommand
+     */
     public AlexSubCommand setCmdParamLine(String paramLine) {
         this.cmdParamLine = " " + paramLine;
         return this;
     }
+
+    /**
+     * Sets the usageLine sent when execute returns false.
+     * @param usageLine the raw usageLine
+     * @return the edited AlexSubCommand
+     */
     public AlexSubCommand setUsageLine(String usageLine) {
         this.usageLine = usageLine;
         return this;
     }
+
+    /**
+     * Sets the noPermissionLine sent when a cmdSender has no permission.
+     * @param noPermissionLine the line to send.
+     * @return the edited AlexSubCommand
+     */
     public AlexSubCommand setNoPermissionLine(String noPermissionLine) {
         this.noPermissionLine = noPermissionLine;
         return this;
     }
+
+    /**
+     * Sets the permission needed to perform the alexSubCmd.
+     * @param permission the permission-string
+     * @return the edited AlexSubCommand
+     */
     public AlexSubCommand setPermission(String permission) {
         this.permission = permission;
         return this;
     }
+
+    /**
+     * Sets if players should be able to perform the subCommand.
+     * @param isPlayerCmd should they?
+     * @return the edited AlexSubCommand.
+     */
     public AlexSubCommand setIsPlayerCmd(boolean isPlayerCmd) {
         this.isPlayerCmd = isPlayerCmd;
         return this;
     }
+
+    /**
+     * Sets if console should be able to perform the subCommand.
+     * @param isConsoleCmd should it?
+     * @return the edited AlexSubCommand.
+     */
     public AlexSubCommand setIsConsoleCmd(boolean isConsoleCmd) {
         this.isConsoleCmd = isConsoleCmd;
         return this;
@@ -195,19 +232,19 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     /**
      * Sets the prefix of the cmd
-     * @param prefix the prefix (should have blank at the end)
+     * @param prefix really just the prefix (without blanket)
      * @return the instance
      */
     @SuppressWarnings("UnusedReturnValue")
     public AlexSubCommand setPrefix(String prefix) {
-        this.prefix = prefix;
+        this.prefix = prefix + " ";
         return this;
     }
 
     // =========================================================================================
 
     /**
-     * Get if a sender can execute the cmd
+     * Get if a sender can execute the cmd. The permission check will return true if perm is null.
      * @param sender the commandSender
      * @return if commandSender is able to perform this cmd (does not check permission if not set)
      */
@@ -312,6 +349,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @param sender the CommandSender
      * @return a list of additional options added to the available subCommandNames on tab-complete
      */
+    @NotNull
     protected List<String> additionalTabCompleterOptions(CommandSender sender) {
         return new ArrayList<>();
     }
@@ -319,7 +357,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     /**
      * Gets the tabCompletion by args and may call another tabCompletion with shorten args, this should only get overwritten by last subCmd!
      * @param sender the consoleSender
-     * @param args the args
+     * @param args the args (without args used in other subCommands)
      * @return a list of tabCompletions
      */
     @SuppressWarnings({"WeakerAccess"})
@@ -344,7 +382,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     }
 
     /**
-     * Re-directs method to internalExecute. Do not touch
+     * Re-directs method to internalExecute. Do not touch.
      * @param sender the commandSender
      * @param command the command
      * @param label the label
@@ -359,7 +397,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     }
 
     /**
-     * Re-directs method to getTabCompletion. Do not touch
+     * Re-directs method to getTabCompletion. Do not touch.
      * @param sender the commandSender
      * @param command the command
      * @param alias the alias (not used)

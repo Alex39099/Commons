@@ -4,6 +4,7 @@ import commons.messages.DebugMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class AlexCommand extends AlexSubCommand {
      */
     public AlexCommand(String name, JavaPlugin plugin, ChatColor pluginColor) {
         super(name, "");
-        this.setPrefix("[" + pluginColor + plugin.getName() + ChatColor.RESET + "] ");
+        this.setPrefix("[" + pluginColor + plugin.getName() + ChatColor.RESET + "]");
         credits.add("version " + plugin.getDescription().getVersion() + ", author alex_qp");
     }
 
@@ -55,11 +56,11 @@ public class AlexCommand extends AlexSubCommand {
 
     /**
      * Sets the usagePrefixDummy
-     * @param prefix the prefix (should have a blank at the end)
+     * @param prefix the prefix (blanket gets added)
      * @return the instance
      */
     public AlexCommand setUsagePrefixDummy(String prefix) {
-        this.usagePrefix = prefix;
+        this.usagePrefix = prefix + " ";
         return this;
     }
     public AlexCommand setCredits(List<String> credits) {
@@ -120,7 +121,7 @@ public class AlexCommand extends AlexSubCommand {
     }
 
     /**
-     * Gets executed on help cmd
+     * Gets executed on help cmd.
      * @param sender the commandSender
      * @param label the used cmd-label
      */
@@ -139,6 +140,13 @@ public class AlexCommand extends AlexSubCommand {
         }
     }
 
+    /**
+     * Checks for subCommands or help.
+     * @param sender the CommandSender
+     * @param label the used label
+     * @param args the args that may concern this subCommand
+     * @return false if no subCommand was found or if it was not "help" for first argument.
+     */
     @Override
     protected boolean execute(CommandSender sender, String label, String[] args) {
         if (args.length == 0) {
@@ -146,7 +154,6 @@ public class AlexCommand extends AlexSubCommand {
             this.credits(sender);
             return true;
         }
-
 
         new DebugMessage(this.getClass(), debugable, "Execute: at least one arg -> check for help");
         if (args[0].equalsIgnoreCase("help")) {
@@ -158,11 +165,12 @@ public class AlexCommand extends AlexSubCommand {
     }
 
     /**
-     * Adds help to the tabCompleterOptions
+     * Adds help to the tabCompleterOptions. Please re-add "help" if you overwrite this method.
      * @param sender the CommandSender
      * @return the list of tab completions
      */
     @Override
+    @NotNull
     protected List<String> additionalTabCompleterOptions(CommandSender sender) {
         List<String> list = new ArrayList<>();
         list.add("help");
