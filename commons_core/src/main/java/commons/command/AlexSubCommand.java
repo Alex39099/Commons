@@ -1,7 +1,7 @@
 package commons.command;
 
 import commons.messages.DebugMessage;
-import commons.messages.Debugable;
+import commons.messages.SetDebugable;
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
@@ -58,7 +58,7 @@ public abstract class AlexSubCommand implements TabExecutor {
         }
     }
 
-    protected final Debugable debugable = new Debugable() {
+    protected SetDebugable debugable = new SetDebugable() {
 
         private boolean debug = false;
 
@@ -72,6 +72,7 @@ public abstract class AlexSubCommand implements TabExecutor {
             return debug;
         }
 
+        @Override
         public void setDebug(boolean debug) {
             this.debug = debug;
         }
@@ -109,7 +110,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     }
 
     /**
-     * Constructor for heritage. This will inherit isPlayerCmd, isConsoleCmd, prefix, usagePrefixDummy, noPermissionLine
+     * Constructor for heritage. This will inherit isPlayerCmd, isConsoleCmd, prefix, usagePrefixDummy, noPermissionLine. (also debug)
      * @param name the name
      * @param helpLine the helpLine
      * @param parent the parent subCommand from which values are inherited
@@ -119,10 +120,11 @@ public abstract class AlexSubCommand implements TabExecutor {
         this.prefix = parent.getPrefix();
         this.usagePrefixDummy = parent.usagePrefixDummy;
         this.noPermissionLine = parent.noPermissionLine;
+        this.debugable = parent.debugable;
     }
 
     /**
-     * Constructor for heritage of an AlexCommand. This will inherit prefix, noPermisisonLine and usagePrefixDummy.
+     * Constructor for heritage of an AlexCommand. This will inherit prefix, noPermisisonLine and usagePrefixDummy. (also debug)
      * @param name the subCommand name
      * @param helpLine the helpLine
      * @param alexCommand the alexCommand from which values are inherited
@@ -132,6 +134,7 @@ public abstract class AlexSubCommand implements TabExecutor {
         this.prefix = alexCommand.getPrefix();
         this.noPermissionLine = alexCommand.getNoPermissionLine();
         this.usagePrefixDummy = alexCommand.getUsagePrefixDummy();
+        this.debugable = alexCommand.debugable;
     }
 
     // =========================================================================================
@@ -321,6 +324,7 @@ public abstract class AlexSubCommand implements TabExecutor {
         }
 
         if (hasExtraFirstArgument) {
+            new DebugMessage(this.getClass(), debugable, "subCmd has extra argument, adjusting args...");
             extraArgument = args[0];
             args = Arrays.copyOfRange(args, 1, args.length);
         }

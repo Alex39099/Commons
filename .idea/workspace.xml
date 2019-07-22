@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/messages/SetDebugable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" afterDir="false" />
     </list>
@@ -19,26 +20,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/commons_dist/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="315" column="89" selection-start-line="315" selection-start-column="76" selection-end-line="315" selection-end-column="89" />
+            <state relative-caret-position="2304">
+              <caret line="155" column="5" lean-forward="true" selection-start-line="155" selection-start-column="5" selection-end-line="155" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2201#2202#0" expanded="true" />
                 <element signature="e#2254#2255#0" expanded="true" />
-                <element signature="e#13730#13731#0" expanded="true" />
+                <element signature="e#2309#2310#0" expanded="true" />
+                <element signature="e#2345#2346#0" expanded="true" />
+                <element signature="e#2461#2462#0" expanded="true" />
+                <element signature="e#2503#2504#0" expanded="true" />
+                <element signature="e#13977#13978#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/messages/SetDebugable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="33" lean-forward="true" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -146,8 +151,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -170,6 +175,7 @@
       <find>usagePrefix</find>
       <find>getTabCompletion</find>
       <find>extraArgument</find>
+      <find>internalExe</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,6 +204,9 @@
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" />
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java" />
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java" />
+        <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/command/CmdDebugable.java" />
+        <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/command/SetDebugable.java" />
+        <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/messages/SetDebugable.java" />
         <option value="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" />
       </list>
     </option>
@@ -380,20 +389,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00015" summary="+ readded DebugMsg constructor for JavaPlugin">
-      <created>1560358675912</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1560358675912</updated>
-    </task>
-    <task id="LOCAL-00016" summary="# fixed javadoc">
-      <created>1560358774245</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1560358774245</updated>
     </task>
     <task id="LOCAL-00017" summary="+ added method checkDouble(..., forceDouble):boolean&#10;+ added method checkDouble(..., false):boolean&#10;+ added method checkLong(..., forceLong):boolean&#10;+ added method checkLong(..., false):boolean">
       <created>1560364126418</created>
@@ -724,7 +719,21 @@
       <option name="project" value="LOCAL" />
       <updated>1563816974927</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="subCommands can now have an extra argument.">
+      <created>1563822970848</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1563822970848</updated>
+    </task>
+    <task id="LOCAL-00065" summary="tabCompletion will no longer stop for no perm.">
+      <created>1563823039658</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1563823039658</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TodoView">
@@ -740,8 +749,8 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.44745395" visible="true" weight="0.35181236" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.552546" side_tool="true" visible="true" weight="0.35181236" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.44745395" visible="true" weight="0.35181236" />
+      <window_info id="Structure" order="1" sideWeight="0.552546" side_tool="true" visible="true" weight="0.35181236" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -780,8 +789,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made permission a string" />
-    <MESSAGE value="added lots of debug messages" />
     <MESSAGE value="bugfix internalExecute" />
     <MESSAGE value="bugfix tabCompletion" />
     <MESSAGE value="disabled debugMode" />
@@ -805,7 +812,9 @@
     <MESSAGE value="made constructor public." />
     <MESSAGE value="made getter public" />
     <MESSAGE value="tabCompletion will stop if sender has no permission" />
-    <option name="LAST_COMMIT_MESSAGE" value="tabCompletion will stop if sender has no permission" />
+    <MESSAGE value="subCommands can now have an extra argument." />
+    <MESSAGE value="tabCompletion will no longer stop for no perm." />
+    <option name="LAST_COMMIT_MESSAGE" value="tabCompletion will no longer stop for no perm." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -960,15 +969,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/messages/SetDebugable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="33" lean-forward="true" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="315" column="89" selection-start-line="315" selection-start-column="76" selection-end-line="315" selection-end-column="89" />
+        <state relative-caret-position="2304">
+          <caret line="155" column="5" lean-forward="true" selection-start-line="155" selection-start-column="5" selection-end-line="155" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2201#2202#0" expanded="true" />
             <element signature="e#2254#2255#0" expanded="true" />
-            <element signature="e#13730#13731#0" expanded="true" />
+            <element signature="e#2309#2310#0" expanded="true" />
+            <element signature="e#2345#2346#0" expanded="true" />
+            <element signature="e#2461#2462#0" expanded="true" />
+            <element signature="e#2503#2504#0" expanded="true" />
+            <element signature="e#13977#13978#0" expanded="true" />
           </folding>
         </state>
       </provider>
