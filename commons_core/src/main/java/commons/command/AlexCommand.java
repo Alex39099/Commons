@@ -28,41 +28,7 @@ public class AlexCommand extends AlexSubCommand {
         this.setPrefix("[" + pluginColor + plugin.getName() + ChatColor.RESET + "]");
         credits.add("version " + plugin.getDescription().getVersion() + ", author alex_qp");
     }
-
-    /**
-     * Constructs a new cmd, will only set listed arguments.
-     * @param name the (sub-)command name
-     * @param credits a list of credit lines. (blank cmd use)
-     * @param helpCmdHeader a list of helpCmdHeader. (showed on top of all helpCmdLines for ..help)
-     * @param perm the permission needed to perform the command.
-     * @param usageLine the usageLine shown on wrong usage
-     * @param noPermissionLine the permissionLine shown on no permission
-     * @param isPlayerCmd should players perform that cmd?
-     * @param isConsoleCmd should console perform that cmd?
-     */
-    public AlexCommand(String name, List<String> credits, List<String> helpCmdHeader, String perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
-        super(name, "", perm, usageLine, noPermissionLine, isPlayerCmd, isConsoleCmd);
-        this.credits = credits;
-        this.helpCmdHeader = helpCmdHeader;
-    }
-
-    /**
-     * Gets the usagePrefixDummy (can be used for sub-Cmd usageLines). This is not supposed to contain the cmdPrefix
-     * @return the usagePrefixDummy ready to send it to (subCmd#setUsageLine(THIS + usageLine)
-     */
-    public String getUsagePrefixDummy() {
-        return this.usagePrefix;
-    }
-
-    /**
-     * Sets the usagePrefixDummy
-     * @param prefix the prefix (blanket gets added)
-     * @return the instance
-     */
-    public AlexCommand setUsagePrefixDummy(String prefix) {
-        this.usagePrefix = prefix + " ";
-        return this;
-    }
+    
     public AlexCommand setCredits(List<String> credits) {
         this.credits = credits;
         return this;

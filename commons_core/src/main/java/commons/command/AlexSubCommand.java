@@ -88,6 +88,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     private String noPermissionLine = "";
 
     private String usageLine = "";
+    private String usagePrefixDummy = "";
 
     private boolean isPlayerCmd = true;
     private boolean isConsoleCmd = true;
@@ -105,26 +106,21 @@ public abstract class AlexSubCommand implements TabExecutor {
         this.isConsoleCmd = isConsoleCmd;
     }
 
-    protected AlexSubCommand(String name, String helpLine, String perm, String usageLine, String noPermissionLine, boolean isPlayerCmd, boolean isConsoleCmd) {
-        this(name, helpLine, isPlayerCmd, isConsoleCmd);
-        this.permission = perm;
-        this.usageLine = usageLine;
-        this.noPermissionLine = noPermissionLine;
-    }
-
     /**
-     * Constructor for heritage
+     * Constructor for heritage. This will inherit isPlayerCmd, isConsoleCmd, prefix, usagePrefixDummy, noPermissionLine
      * @param name the name
      * @param helpLine the helpLine
      * @param parent the parent subCommand from which values are inherited
      */
     protected AlexSubCommand(String name, String helpLine, AlexSubCommand parent) {
-        this(name, helpLine, parent.getPermission(), parent.getUsageLine(), parent.getNoPermissionLine(), parent.isPlayerCmd, parent.isConsoleCmd);
+        this(name, helpLine, parent.isPlayerCmd, parent.isConsoleCmd);
         this.prefix = parent.getPrefix();
+        this.usagePrefixDummy = parent.usagePrefixDummy;
+        this.noPermissionLine = parent.noPermissionLine;
     }
 
     /**
-     * Constructor for heritage of an AlexCommand. This will inherit prefix, noPermisisonLine and set usageLine to the usageLinePrefixDummy
+     * Constructor for heritage of an AlexCommand. This will inherit prefix, noPermisisonLine and usagePrefixDummy.
      * @param name the subCommand name
      * @param helpLine the helpLine
      * @param alexCommand the alexCommand from which values are inherited
@@ -133,7 +129,7 @@ public abstract class AlexSubCommand implements TabExecutor {
         this(name, helpLine);
         this.prefix = alexCommand.getPrefix();
         this.noPermissionLine = alexCommand.getNoPermissionLine();
-        this.usageLine = alexCommand.getUsagePrefixDummy();
+        this.usagePrefixDummy = alexCommand.getUsagePrefixDummy();
     }
 
     // =========================================================================================
@@ -158,11 +154,29 @@ public abstract class AlexSubCommand implements TabExecutor {
     protected String getUsageLine() {
         return this.usageLine;
     }
+    /**
+     * Gets the usagePrefixDummy (can be used for sub-Cmd usageLines). This is not supposed to contain the cmdPrefix
+     * @return the usagePrefixDummy ready to send it to (subCmd#setUsageLine(THIS + usageLine)
+     */
+    public String getUsagePrefixDummy() {
+        return this.usagePrefixDummy;
+    }
     protected String getNoPermissionLine() {
         return this.noPermissionLine;
     }
     protected Map<String, AlexSubCommand> getSubCommands() {
         return this.subCommands;
+    }
+
+
+    /**
+     * Sets the usagePrefixDummy
+     * @param prefix the prefix (blanket gets added)
+     * @return the edited AlexSubCommand
+     */
+    public AlexSubCommand setUsagePrefixDummy(String prefix) {
+        this.usagePrefixDummy = prefix + " ";
+        return this;
     }
 
     public AlexSubCommand setHelpLine(String helpLine) {
