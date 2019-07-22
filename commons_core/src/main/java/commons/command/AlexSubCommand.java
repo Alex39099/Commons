@@ -112,7 +112,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @param helpLine the helpLine
      * @param parent the parent subCommand from which values are inherited
      */
-    public AlexSubCommand(String name, String helpLine, AlexSubCommand parent) {
+    protected AlexSubCommand(String name, String helpLine, AlexSubCommand parent) {
         this(name, helpLine, parent.isPlayerCmd, parent.isConsoleCmd);
         this.prefix = parent.getPrefix();
         this.usagePrefixDummy = parent.usagePrefixDummy;
@@ -125,7 +125,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @param helpLine the helpLine
      * @param alexCommand the alexCommand from which values are inherited
      */
-    public AlexSubCommand(String name, String helpLine, AlexCommand alexCommand) {
+    protected AlexSubCommand(String name, String helpLine, AlexCommand alexCommand) {
         this(name, helpLine);
         this.prefix = alexCommand.getPrefix();
         this.noPermissionLine = alexCommand.getNoPermissionLine();
@@ -142,16 +142,16 @@ public abstract class AlexSubCommand implements TabExecutor {
     public String getPrefix() {
         return this.prefix;
     }
-    protected String getHelpLine() {
+    public String getHelpLine() {
         return this.helpLine;
     }
-    protected String getCmdParamLine() {
+    public String getCmdParamLine() {
         return this.cmdParamLine;
     }
-    protected String getPermission() {
+    public String getPermission() {
         return this.permission;
     }
-    protected String getUsageLine() {
+    public String getUsageLine() {
         return this.usageLine;
     }
     /**
@@ -161,7 +161,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     public String getUsagePrefixDummy() {
         return this.usagePrefixDummy;
     }
-    protected String getNoPermissionLine() {
+    public String getNoPermissionLine() {
         return this.noPermissionLine;
     }
     protected Map<String, AlexSubCommand> getSubCommands() {

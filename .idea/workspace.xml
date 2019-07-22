@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="made constructor public.">
       <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -31,14 +30,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4114">
-              <caret line="357" column="90" selection-start-line="357" selection-start-column="90" selection-end-line="357" selection-end-column="90" />
+            <state relative-caret-position="163">
+              <caret line="153" column="10" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2201#2202#0" expanded="true" />
                 <element signature="e#2254#2255#0" expanded="true" />
+                <element signature="e#5526#5527#0" expanded="true" />
                 <element signature="e#5565#5566#0" expanded="true" />
-                <element signature="e#5604#5605#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -165,6 +164,7 @@
       <find>setPrefix</find>
       <find>CmdParamLine</find>
       <find>canExecute</find>
+      <find>abstract</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -375,13 +375,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00012" summary="# fixed problems now missing DebugMsg constructor for JavaPlugin">
-      <created>1560356843848</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1560356843848</updated>
     </task>
     <task id="LOCAL-00013" summary="# fixed problems now missing DebugMsg constructor for JavaPlugin">
       <created>1560356920562</created>
@@ -719,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563797500753</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="made constructor public.">
+      <created>1563798759565</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1563798759565</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TodoView">
@@ -775,7 +775,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made execute(..) protected" />
     <MESSAGE value="added usagePrefixDummy, made some methods protected" />
     <MESSAGE value="added sendPrefixColorMessage" />
     <MESSAGE value="made permission a string" />
@@ -800,7 +799,8 @@
     <MESSAGE value="removed pain constructor, moved prefixDummy to AlexSubCommand." />
     <MESSAGE value="removed constructor." />
     <MESSAGE value="added methods to add multiple lines" />
-    <option name="LAST_COMMIT_MESSAGE" value="added methods to add multiple lines" />
+    <MESSAGE value="made constructor public." />
+    <option name="LAST_COMMIT_MESSAGE" value="made constructor public." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -861,13 +861,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/commons_dist/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
@@ -953,16 +946,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/commons_dist/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4114">
-          <caret line="357" column="90" selection-start-line="357" selection-start-column="90" selection-end-line="357" selection-end-column="90" />
+        <state relative-caret-position="163">
+          <caret line="153" column="10" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2201#2202#0" expanded="true" />
             <element signature="e#2254#2255#0" expanded="true" />
+            <element signature="e#5526#5527#0" expanded="true" />
             <element signature="e#5565#5566#0" expanded="true" />
-            <element signature="e#5604#5605#0" expanded="true" />
           </folding>
         </state>
       </provider>
