@@ -64,7 +64,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
         @Override
         public String getName() {
-            return "ALEXSUBCOMMAND-API";
+            return "[ALEXSUBCOMMAND-API]";
         }
 
         @Override
