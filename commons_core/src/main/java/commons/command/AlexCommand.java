@@ -28,7 +28,7 @@ public class AlexCommand extends AlexSubCommand {
         this.setPrefix("[" + pluginColor + plugin.getName() + ChatColor.RESET + "]");
         credits.add("version " + plugin.getDescription().getVersion() + ", author alex_qp");
     }
-    
+
     public AlexCommand setCredits(List<String> credits) {
         this.credits = credits;
         return this;
