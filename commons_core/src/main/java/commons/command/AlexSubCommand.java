@@ -93,6 +93,8 @@ public abstract class AlexSubCommand implements TabExecutor {
     private boolean isPlayerCmd = true;
     private boolean isConsoleCmd = true;
 
+    private boolean hasExtraFirstArgument = false;
+
     private HashMap<String, AlexSubCommand> subCommands = new HashMap<>();
 
     protected AlexSubCommand(String name, String helpLine) {
@@ -255,6 +257,11 @@ public abstract class AlexSubCommand implements TabExecutor {
         return this;
     }
 
+    public AlexSubCommand setHasExtraFirstArgument(boolean hasExtra) {
+        this.hasExtraFirstArgument = hasExtra;
+        return this;
+    }
+
     // =========================================================================================
 
     /**
@@ -306,11 +313,22 @@ public abstract class AlexSubCommand implements TabExecutor {
     }
 
     // executes at first, should check for other subCommands and then for permission -> execute method -> may send usageLine
-    private void internalExecute(CommandSender sender, String label, String[] args) {
+    private void internalExecute(CommandSender sender, String label, String extraArgument, String[] args) {
 
-        if (!this.checkForSubCommands(sender, label, args) && this.checkForPermission(sender)) {
+        if(hasExtraFirstArgument && args.length == 0) {
+            sendPrefixColorMessage(sender, this.getUsageLine());
+            return;
+        }
+
+        if (hasExtraFirstArgument) {
+            extraArgument = args[0];
+            args = Arrays.copyOfRange(args, 1, args.length);
+        }
+
+
+        if (!this.checkForSubCommands(sender, label, extraArgument, args) && this.checkForPermission(sender)) {
             new DebugMessage(this.getClass(), debugable, "sender has permission, proceed with execute method...");
-            if (!this.execute(sender, label, args)) {
+            if (!this.execute(sender, label, extraArgument, args)) {
                 sendColorMessage(sender, prefix + this.getUsageLine());
             }
         }
@@ -318,12 +336,14 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     // checks for subCommands for the given args (used in internalExecute)
     // returns true if a subCmd was found
-    private boolean checkForSubCommands(CommandSender sender, String label, String[] args) {
+    private boolean checkForSubCommands(CommandSender sender, String label, String extraArgument, String[] args) {
+
+        // if performing subCmd has extra argument, args will already be shortened!
         if (args.length > 0) {
             AlexSubCommand subCommand = this.getSubCommandForString(args[0]);
             if (subCommand != null) {
                 new DebugMessage(this.getClass(), debugable, "found sub-command" + subCommand.getName());
-                subCommand.internalExecute(sender, label, Arrays.copyOfRange(args, 1, args.length));
+                subCommand.internalExecute(sender, label, extraArgument, Arrays.copyOfRange(args, 1, args.length));
                 return true;
             }
         }
@@ -352,10 +372,11 @@ public abstract class AlexSubCommand implements TabExecutor {
      * Gets called when no subCommand for this subCommand was found and sender can perform the command.
      * @param sender the CommandSender
      * @param label the used label
+     * @param extraArgument the extraArgument if last subCmd had extraArgument.
      * @param args the args that may concern this subCommand
      * @return true if usage was right, false otherwise
      */
-    protected abstract boolean execute(CommandSender sender, String label, String[] args);
+    protected abstract boolean execute(CommandSender sender, String label, String extraArgument, String[] args);
 
     /**
      * Gets called when no subCommand for this subCommand was found and adds the returned list to the available subCommandNames on tab-complete.
@@ -365,6 +386,11 @@ public abstract class AlexSubCommand implements TabExecutor {
      */
     @NotNull
     protected List<String> additionalTabCompleterOptions(CommandSender sender) {
+        return new ArrayList<>();
+    }
+
+    @NotNull
+    protected List<String> additionalTabCompleterOptionsExtraArgument(CommandSender sender) {
         return new ArrayList<>();
     }
 
@@ -378,10 +404,15 @@ public abstract class AlexSubCommand implements TabExecutor {
     protected List<String> getTabCompletion(CommandSender sender, String[] args) {
         List<String> completions = new ArrayList<>();
 
-        if (args.length > 0) {
+        int i = 0;
+
+        if (hasExtraFirstArgument)
+            i = 1;
+
+        if (args.length > i) {
 
             // check for subCommands
-            AlexSubCommand subCommand = this.getSubCommandForString(args[0]);
+            AlexSubCommand subCommand = this.getSubCommandForString(args[i]);
             if (subCommand != null) {
 
                 if (!subCommand.canExecute(sender)) {
@@ -390,12 +421,14 @@ public abstract class AlexSubCommand implements TabExecutor {
                 }
 
                 new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion.");
-                return subCommand.getTabCompletion(sender, Arrays.copyOfRange(args, 1, args.length));
+                return subCommand.getTabCompletion(sender, Arrays.copyOfRange(args, i + 1, args.length));
             }
 
             // get possibilities out of arg
-            StringUtil.copyPartialMatches(args[0], this.getSubCommandNames(sender), completions);
-            StringUtil.copyPartialMatches(args[0], this.additionalTabCompleterOptions(sender), completions);
+            StringUtil.copyPartialMatches(args[i], this.getSubCommandNames(sender), completions);
+            StringUtil.copyPartialMatches(args[i], this.additionalTabCompleterOptions(sender), completions);
+        } else if (args.length == 1) {
+            StringUtil.copyPartialMatches(args[0], this.additionalTabCompleterOptionsExtraArgument(sender), completions);
         }
         Collections.sort(completions);
         return completions;
@@ -412,7 +445,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         new DebugMessage(this.getClass(), debugable, "onCommand called.");
-        this.internalExecute(sender, label, args);
+        this.internalExecute(sender, label, "", args);
         return true;
     }
 
