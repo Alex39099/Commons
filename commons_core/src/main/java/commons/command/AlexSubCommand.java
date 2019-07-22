@@ -405,13 +405,16 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @return a list of tabCompletions
      */
     @SuppressWarnings({"WeakerAccess"})
-    protected List<String> getTabCompletion(CommandSender sender, String[] args) {
+    protected List<String> getTabCompletion(CommandSender sender, String extraArgument, String[] args) {
         List<String> completions = new ArrayList<>();
 
         int i = 0;
 
-        if (hasExtraFirstArgument)
+        if (hasExtraFirstArgument) {
             i = 1;
+            extraArgument = args[0];
+        }
+
 
         if (args.length > i) {
 
@@ -420,7 +423,7 @@ public abstract class AlexSubCommand implements TabExecutor {
             if (subCommand != null) {
 
                 new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion.");
-                return subCommand.getTabCompletion(sender, Arrays.copyOfRange(args, i + 1, args.length));
+                return subCommand.getTabCompletion(sender, extraArgument, Arrays.copyOfRange(args, i + 1, args.length));
             }
 
             // get possibilities out of arg
@@ -459,6 +462,6 @@ public abstract class AlexSubCommand implements TabExecutor {
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         new DebugMessage(this.getClass(), debugable, "onTabComplete called");
-        return this.getTabCompletion(sender, args);
+        return this.getTabCompletion(sender, "", args);
     }
 }
