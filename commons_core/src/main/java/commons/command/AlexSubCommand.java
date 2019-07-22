@@ -112,7 +112,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @param helpLine the helpLine
      * @param parent the parent subCommand from which values are inherited
      */
-    protected AlexSubCommand(String name, String helpLine, AlexSubCommand parent) {
+    public AlexSubCommand(String name, String helpLine, AlexSubCommand parent) {
         this(name, helpLine, parent.isPlayerCmd, parent.isConsoleCmd);
         this.prefix = parent.getPrefix();
         this.usagePrefixDummy = parent.usagePrefixDummy;
@@ -125,7 +125,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      * @param helpLine the helpLine
      * @param alexCommand the alexCommand from which values are inherited
      */
-    protected AlexSubCommand(String name, String helpLine, AlexCommand alexCommand) {
+    public AlexSubCommand(String name, String helpLine, AlexCommand alexCommand) {
         this(name, helpLine);
         this.prefix = alexCommand.getPrefix();
         this.noPermissionLine = alexCommand.getNoPermissionLine();

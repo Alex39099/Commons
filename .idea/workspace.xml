@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -32,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="99" column="33" lean-forward="true" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
+            <state relative-caret-position="4114">
+              <caret line="357" column="90" selection-start-line="357" selection-start-column="90" selection-end-line="357" selection-end-column="90" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2201#2202#0" expanded="true" />
@@ -48,10 +47,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="340">
+              <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1941#1942#0" expanded="true" />
+                <element signature="e#2048#2049#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -375,27 +376,6 @@
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
     </task>
-    <task id="LOCAL-00009" summary="# finally fixed">
-      <created>1560352533837</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1560352533837</updated>
-    </task>
-    <task id="LOCAL-00010" summary="- removed constructor for JavaPlugin&#10;+ added JavaDoc">
-      <created>1560355096219</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1560355096219</updated>
-    </task>
-    <task id="LOCAL-00011" summary="# dummy">
-      <created>1560356314307</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1560356314307</updated>
-    </task>
     <task id="LOCAL-00012" summary="# fixed problems now missing DebugMsg constructor for JavaPlugin">
       <created>1560356843848</created>
       <option name="number" value="00012" />
@@ -718,7 +698,28 @@
       <option name="project" value="LOCAL" />
       <updated>1563796117206</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="removed pain constructor, moved prefixDummy to AlexSubCommand.">
+      <created>1563796932772</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1563796932772</updated>
+    </task>
+    <task id="LOCAL-00059" summary="removed constructor.">
+      <created>1563797064765</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1563797064766</updated>
+    </task>
+    <task id="LOCAL-00060" summary="added methods to add multiple lines">
+      <created>1563797500753</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1563797500753</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TodoView">
@@ -774,10 +775,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed setter to return instance&#10;made some more constructor&#10;every player will have permission if no permission is set" />
-    <MESSAGE value="added methods to add/remove lines to credits/helpCmdHeader" />
-    <MESSAGE value="fixed bug with usageLine for internalExecute" />
-    <MESSAGE value="restructured" />
     <MESSAGE value="made execute(..) protected" />
     <MESSAGE value="added usagePrefixDummy, made some methods protected" />
     <MESSAGE value="added sendPrefixColorMessage" />
@@ -799,7 +796,11 @@
     <MESSAGE value="sendColorMsg &amp; sendPrefixColorMsg will not send a msg if null or empty." />
     <MESSAGE value="no setter requires blankets in argument, added javadoc" />
     <MESSAGE value="cosmetic brackets in debugable." />
-    <option name="LAST_COMMIT_MESSAGE" value="cosmetic brackets in debugable." />
+    <MESSAGE value="removed constructor, moved prefixDummy to AlexSubCommand." />
+    <MESSAGE value="removed pain constructor, moved prefixDummy to AlexSubCommand." />
+    <MESSAGE value="removed constructor." />
+    <MESSAGE value="added methods to add multiple lines" />
+    <option name="LAST_COMMIT_MESSAGE" value="added methods to add multiple lines" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -942,18 +943,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="340">
+          <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1941#1942#0" expanded="true" />
+            <element signature="e#2048#2049#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/commons_core/src/main/java/commons/command/AlexSubCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="99" column="33" lean-forward="true" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
+        <state relative-caret-position="4114">
+          <caret line="357" column="90" selection-start-line="357" selection-start-column="90" selection-end-line="357" selection-end-column="90" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2201#2202#0" expanded="true" />
