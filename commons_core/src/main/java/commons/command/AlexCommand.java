@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -41,8 +42,16 @@ public class AlexCommand extends AlexSubCommand {
         credits.add(line);
         return this;
     }
+    public AlexCommand addAllCreditLine(Collection<? extends String> lines) {
+        credits.addAll(lines);
+        return this;
+    }
     public AlexCommand addHelpCmdHeaderLine(String line) {
         helpCmdHeader.add(line);
+        return this;
+    }
+    public AlexCommand addAllHelpCmdHeaderLine(Collection<? extends String> lines) {
+        helpCmdHeader.addAll(lines);
         return this;
     }
 
