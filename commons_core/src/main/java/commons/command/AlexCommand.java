@@ -119,11 +119,12 @@ public class AlexCommand extends AlexSubCommand {
      * Checks for subCommands or help.
      * @param sender the CommandSender
      * @param label the used label
+     * @param extraArgument should always be empty
      * @param args the args that may concern this subCommand
      * @return false if no subCommand was found or if it was not "help" for first argument.
      */
     @Override
-    protected boolean execute(CommandSender sender, String label, String[] args) {
+    protected boolean execute(CommandSender sender, String label, String extraArgument, String[] args) {
         if (args.length == 0) {
             new DebugMessage(this.getClass(), debugable, "Execute: args.length == 0 -> send credits");
             this.credits(sender);
