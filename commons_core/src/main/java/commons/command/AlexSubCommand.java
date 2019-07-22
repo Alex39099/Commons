@@ -415,11 +415,6 @@ public abstract class AlexSubCommand implements TabExecutor {
             AlexSubCommand subCommand = this.getSubCommandForString(args[i]);
             if (subCommand != null) {
 
-                if (!subCommand.canExecute(sender)) {
-                    new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion but sender has no permission.");
-                    return new ArrayList<>();
-                }
-
                 new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion.");
                 return subCommand.getTabCompletion(sender, Arrays.copyOfRange(args, i + 1, args.length));
             }
