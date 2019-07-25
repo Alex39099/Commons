@@ -402,6 +402,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      * Gets the tabCompletion by args and may call another tabCompletion with shorten args, this should only get overwritten by last subCmd!
      * @param sender the consoleSender
      * @param args the args (without args used in other subCommands)
+     * @param extraArgument the extraArgument, only changed if a subCmd has an extraArgument.
      * @return a list of tabCompletions
      */
     @SuppressWarnings({"WeakerAccess"})
