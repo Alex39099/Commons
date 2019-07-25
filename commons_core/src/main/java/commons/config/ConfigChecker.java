@@ -41,12 +41,14 @@ public class ConfigChecker {
     /**
      * Attempts to send a console msg.
      * @param errorType the errorType (controls console msg)
-     * @param sectionName the sectionName
+     * @param section the sectionName
      * @param path the path
      * @param value the defValue (can be null)
      * @param msg the specific error msg
      */
-    public void attemptConsoleMsg(ConsoleErrorType errorType, String sectionName, String path, Object value, String msg) {
+    public void attemptConsoleMsg(ConsoleErrorType errorType, ConfigurationSection section, String path, Object value, String msg) {
+        String sectionName = section.getCurrentPath();
+
         if (errorType.equals(ConsoleErrorType.WARN)) {
             new ConsoleWarningMessage(plugin, this.getSaveSectionName(sectionName), path, msg + " (used default value " + Objects.toString(value, "") + " instead)");
         } else if (errorType.equals(ConsoleErrorType.ERROR)) {
@@ -61,7 +63,7 @@ public class ConfigChecker {
     }
 
     private String getSaveSectionName(String sectionName) {
-        if (sectionName.isEmpty()) {
+        if (sectionName == null || sectionName.isEmpty()) {
             if (configFileName != null && !configFileName.isEmpty())
                 return configFileName;
             return plugin.getName();
@@ -80,12 +82,12 @@ public class ConfigChecker {
     public boolean checkBoolean(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final boolean value) {
         if (section.contains(path)) {
             if (!section.isBoolean(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, value, booleanMsg);
+                this.attemptConsoleMsg(errorType, section, path, value, booleanMsg);
                 return value;
             }
             return section.getBoolean(path);
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, value, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, value, noPathMsg);
         return value;
     }
 
@@ -99,12 +101,12 @@ public class ConfigChecker {
     public boolean checkBoolean(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isBoolean(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, null, booleanMsg);
+                this.attemptConsoleMsg(errorType, section, path, null, booleanMsg);
                 return false;
             }
             return true;
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return false;
     }
 
@@ -119,12 +121,12 @@ public class ConfigChecker {
     public int checkInt(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value) {
         if (section.contains(path)) {
             if (!section.isInt(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, value, intMsg);
+                this.attemptConsoleMsg(errorType, section, path, value, intMsg);
                 return value;
             }
             return section.getInt(path);
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, value, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, value, noPathMsg);
         return value;
     }
 
@@ -138,12 +140,12 @@ public class ConfigChecker {
     public boolean checkInt(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isInt(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, null, intMsg);
+                this.attemptConsoleMsg(errorType, section, path, null, intMsg);
                 return false;
             }
             return true;
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return false;
     }
 
@@ -167,7 +169,7 @@ public class ConfigChecker {
         if (range.contains(testValue)) {
             return testValue;
         } else {
-            this.attemptConsoleMsg(errorType, section.getName(), path, value, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, value, this.getRangeMsg(range));
             return value;
         }
     }
@@ -183,7 +185,7 @@ public class ConfigChecker {
     public boolean checkInt(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Range<Integer> range) {
         boolean configStatus = this.checkInt(section, path, errorType);
         if (configStatus && !range.contains(section.getInt(path))) {
-            this.attemptConsoleMsg(errorType, section.getName(), path, null, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, null, this.getRangeMsg(range));
             return false;
         }
         return configStatus;
@@ -207,12 +209,12 @@ public class ConfigChecker {
 
         if (section.contains(path)) {
             if (!(section.isDouble(path) || (section.isInt(path) && !forceDouble))) {
-                this.attemptConsoleMsg(errorType, section.getName(),path, value, doubleMsg);
+                this.attemptConsoleMsg(errorType, section,path, value, doubleMsg);
                 return value;
             }
             return section.getDouble(path);
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, value, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, value, noPathMsg);
         return value;
     }
 
@@ -270,12 +272,12 @@ public class ConfigChecker {
 
         if (section.contains(path)) {
             if (!(section.isDouble(path) || (section.isInt(path) && !forceDouble))) {
-                this.attemptConsoleMsg(errorType, section.getName(),path, null, doubleMsg);
+                this.attemptConsoleMsg(errorType, section,path, null, doubleMsg);
                 return false;
             }
             return true;
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return false;
     }
 
@@ -311,7 +313,7 @@ public class ConfigChecker {
         if (range.contains(testValue)) {
             return testValue;
         } else {
-            this.attemptConsoleMsg(errorType, section.getName(), path, value, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, value, this.getRangeMsg(range));
             return value;
         }
     }
@@ -374,7 +376,7 @@ public class ConfigChecker {
     public boolean checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Range<Double> range, final boolean forceDouble) {
         boolean configStatus = this.checkDouble(section, path, errorType, forceDouble);
         if (configStatus && !range.contains(section.getDouble(path))) {
-            this.attemptConsoleMsg(errorType, section.getName(), path, null, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, null, this.getRangeMsg(range));
             return false;
         }
         return configStatus;
@@ -410,12 +412,12 @@ public class ConfigChecker {
 
         if (section.contains(path)) {
             if (!(section.isLong(path) || (section.isInt(path) && !forceLong))) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, value, longMsg);
+                this.attemptConsoleMsg(errorType, section, path, value, longMsg);
                 return value;
             }
             return section.getLong(path);
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, value, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, value, noPathMsg);
         return value;
     }
 
@@ -473,12 +475,12 @@ public class ConfigChecker {
 
         if (section.contains(path)) {
             if (!(section.isLong(path) || (section.isInt(path) && !forceLong))) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, null, longMsg);
+                this.attemptConsoleMsg(errorType, section, path, null, longMsg);
                 return false;
             }
             return true;
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return false;
     }
 
@@ -513,7 +515,7 @@ public class ConfigChecker {
         if (range.contains(testValue)) {
             return testValue;
         } else {
-            this.attemptConsoleMsg(errorType, section.getName(), path, value, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, value, this.getRangeMsg(range));
             return value;
         }
     }
@@ -576,7 +578,7 @@ public class ConfigChecker {
     public boolean checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Range<Long> range, final boolean forceLong) {
         boolean configStatus = this.checkDouble(section, path, errorType, forceLong);
         if (configStatus && !range.contains(section.getLong(path))) {
-            this.attemptConsoleMsg(errorType, section.getName(), path, null, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, null, this.getRangeMsg(range));
             return false;
         }
         return configStatus;
@@ -606,12 +608,12 @@ public class ConfigChecker {
     public String checkString(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, String value) {
         if (section.contains(path)) {
             if (!section.isString(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, value, stringMsg);
+                this.attemptConsoleMsg(errorType, section, path, value, stringMsg);
                 return value;
             }
             return section.getString(path);
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, value, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, value, noPathMsg);
         return value;
     }
 
@@ -625,12 +627,12 @@ public class ConfigChecker {
     public boolean checkString(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isString(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, null, stringMsg);
+                this.attemptConsoleMsg(errorType, section, path, null, stringMsg);
                 return false;
             }
             return true;
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return false;
     }
 
@@ -644,12 +646,12 @@ public class ConfigChecker {
     @Nullable public ConfigurationSection checkConfigSection(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isConfigurationSection(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, null, configSectionMsg);
+                this.attemptConsoleMsg(errorType, section, path, null, configSectionMsg);
                 return null;
             }
             return section.getConfigurationSection((path));
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return null;
     }
 
@@ -677,7 +679,7 @@ public class ConfigChecker {
     public boolean checkConfigurationSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Class<? extends ConfigurationSerializableCheckable> checkableClass, boolean printStackTrace) {
         try {
             if (!section.contains(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+                this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
                 return false;
             }
             return checkableClass.newInstance().checkConfigSection(this, section, path, errorType);
@@ -701,7 +703,7 @@ public class ConfigChecker {
      */
     public <T extends ConfigurationSerializableCheckable> T checkConfigurationSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final T value) {
         if (!section.contains(path)) {
-            this.attemptConsoleMsg(errorType, section.getName(), path, " of " + value.getClass().getSimpleName(), noPathMsg);
+            this.attemptConsoleMsg(errorType, section, path, " of " + value.getClass().getSimpleName(), noPathMsg);
             return value;
         }
         if (value.checkConfigSection(this, section, path, errorType)) {
@@ -723,12 +725,12 @@ public class ConfigChecker {
     public Vector checkVector(final ConfigurationSection section, final String path, ConsoleErrorType errorType, Vector value) {
         if (section.contains(path)) {
             if (!section.isVector(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, value, vectorMsg);
+                this.attemptConsoleMsg(errorType, section, path, value, vectorMsg);
                 return value;
             }
             return section.getVector(path);
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, value, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, value, noPathMsg);
         return value;
     }
 
@@ -742,12 +744,12 @@ public class ConfigChecker {
     public boolean checkVector(final ConfigurationSection section, final String path, ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isVector(path)) {
-                this.attemptConsoleMsg(errorType, section.getName(), path, null, intMsg);
+                this.attemptConsoleMsg(errorType, section, path, null, intMsg);
                 return false;
             }
             return true;
         }
-        this.attemptConsoleMsg(errorType, section.getName(), path, null, noPathMsg);
+        this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return false;
     }
 }
