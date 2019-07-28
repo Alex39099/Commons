@@ -133,7 +133,7 @@ public abstract class AlexSubCommand implements TabExecutor {
         this(name, helpLine);
         this.prefix = alexCommand.getPrefix();
         this.noPermissionLine = alexCommand.getNoPermissionLine();
-        this.usagePrefixDummy = alexCommand.getUsagePrefixDummy();
+        this.usagePrefixDummy = ((AlexSubCommand) alexCommand).usagePrefixDummy;
         this.debugable = alexCommand.debugable;
     }
 
