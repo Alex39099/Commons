@@ -413,7 +413,9 @@ public abstract class AlexSubCommand implements TabExecutor {
 
         if (hasExtraFirstArgument) {
             i = 1;
-            extraArgument = args[0];
+
+            if (args.length >= 1)
+                extraArgument = args[0];
         }
 
 
