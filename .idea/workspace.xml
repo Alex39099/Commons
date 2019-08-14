@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,13 +97,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00024" summary="# console-Msgs had no section name for plugin config.&#10;+ added constructor with FileConfiguration to display name of file in case of empty section#getName">
-      <created>1561128684023</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1561128684023</updated>
     </task>
     <task id="LOCAL-00025" summary="# fixed dump mistake of last fix">
       <created>1561155527072</created>
@@ -444,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564325344164</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="fixed cast exception">
+      <created>1565776271751</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1565776271751</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView">
@@ -478,7 +475,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made messages public." />
     <MESSAGE value="small change getSaveSectionName" />
     <MESSAGE value="added javadoc" />
     <MESSAGE value="added checkVector" />
@@ -503,7 +499,8 @@
     <MESSAGE value="fixed javadoc" />
     <MESSAGE value="fixed a bug for constructor with AlexCmd" />
     <MESSAGE value="fixed a IOE for tabCompletion" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed a IOE for tabCompletion" />
+    <MESSAGE value="fixed cast exception" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed cast exception" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
