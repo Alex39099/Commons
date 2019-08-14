@@ -708,7 +708,7 @@ public class ConfigChecker {
         }
         if (value.checkConfigSection(this, section, path, errorType)) {
             @SuppressWarnings("unchecked")
-            T retValue = (T) section.get(path);
+            T retValue = (T) section.getSerializable(path, value.getClass());
             return retValue;
         }
         return value;
