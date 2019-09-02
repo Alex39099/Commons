@@ -662,6 +662,7 @@ public class ConfigChecker {
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param checkableClass the ConfigurationSerializableCheckable
      * @return false if section does not contain path, value of checkableClassInstance.checkConfigSection otherwise
+     * @deprecated magic value
      */
     public boolean checkConfigurationSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Class<? extends ConfigurationSerializableCheckable> checkableClass) {
         return this.checkConfigurationSerializable(section, path, errorType, checkableClass, false);
@@ -675,6 +676,7 @@ public class ConfigChecker {
      * @param checkableClass the ConfigurationSerializableCheckable
      * @param printStackTrace should a stack trace be printed? (in case of exception, may use this for development)
      * @return false if section does not contain path, value of checkableClassInstance.checkConfigSection otherwise
+     * @deprecated magic value
      */
     public boolean checkConfigurationSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Class<? extends ConfigurationSerializableCheckable> checkableClass, boolean printStackTrace) {
         try {
@@ -700,6 +702,7 @@ public class ConfigChecker {
      * @param value the default value
      * @param <T> the type of ConfigurationSerializableCheckable
      * @return config value (if set correctly) or value
+     * @deprecated magic value
      */
     public <T extends ConfigurationSerializableCheckable> T checkConfigurationSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final T value) {
         if (!section.contains(path)) {
@@ -712,6 +715,35 @@ public class ConfigChecker {
             return retValue;
         }
         return value;
+    }
+
+    /**
+     * Gets the requested ConfigurationSerializableCheckable by path or value.
+     * Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()
+     * @param section the section to check
+     * @param path the path within the section
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @param value the default value
+     * @param overwriteValues should values get overwritten?
+     * @param <T> the type of ConfigurationSerializableCheckable
+     * @return config value (if data-types are set correctly) or value.
+     */
+    public <T extends ConfigurationSerializableCheckable> T checkSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final T value, final boolean overwriteValues) {
+        if (!section.contains(path)) {
+            this.attemptConsoleMsg(errorType, section, path, " of " + value.getClass().getSimpleName(), noPathMsg);
+            return value;
+        }
+        @SuppressWarnings("unchecked")
+        T retValue = (T) section.getSerializable(path, value.getClass());
+        if (retValue == null) {
+            this.attemptConsoleMsg(errorType, section, path, " of " + value.getClass().getSimpleName(), "values are seriously incorrect (data types are wrong).");
+            return value;
+        } else {
+            if (retValue.checkValues(this, section, path, errorType, overwriteValues) && overwriteValues) {
+                this.attemptConsoleMsg(errorType, section, path, null, "At least one value got overwritten.");
+            }
+            return retValue;
+        }
     }
 
     /**

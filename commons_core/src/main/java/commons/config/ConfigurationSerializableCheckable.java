@@ -8,6 +8,7 @@ public abstract class ConfigurationSerializableCheckable implements Configuratio
 
     /**
      * This constructor is used in configChecker, DO NOT overwrite this with a weaker access!
+     * @deprecated not needed anymore.
      */
     public ConfigurationSerializableCheckable() {}
 
@@ -19,6 +20,21 @@ public abstract class ConfigurationSerializableCheckable implements Configuratio
      * @param path the path within the section (i. e. the name)
      * @param errorType the ConsoleErrorType (controls console messages)
      * @return true if all values are set correctly (data types), false otherwise.
+     * @deprecated
      */
-    abstract public boolean checkConfigSection(ConfigChecker checker, ConfigurationSection section, String path, ConsoleErrorType errorType);
+    @SuppressWarnings("unused")
+    public boolean checkConfigSection(ConfigChecker checker, ConfigurationSection section, String path, ConsoleErrorType errorType) {
+        return false;
+    }
+
+    /**
+     * Gets executed by ConfigChecker to check an instance.
+     * @param checker the configChecker
+     * @param section the section
+     * @param path the path within the section (i. e. the name)
+     * @param errorType the ConsoleErrorType (controls console messages)
+     * @param overwrite should values get overwritten?
+     * @return true if all values are set correctly, false otherwise. This has no impact on ConfigChecker!
+     */
+    abstract public boolean checkValues(ConfigChecker checker, ConfigurationSection section, String path, ConsoleErrorType errorType, boolean overwrite);
 }
