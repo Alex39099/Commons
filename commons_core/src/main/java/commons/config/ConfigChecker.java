@@ -91,7 +91,12 @@ public class ConfigChecker {
         this.attemptConsoleMsg(errorType, section.getCurrentPath(), path, value, msg);
     }
 
-    private String getRangeMsg(Range<?> range) {
+    /**
+     * Gets the default range message of configChecker .
+     * @param range the range
+     * @return value must be element of range.toString()
+     */
+    public String getRangeMsg(Range<?> range) {
         return "value must be element of " + range.toString();
     }
 
