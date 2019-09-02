@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="reworked configurationSerializableCheckable">
+    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigurationSerializableCheckable.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigurationSerializableCheckable.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,13 +91,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00026" summary="first commit for file">
-      <created>1561409101609</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1561409101609</updated>
     </task>
     <task id="LOCAL-00027" summary="Added DataHandler and ConfigurationSerializable-Support&#10;&#10;+ ConfigChecker#checkConfigurationSerializable: boolean&#10;+ ConfigChecker#checkConfigurationSerializable: ConfigurationSerializableCheckable">
       <created>1561670419906</created>
@@ -437,7 +428,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565778543040</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="reworked configurationSerializableCheckable">
+      <created>1567418347873</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1567418347873</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TodoView">

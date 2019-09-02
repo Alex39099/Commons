@@ -654,69 +654,7 @@ public class ConfigChecker {
         this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return null;
     }
-
-    /**
-     * Checks a ConfigurationSerializableCheckable. Note: This will suppress stackTraces of catch exceptions.
-     * @param section the section to check
-     * @param path the path within the section
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param checkableClass the ConfigurationSerializableCheckable
-     * @return false if section does not contain path, value of checkableClassInstance.checkConfigSection otherwise
-     * @deprecated magic value
-     */
-    public boolean checkConfigurationSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Class<? extends ConfigurationSerializableCheckable> checkableClass) {
-        return this.checkConfigurationSerializable(section, path, errorType, checkableClass, false);
-    }
-
-    /**
-     * Checks a ConfigurationSerializableCheckable.
-     * @param section the section to check
-     * @param path the path within the section
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param checkableClass the ConfigurationSerializableCheckable
-     * @param printStackTrace should a stack trace be printed? (in case of exception, may use this for development)
-     * @return false if section does not contain path, value of checkableClassInstance.checkConfigSection otherwise
-     * @deprecated magic value
-     */
-    public boolean checkConfigurationSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Class<? extends ConfigurationSerializableCheckable> checkableClass, boolean printStackTrace) {
-        try {
-            if (!section.contains(path)) {
-                this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
-                return false;
-            }
-            return checkableClass.newInstance().checkConfigSection(this, section, path, errorType);
-        } catch (Exception e) {
-            new DebugMessage(this.getClass(), plugin, e.getClass().getSimpleName() + " for checkConfigurationSerializable, checkableClass = " + checkableClass.getSimpleName());
-            if (printStackTrace)
-                e.printStackTrace();
-            return false;
-        }
-    }
-
-    /**
-     * Gets the requested ConfigurationSerializableCheckable by path or value.
-     * Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()
-     * @param section the section to check
-     * @param path the path within the section
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @param <T> the type of ConfigurationSerializableCheckable
-     * @return config value (if set correctly) or value
-     * @deprecated magic value
-     */
-    public <T extends ConfigurationSerializableCheckable> T checkConfigurationSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final T value) {
-        if (!section.contains(path)) {
-            this.attemptConsoleMsg(errorType, section, path, " of " + value.getClass().getSimpleName(), noPathMsg);
-            return value;
-        }
-        if (value.checkConfigSection(this, section, path, errorType)) {
-            @SuppressWarnings("unchecked")
-            T retValue = (T) section.getSerializable(path, value.getClass());
-            return retValue;
-        }
-        return value;
-    }
-
+    
     /**
      * Gets the requested ConfigurationSerializableCheckable by path or value.
      * Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()
