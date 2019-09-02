@@ -10,8 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
 @SuppressWarnings({"unused", "WeakerAccess", "FieldCanBeLocal"})
 public class ConfigChecker {
 
@@ -41,21 +39,56 @@ public class ConfigChecker {
     /**
      * Attempts to send a console msg.
      * @param errorType the errorType (controls console msg)
-     * @param section the sectionName
+     * @param sectionPath the section's current path.
+     * @param path the path
+     * @param value the defValue (can be null)
+     * @param msg the specific error msg
+     */
+    public void attemptConsoleMsg(ConsoleErrorType errorType, String sectionPath, String path, Object value, String msg) {
+        if (errorType.equals(ConsoleErrorType.WARN)) {
+            String valueWarnMsg = "";
+            if (value != null)
+                valueWarnMsg = " (used default value " + value.toString() + " instead)";
+            new ConsoleWarningMessage(plugin, this.getSaveSectionName(sectionPath), path, msg + valueWarnMsg);
+        } else if (errorType.equals(ConsoleErrorType.ERROR)) {
+            new ConsoleErrorMessage(plugin, this.getSaveSectionName(sectionPath), path, msg);
+        } else {
+            new DebugMessage(this.getClass(), plugin, "Something is not quite right with section = " + this.getSaveSectionName(sectionPath) + " -> " + path + "! Msg = " + msg);
+        }
+    }
+
+    /**
+     * Attempts to send a console msg.
+     * @param errorType the errorType (controls console msg)
+     * @param sectionPath the section's current path.
+     * @param path the path
+     * @param msg the specific error msg
+     */
+    public void attemptConsoleMsg(ConsoleErrorType errorType, String sectionPath, String path, String msg) {
+        this.attemptConsoleMsg(errorType, sectionPath, path, null, msg);
+    }
+
+    /**
+     * Attempts to send a console msg.
+     * @param errorType the errorType (controls console msg)
+     * @param section the section
+     * @param path the path
+     * @param msg the specific error msg
+     */
+    public void attemptConsoleMsg(ConsoleErrorType errorType, ConfigurationSection section, String path, String msg) {
+        this.attemptConsoleMsg(errorType, section.getCurrentPath(), path, null, msg);
+    }
+
+    /**
+     * Attempts to send a console msg.
+     * @param errorType the errorType (controls console msg)
+     * @param section the section
      * @param path the path
      * @param value the defValue (can be null)
      * @param msg the specific error msg
      */
     public void attemptConsoleMsg(ConsoleErrorType errorType, ConfigurationSection section, String path, Object value, String msg) {
-        String sectionName = section.getCurrentPath();
-
-        if (errorType.equals(ConsoleErrorType.WARN)) {
-            new ConsoleWarningMessage(plugin, this.getSaveSectionName(sectionName), path, msg + " (used default value " + Objects.toString(value, "") + " instead)");
-        } else if (errorType.equals(ConsoleErrorType.ERROR)) {
-            new ConsoleErrorMessage(plugin, this.getSaveSectionName(sectionName), path, msg);
-        } else {
-            new DebugMessage(this.getClass(), plugin, "Something is not quite right with section = " + this.getSaveSectionName(sectionName) + " -> " + path + "! Msg = " + msg);
-        }
+        this.attemptConsoleMsg(errorType, section.getCurrentPath(), path, value, msg);
     }
 
     private String getRangeMsg(Range<?> range) {
@@ -654,7 +687,7 @@ public class ConfigChecker {
         this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return null;
     }
-    
+
     /**
      * Gets the requested ConfigurationSerializableCheckable by path or value.
      * Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()

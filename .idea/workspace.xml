@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,13 +92,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Added DataHandler and ConfigurationSerializable-Support&#10;&#10;+ ConfigChecker#checkConfigurationSerializable: boolean&#10;+ ConfigChecker#checkConfigurationSerializable: ConfigurationSerializableCheckable">
-      <created>1561670419906</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1561670419906</updated>
     </task>
     <task id="LOCAL-00028" summary="made checkConfigSection public">
       <created>1561671697473</created>
@@ -435,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567418347873</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="removed deprecated stuff">
+      <created>1567419564362</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1567419564362</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TodoView">
@@ -471,7 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added checkVector" />
     <MESSAGE value="added javadoc to checkVector" />
     <MESSAGE value="added setDebug to static debugable" />
     <MESSAGE value="sendColorMsg &amp; sendPrefixColorMsg will not send a msg if null or empty." />
@@ -496,7 +496,8 @@
     <MESSAGE value="fixed cast exception" />
     <MESSAGE value="changed version to 1.4.0" />
     <MESSAGE value="reworked configurationSerializableCheckable" />
-    <option name="LAST_COMMIT_MESSAGE" value="reworked configurationSerializableCheckable" />
+    <MESSAGE value="removed deprecated stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed deprecated stuff" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
