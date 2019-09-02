@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,30 +21,6 @@
         <option value="Interface" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>addSu</find>
-      <find>debug</find>
-      <find>getDebug</find>
-      <find>loadConfiguration</find>
-      <find>addition</find>
-      <find>getHelpLine</find>
-      <find>printStack</find>
-      <find>attemptConsole</find>
-      <find>usageLine</find>
-      <find>CmdParam</find>
-      <find>setPrefix</find>
-      <find>CmdParamLine</find>
-      <find>canExecute</find>
-      <find>abstract</find>
-      <find>usagePrefix</find>
-      <find>extraArgument</find>
-      <find>internalExe</find>
-      <find>internalExecute</find>
-      <find>getTabCompletion</find>
-      <find>getUsagePreifx</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -92,20 +67,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00028" summary="made checkConfigSection public">
-      <created>1561671697473</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1561671697473</updated>
-    </task>
-    <task id="LOCAL-00029" summary="made public">
-      <created>1561706756568</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1561706756568</updated>
     </task>
     <task id="LOCAL-00030" summary="changed setter to return instance&#10;made some more constructor&#10;every player will have permission if no permission is set">
       <created>1561731645239</created>
@@ -436,7 +397,21 @@
       <option name="project" value="LOCAL" />
       <updated>1567419564362</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="added more options to attemptConsoleMsg, improved msg itself">
+      <created>1567422310545</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1567422310545</updated>
+    </task>
+    <task id="LOCAL-00078" summary="made getRangeMsg public">
+      <created>1567422506760</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1567422506760</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TodoView">
@@ -472,8 +447,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added javadoc to checkVector" />
-    <MESSAGE value="added setDebug to static debugable" />
     <MESSAGE value="sendColorMsg &amp; sendPrefixColorMsg will not send a msg if null or empty." />
     <MESSAGE value="no setter requires blankets in argument, added javadoc" />
     <MESSAGE value="cosmetic brackets in debugable." />
@@ -497,7 +470,9 @@
     <MESSAGE value="changed version to 1.4.0" />
     <MESSAGE value="reworked configurationSerializableCheckable" />
     <MESSAGE value="removed deprecated stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed deprecated stuff" />
+    <MESSAGE value="added more options to attemptConsoleMsg, improved msg itself" />
+    <MESSAGE value="made getRangeMsg public" />
+    <option name="LAST_COMMIT_MESSAGE" value="made getRangeMsg public" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

@@ -715,7 +715,7 @@ public class ConfigChecker {
             this.attemptConsoleMsg(errorType, section, path, " of " + value.getClass().getSimpleName(), "values are seriously incorrect (data types are wrong).");
             return value;
         } else {
-            if (retValue.checkValues(this, section, path, errorType, overwriteValues) && overwriteValues) {
+            if (!retValue.checkValues(this, section, path, errorType, overwriteValues) && overwriteValues) {
                 this.attemptConsoleMsg(errorType, section, path, null, "At least one value got overwritten.");
             }
             return retValue;
