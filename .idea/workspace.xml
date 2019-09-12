@@ -68,13 +68,6 @@
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
     </task>
-    <task id="LOCAL-00030" summary="changed setter to return instance&#10;made some more constructor&#10;every player will have permission if no permission is set">
-      <created>1561731645239</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1561731645239</updated>
-    </task>
     <task id="LOCAL-00031" summary="added methods to add/remove lines to credits/helpCmdHeader">
       <created>1561732022911</created>
       <option name="number" value="00031" />
@@ -411,7 +404,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567422506760</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="fixed wrong checkValues check for checkSerializable">
+      <created>1567423607200</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1567423607200</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TodoView">
@@ -447,7 +447,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sendColorMsg &amp; sendPrefixColorMsg will not send a msg if null or empty." />
     <MESSAGE value="no setter requires blankets in argument, added javadoc" />
     <MESSAGE value="cosmetic brackets in debugable." />
     <MESSAGE value="removed constructor, moved prefixDummy to AlexSubCommand." />
@@ -472,7 +471,8 @@
     <MESSAGE value="removed deprecated stuff" />
     <MESSAGE value="added more options to attemptConsoleMsg, improved msg itself" />
     <MESSAGE value="made getRangeMsg public" />
-    <option name="LAST_COMMIT_MESSAGE" value="made getRangeMsg public" />
+    <MESSAGE value="fixed wrong checkValues check for checkSerializable" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed wrong checkValues check for checkSerializable" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
