@@ -13,7 +13,7 @@ public abstract class ConfigurationSerializableCheckable implements Configuratio
      * @param path the path within the section (i. e. the name)
      * @param errorType the ConsoleErrorType (controls console messages)
      * @param overwrite should values get overwritten?
-     * @return true if all values are set correctly, false otherwise. This has no impact on ConfigChecker!
+     * @return true if all values are set correctly, false otherwise. This has no impact on ConfigChecker if overwrite is false (i. e. no extra msg)
      */
     abstract public boolean checkValues(ConfigChecker checker, ConfigurationSection section, String path, ConsoleErrorType errorType, boolean overwrite);
 }

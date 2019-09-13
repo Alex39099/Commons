@@ -760,4 +760,26 @@ public class ConfigChecker {
         this.attemptConsoleMsg(errorType, section, path, null, noPathMsg);
         return false;
     }
+
+    // =================================================================
+    // VALUE CHECKER
+    // =================================================================
+
+    /**
+     *
+     * @param checkValue the value to check
+     * @param sectionPath the sectionPath
+     * @param path the specific path of the given value within the section
+     * @param errorType the ConsoleErrorType (controls console msg)
+     * @param value the default value
+     * @param range the range to check
+     * @param <T> the comparable such as Integer, double etc.
+     * @return checkValue (if within the range) or value
+     */
+    public <T extends Comparable> T checkValue(final T checkValue, final String sectionPath, final String path, final ConsoleErrorType errorType, final T value, final Range<Comparable> range) {
+        if (range.contains(checkValue))
+            return checkValue;
+        this.attemptConsoleMsg(errorType, sectionPath, path, value, this.getRangeMsg(range));
+        return value;
+    }
 }
