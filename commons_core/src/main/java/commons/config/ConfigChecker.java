@@ -699,6 +699,35 @@ public class ConfigChecker {
      * @param section the section to check
      * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
+     * @param clazz the serializable class
+     * @param overwriteValues should values get overwritten?
+     * @param <T> the type of ConfigurationSerializableCheckable
+     * @return config value (if data-types are set correctly) or null.
+     */
+    @Nullable
+    public <T extends ConfigurationSerializableCheckable> T checkSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Class<T> clazz, final boolean overwriteValues) {
+        if (!section.contains(path)) {
+            this.attemptConsoleMsg(errorType, section, path, " of " + clazz.getSimpleName(), noPathMsg);
+            return null;
+        }
+        T retValue = section.getSerializable(path, clazz);
+        if (retValue == null) {
+            this.attemptConsoleMsg(errorType, section, path, " of " + clazz.getSimpleName(), "values are seriously incorrect (data types are wrong).");
+            return null;
+        } else {
+            if (!retValue.checkValues(this, section, path, errorType, overwriteValues) && overwriteValues) {
+                this.attemptConsoleMsg(errorType, section, path, null, "At least one value got overwritten.");
+            }
+            return retValue;
+        }
+    }
+
+    /**
+     * Gets the requested ConfigurationSerializableCheckable by path or value.
+     * Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()
+     * @param section the section to check
+     * @param path the path within the section
+     * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @param overwriteValues should values get overwritten?
      * @param <T> the type of ConfigurationSerializableCheckable

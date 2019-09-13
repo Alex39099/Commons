@@ -4,7 +4,6 @@
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigurationSerializableCheckable.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigurationSerializableCheckable.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +42,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -70,13 +69,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00032" summary="fixed bug with usageLine for internalExecute">
-      <created>1561798605175</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1561798605175</updated>
     </task>
     <task id="LOCAL-00033" summary="restructured">
       <created>1561799422746</created>
@@ -414,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568276618778</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="added checkValue method">
+      <created>1568375931983</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1568375931983</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TodoView">
@@ -450,7 +449,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cosmetic brackets in debugable." />
     <MESSAGE value="removed constructor, moved prefixDummy to AlexSubCommand." />
     <MESSAGE value="removed pain constructor, moved prefixDummy to AlexSubCommand." />
     <MESSAGE value="removed constructor." />
@@ -475,7 +473,8 @@
     <MESSAGE value="made getRangeMsg public" />
     <MESSAGE value="fixed wrong checkValues check for checkSerializable" />
     <MESSAGE value="changed version to 1.5.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed version to 1.5.0" />
+    <MESSAGE value="added checkValue method" />
+    <option name="LAST_COMMIT_MESSAGE" value="added checkValue method" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
