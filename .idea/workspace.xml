@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/config/ConfigChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,13 +69,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00033" summary="restructured">
-      <created>1561799422746</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1561799422746</updated>
     </task>
     <task id="LOCAL-00034" summary="made execute(..) protected">
       <created>1561802035651</created>
@@ -413,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568375931983</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="added nullable checkSerializable">
+      <created>1568385121104</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1568385121105</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TodoView">
@@ -449,7 +449,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed constructor, moved prefixDummy to AlexSubCommand." />
     <MESSAGE value="removed pain constructor, moved prefixDummy to AlexSubCommand." />
     <MESSAGE value="removed constructor." />
     <MESSAGE value="added methods to add multiple lines" />
@@ -474,7 +473,8 @@
     <MESSAGE value="fixed wrong checkValues check for checkSerializable" />
     <MESSAGE value="changed version to 1.5.0" />
     <MESSAGE value="added checkValue method" />
-    <option name="LAST_COMMIT_MESSAGE" value="added checkValue method" />
+    <MESSAGE value="added nullable checkSerializable" />
+    <option name="LAST_COMMIT_MESSAGE" value="added nullable checkSerializable" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

@@ -1,5 +1,6 @@
 package commons.dataHandler;
 
+import commons.messages.ConsoleErrorMessage;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -41,7 +42,7 @@ public class DataHandler {
     }
 
     /**
-     *
+     * Saves the given ymlFile.
      * @param fileName the fileName (with or without .yml)
      * @param ymlFile the yml-Configuration to save.
      * @throws LoadSaveException if file could not be saved.
@@ -53,7 +54,27 @@ public class DataHandler {
         try {
             ymlFile.save(file);
         } catch (IOException e) {
-            throw new LoadSaveException("file " + fileName + "could not be saved");
+            throw new LoadSaveException("file " + fileName + "could not be saved.");
+        }
+    }
+
+    /**
+     * Saves the given ymlFile, may sends error msg
+     * @param fileName the fileName (with or without .yml)
+     * @param ymlFile the yml-Configuration to save.
+     * @param sendError should a msg be sent in case of an error?
+     * @return true if saving was successful, false otherwise
+     */
+    public boolean saveYmlFile(String fileName, final YamlConfiguration ymlFile, boolean sendError)  {
+        try {
+            this.saveYmlFile(fileName, ymlFile);
+            return true;
+        }
+        catch (LoadSaveException e) {
+            if (sendError) {
+                new ConsoleErrorMessage(plugin, e.getMessage() + " Please check writing ability of directory");
+            }
+            return false;
         }
     }
 
