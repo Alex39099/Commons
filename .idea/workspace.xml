@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,13 +68,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00035" summary="added usagePrefixDummy, made some methods protected">
-      <created>1561803110990</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1561803110990</updated>
     </task>
     <task id="LOCAL-00036" summary="added sendPrefixColorMessage">
       <created>1561803425568</created>
@@ -413,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568386847288</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="added resetSubDirectory, deleteFile, edited javaDoc">
+      <created>1568744423201</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1568744423202</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TodoView">
@@ -449,7 +448,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed constructor." />
     <MESSAGE value="added methods to add multiple lines" />
     <MESSAGE value="made constructor public." />
     <MESSAGE value="made getter public" />
@@ -474,7 +472,8 @@
     <MESSAGE value="added checkValue method" />
     <MESSAGE value="added nullable checkSerializable" />
     <MESSAGE value="added saveYmlFile without Exception" />
-    <option name="LAST_COMMIT_MESSAGE" value="added saveYmlFile without Exception" />
+    <MESSAGE value="added resetSubDirectory, deleteFile, edited javaDoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="added resetSubDirectory, deleteFile, edited javaDoc" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

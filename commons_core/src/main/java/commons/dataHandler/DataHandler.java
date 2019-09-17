@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class DataHandler {
@@ -76,10 +77,27 @@ public class DataHandler {
      * @param fileName the fileName (with or without .yml)
      * @return true if file got deleted, false otherwise.
      */
-    public boolean deleteFile(String fileName) {
+    public boolean deleteYmlFile(String fileName) {
         fileName = this.getYmlFileName(fileName);
         File file = new File(subDirectory, fileName);
         return file.delete();
+    }
+
+    /**
+     * Deletes all files in the subDirectory except with given name.
+     * @param fileNames a list of fileNames (with or without .yml) that should not be deleted.
+     */
+    public void deleteYmlFilesExcept(Set<String> fileNames) {
+        File[] contents = subDirectory.listFiles();
+        if (contents != null) {
+            for (File file : contents) {
+                if (!file.getName().contains(".yml") || fileNames.contains(file.getName()) || fileNames.contains(file.getName().replace(".yml", "")))
+                    continue;
+
+                //noinspection ResultOfMethodCallIgnored
+                file.delete();
+            }
+        }
     }
 
     private String getYmlFileName(final String fileName) {
