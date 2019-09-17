@@ -17,11 +17,21 @@ public class DataHandler {
     private JavaPlugin plugin;
     private File subDirectory;
 
+    /**
+     * Creates a new DataHandler with the plugin's folder as subDirectory
+     * @param plugin the plugin
+     */
     public DataHandler(JavaPlugin plugin) {
         this.plugin = plugin;
         this.subDirectory = plugin.getDataFolder();
     }
 
+    /**
+     * Creates a new DataHandler, may creates a new subDirectory
+     * @param plugin the plugin
+     * @param subDirName the name of the subDirectory
+     * @throws LoadSaveException if creation of subDirectory was somehow not possible.
+     */
     public DataHandler(final JavaPlugin plugin, final String subDirName) throws LoadSaveException {
         this(plugin);
         this.subDirectory = this.getSubDirectory(subDirName);
@@ -33,6 +43,43 @@ public class DataHandler {
             if (!dir.mkdirs())
                 throw new LoadSaveException("could not create subDirectory");
         return dir;
+    }
+
+    /**
+     * Resets the subDirectory
+     * @throws LoadSaveException if subDirectory is the plugin's folder or if deletion was somehow not possible.
+     */
+    public void resetSubDirectory() throws LoadSaveException {
+        if (subDirectory.equals(plugin.getDataFolder())) {
+            throw new LoadSaveException("cannot delete plugin folder.");
+        }
+
+        if (!this.deleteDirectory(subDirectory)) {
+            throw new LoadSaveException("could not delete subDirectory.");
+        }
+
+        subDirectory = this.getSubDirectory(subDirectory.getName());
+    }
+
+    private boolean deleteDirectory(File directory) {
+        File[] contents = directory.listFiles();
+        if (contents != null) {
+            for (File file : contents) {
+                deleteDirectory(file);
+            }
+        }
+        return directory.delete();
+    }
+
+    /**
+     * Deletes a specific file.
+     * @param fileName the fileName (with or without .yml)
+     * @return true if file got deleted, false otherwise.
+     */
+    public boolean deleteFile(String fileName) {
+        fileName = this.getYmlFileName(fileName);
+        File file = new File(subDirectory, fileName);
+        return file.delete();
     }
 
     private String getYmlFileName(final String fileName) {
@@ -79,7 +126,7 @@ public class DataHandler {
     }
 
     /**
-     *
+     * Loads a YamlConfiguration into the given fileName.
      * @param fileName the fileName (with or without .yml)
      * @return the loaded yml-Configuration
      */
@@ -90,7 +137,7 @@ public class DataHandler {
     }
 
     /**
-     *
+     * Loads a ConfigurationSerializable within the ymlFile as section.
      * @param serializableClass class extending ConfigurationSerializable
      * @param fileName the fileName
      * @param path the path
@@ -106,7 +153,7 @@ public class DataHandler {
 
 
     /**
-     *
+     * Loads a ConfigurationSerializable with a section and path.
      * @param serializableClass class extending ConfigurationSerializable
      * @param section the section to check
      * @param path the path within the section
@@ -126,7 +173,7 @@ public class DataHandler {
     }
 
     /**
-     *
+     * Loads multiple ConfigurationSerializables
      * @param serializableClass class extending ConfigurationSerializable
      * @param fileName the fileName
      * @param <T> the type of ConfigurationSerializable
@@ -137,7 +184,7 @@ public class DataHandler {
     }
 
     /**
-     *
+     * Loads multiple ConfigurationSerializables within a section.
      * @param serializableClass class extending ConfigurationSerializable
      * @param section the section to check.
      * @param <T> the type of ConfigurationSerializable
