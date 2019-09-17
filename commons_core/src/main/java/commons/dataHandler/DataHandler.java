@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -86,18 +87,23 @@ public class DataHandler {
     /**
      * Deletes all files in the subDirectory except with given name.
      * @param fileNames a list of fileNames (with or without .yml) that should not be deleted.
+     * @return a list of fileNames that could not be deleted.
      */
-    public void deleteYmlFilesExcept(Set<String> fileNames) {
+    public Set<String> deleteYmlFilesExcept(Set<String> fileNames) {
+        Set<String> notDeleted = new HashSet<>();
+
         File[] contents = subDirectory.listFiles();
         if (contents != null) {
             for (File file : contents) {
                 if (!file.getName().contains(".yml") || fileNames.contains(file.getName()) || fileNames.contains(file.getName().replace(".yml", "")))
                     continue;
 
-                //noinspection ResultOfMethodCallIgnored
-                file.delete();
+                if (!file.delete()) {
+                    notDeleted.add(file.getName());
+                }
             }
         }
+        return notDeleted;
     }
 
     private String getYmlFileName(final String fileName) {
