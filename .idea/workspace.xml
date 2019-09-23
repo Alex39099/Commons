@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/commons/dataHandler/DataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_dist/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons_dist/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,13 +69,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00037" summary="made permission a string">
-      <created>1561803700096</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1561803700096</updated>
     </task>
     <task id="LOCAL-00038" summary="added lots of debug messages">
       <created>1561824440057</created>
@@ -412,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568745096730</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="improved deleteYmlFilesExcept">
+      <created>1568745229796</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1568745229796</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TodoView">
@@ -448,7 +449,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made constructor public." />
     <MESSAGE value="made getter public" />
     <MESSAGE value="tabCompletion will stop if sender has no permission" />
     <MESSAGE value="subCommands can now have an extra argument." />
@@ -473,7 +473,8 @@
     <MESSAGE value="added saveYmlFile without Exception" />
     <MESSAGE value="added resetSubDirectory, deleteFile, edited javaDoc" />
     <MESSAGE value="added deleteYmlFilesExcept(List), renamed deleteFile to deleteYmlFile" />
-    <option name="LAST_COMMIT_MESSAGE" value="added deleteYmlFilesExcept(List), renamed deleteFile to deleteYmlFile" />
+    <MESSAGE value="improved deleteYmlFilesExcept" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved deleteYmlFilesExcept" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
