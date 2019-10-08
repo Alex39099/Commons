@@ -1,7 +1,7 @@
-package commons.command;
+package com.github.alexqp.commons.command;
 
-import commons.messages.DebugMessage;
-import commons.messages.SetDebugable;
+import com.github.alexqp.commons.messages.DebugMessage;
+import com.github.alexqp.commons.messages.SetDebugable;
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;

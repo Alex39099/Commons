@@ -1,4 +1,4 @@
-package commons.config;
+package com.github.alexqp.commons.config;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -15,5 +15,6 @@ public abstract class ConfigurationSerializableCheckable implements Configuratio
      * @param overwrite should values get overwritten?
      * @return true if all values are set correctly, false otherwise. This has no impact on ConfigChecker if overwrite is false (i. e. no extra msg)
      */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     abstract public boolean checkValues(ConfigChecker checker, ConfigurationSection section, String path, ConsoleErrorType errorType, boolean overwrite);
 }

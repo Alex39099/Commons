@@ -36,7 +36,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>org.bstats.bukkit</pattern>
-                                    <shadedPattern>com.github.alexqp.bstats</shadedPattern>
+                                    <shadedPattern>com.github.alexqp.commons.bstats</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

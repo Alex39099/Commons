@@ -1,6 +1,6 @@
-package commons.command;
+package com.github.alexqp.commons.command;
 
-import commons.messages.DebugMessage;
+import com.github.alexqp.commons.messages.DebugMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;

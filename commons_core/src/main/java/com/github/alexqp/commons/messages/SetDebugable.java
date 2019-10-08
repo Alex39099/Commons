@@ -1,6 +1,4 @@
-package commons.messages;
-
-import commons.messages.Debugable;
+package com.github.alexqp.commons.messages;
 
 public interface SetDebugable extends Debugable {
 

@@ -1,4 +1,4 @@
-package commons.config;
+package com.github.alexqp.commons.config;
 
 @SuppressWarnings("unused")
 public enum ConsoleErrorType {

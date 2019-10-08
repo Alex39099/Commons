@@ -1,4 +1,4 @@
-package commons.messages;
+package com.github.alexqp.commons.messages;
 
 
 import org.bukkit.Bukkit;

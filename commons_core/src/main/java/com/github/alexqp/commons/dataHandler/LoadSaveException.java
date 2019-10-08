@@ -1,4 +1,4 @@
-package commons.dataHandler;
+package com.github.alexqp.commons.dataHandler;
 
 @SuppressWarnings("WeakerAccess")
 public class LoadSaveException extends Exception {

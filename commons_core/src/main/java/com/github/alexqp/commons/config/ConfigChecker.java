@@ -1,9 +1,9 @@
-package commons.config;
+package com.github.alexqp.commons.config;
 
+import com.github.alexqp.commons.messages.ConsoleErrorMessage;
+import com.github.alexqp.commons.messages.ConsoleWarningMessage;
+import com.github.alexqp.commons.messages.DebugMessage;
 import com.google.common.collect.Range;
-import commons.messages.ConsoleErrorMessage;
-import commons.messages.ConsoleWarningMessage;
-import commons.messages.DebugMessage;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

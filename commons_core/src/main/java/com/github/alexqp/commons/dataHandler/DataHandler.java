@@ -1,6 +1,6 @@
-package commons.dataHandler;
+package com.github.alexqp.commons.dataHandler;
 
-import commons.messages.ConsoleErrorMessage;
+import com.github.alexqp.commons.messages.ConsoleErrorMessage;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
