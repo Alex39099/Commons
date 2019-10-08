@@ -6,7 +6,7 @@
 
     <groupId>me.alexqp</groupId>
     <artifactId>commons-parent</artifactId>
-    <version>1.5.0</version>
+    <version>1.6.0</version>
     <modules>
         <module>commons_dist</module>
         <module>commons_core</module>
