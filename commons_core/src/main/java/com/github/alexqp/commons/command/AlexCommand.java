@@ -1,6 +1,6 @@
 package com.github.alexqp.commons.command;
 
-import com.github.alexqp.commons.messages.DebugMessage;
+import com.github.alexqp.commons.messages.ConsoleMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,7 +19,7 @@ public class AlexCommand extends AlexSubCommand {
     private String usagePrefix = "";
 
     /**
-     * Constructs a new cmd, sets the prefix and a first creditline (version, author)
+     * Constructs a cmd, sets the prefix and a first creditline (version, author)
      * @param name the (sub-)command name
      * @param plugin the javaPlugin
      * @param pluginColor the pluginColor (used in prefix)
@@ -30,31 +30,75 @@ public class AlexCommand extends AlexSubCommand {
         credits.add("version " + plugin.getDescription().getVersion() + ", author alex_qp");
     }
 
+    /**
+     * Sets all credits.
+     * @param credits the credit lines
+     * @return the instance
+     */
     public AlexCommand setCredits(List<String> credits) {
         this.credits = credits;
         return this;
     }
+
+    /**
+     * Sets the first lines of the help sub-cmd.
+     * @param helpCmdHeader the header lines
+     * @return the instance
+     */
     public AlexCommand setHelpCmdHeader(List<String> helpCmdHeader) {
         this.helpCmdHeader = helpCmdHeader;
         return this;
     }
+
+    /**
+     * Adds a credit line to the current list.
+     * @param line the credit line
+     * @return the instance
+     * @see AlexCommand#addAllCreditLine(Collection)
+     */
     public AlexCommand addCreditLine(String line) {
         credits.add(line);
         return this;
     }
+
+    /**
+     * Adds a collection of credit lines to the current list.
+     * @param lines the collection of credit lines
+     * @return the instance
+     * @see AlexCommand#addCreditLine(String)
+     */
     public AlexCommand addAllCreditLine(Collection<? extends String> lines) {
         credits.addAll(lines);
         return this;
     }
+
+    /**
+     * Adds a header line to the header of the help sub-cmd.
+     * @param line the header line
+     * @return the instance
+     * @see AlexCommand#addAllHelpCmdHeaderLine(Collection)
+     */
     public AlexCommand addHelpCmdHeaderLine(String line) {
         helpCmdHeader.add(line);
         return this;
     }
+
+    /**
+     * Adds a collection of header lines to the header of the help sub-cmd.
+     * @param lines the collection of header lines
+     * @return the instance
+     * @see AlexCommand#addHelpCmdHeaderLine(String)
+     */
     public AlexCommand addAllHelpCmdHeaderLine(Collection<? extends String> lines) {
         helpCmdHeader.addAll(lines);
         return this;
     }
 
+    /**
+     * Removes a specified credit line if found.
+     * @param line the credit line
+     * @return true if it got removed, false otherwise
+     */
     public boolean removeCreditLine(String line) {
         return credits.remove(line);
     }
@@ -78,6 +122,7 @@ public class AlexCommand extends AlexSubCommand {
      * @param cmdName the (sub-)cmd name (may + subCmd#getCmdParamLine)
      * @param explanation the explanation
      * @return the helpLine without prefix
+     * @see AlexCommand#getCommandLineWithPrefix(String, String, String)
      */
     protected static String getCommandLine(String label, String cmdName, String explanation) {
         String prefix = "" + ChatColor.BOLD + ChatColor.GOLD + "/" + label;
@@ -85,11 +130,12 @@ public class AlexCommand extends AlexSubCommand {
     }
 
     /**
-     *
+     * Gets the cmd line with prefix.
      * @param label the cmd label used
      * @param cmdName the (sub-)cmd name (may + subCmd#getCmdParamLine)
      * @param explanation the explanation
      * @return the helpLine with prefix ready to be sent to the sender
+     * @see AlexCommand#getCommandLine(String, String, String)
      */
     protected String getCommandLineWithPrefix(String label, String cmdName, String explanation) {
         return this.getPrefix() + getCommandLine(label, cmdName, explanation);
@@ -109,7 +155,7 @@ public class AlexCommand extends AlexSubCommand {
             if (subCommand.canExecute(sender)) {
                 sendColorMessage(sender, this.getCommandLineWithPrefix(label, subCommand.getName() + subCommand.getCmdParamLine(), subCommand.getHelpLine()));
             } else {
-                new DebugMessage(this.getClass(), debugable, "Help: sender has no permission for subCommand " + subCommand.getName() + ", skipped therefore for help-output");
+                ConsoleMessage.debug(this.getClass(), debugable, "Help: sender has no permission for subCommand " + subCommand.getName() + ", skipped therefore for help-output");
             }
 
         }
@@ -126,14 +172,14 @@ public class AlexCommand extends AlexSubCommand {
     @Override
     protected boolean execute(CommandSender sender, String label, String extraArgument, String[] args) {
         if (args.length == 0) {
-            new DebugMessage(this.getClass(), debugable, "Execute: args.length == 0 -> send credits");
+            ConsoleMessage.debug(this.getClass(), debugable, "Execute: args.length == 0 -> send credits");
             this.credits(sender);
             return true;
         }
 
-        new DebugMessage(this.getClass(), debugable, "Execute: at least one arg -> check for help");
+        ConsoleMessage.debug(this.getClass(), debugable, "Execute: at least one arg -> check for help");
         if (args[0].equalsIgnoreCase("help")) {
-            new DebugMessage(this.getClass(), debugable, "Execute: args[0] equals help, proceed with help...");
+            ConsoleMessage.debug(this.getClass(), debugable, "Execute: args[0] equals help, proceed with help...");
             this.help(sender, label);
             return true;
         }

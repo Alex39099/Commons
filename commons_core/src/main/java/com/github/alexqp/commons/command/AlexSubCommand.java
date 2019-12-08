@@ -1,6 +1,6 @@
 package com.github.alexqp.commons.command;
 
-import com.github.alexqp.commons.messages.DebugMessage;
+import com.github.alexqp.commons.messages.ConsoleMessage;
 import com.github.alexqp.commons.messages.SetDebugable;
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
@@ -29,6 +29,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      * Sends multiple colored messages (WITHOUT PREFIX) to the given sender (translateAlternate..)
      * @param sender the commandSender
      * @param messages a list of messages with color codes
+     * @see AlexSubCommand#sendColorMessage(CommandSender, String)
      */
     protected static void sendColorMessage(CommandSender sender, List<String> messages) {
         for (String msg : messages) {
@@ -177,13 +178,20 @@ public abstract class AlexSubCommand implements TabExecutor {
     /**
      * Sets the usagePrefixDummy
      * @param prefix the prefix (blanket gets added)
-     * @return the edited AlexSubCommand
+     * @return the instance
      */
     public AlexSubCommand setUsagePrefixDummy(String prefix) {
         this.usagePrefixDummy = prefix + " ";
         return this;
     }
 
+    /**
+     * Sets the helpLine.
+     * <p>This line is used in the corresponding main AlexCommand to give a brief description of the command on /help. However this will only be used if this is a sub-cmd directly after AlexCommand.</p>
+     * @param helpLine the helpLine
+     * @return the instance
+     * @see AlexSubCommand#setCmdParamLine(String)
+     */
     public AlexSubCommand setHelpLine(String helpLine) {
         this.helpLine = helpLine;
         return this;
@@ -192,7 +200,8 @@ public abstract class AlexSubCommand implements TabExecutor {
     /**
      * Sets the CmdParamLine used in the help-cmd. (/cmd name *this*: helpLine)
      * @param paramLine the parameter line
-     * @return the edited AlexSubCommand
+     * @return the instance
+     * @see AlexSubCommand#setHelpLine(String)
      */
     public AlexSubCommand setCmdParamLine(String paramLine) {
         this.cmdParamLine = " " + paramLine;
@@ -250,7 +259,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     }
 
     /**
-     * Sets the prefix of the cmd
+     * Sets the prefix of the cmd.
      * @param prefix really just the prefix (without blanket)
      * @return the instance
      */
@@ -268,7 +277,8 @@ public abstract class AlexSubCommand implements TabExecutor {
     // =========================================================================================
 
     /**
-     * Get if a sender can execute the cmd. The permission check will return true if perm is null.
+     * Get if a sender can execute the cmd.
+     * <p>Note: The permission check will return true if perm is null.</p>
      * @param sender the commandSender
      * @return if commandSender is able to perform this cmd (does not check permission if not set)
      */
@@ -324,14 +334,14 @@ public abstract class AlexSubCommand implements TabExecutor {
         }
 
         if (hasExtraFirstArgument) {
-            new DebugMessage(this.getClass(), debugable, "subCmd has extra argument, adjusting args...");
+            ConsoleMessage.debug(this.getClass(), debugable, "subCmd has extra argument, adjusting args...");
             extraArgument = args[0];
             args = Arrays.copyOfRange(args, 1, args.length);
         }
 
 
         if (!this.checkForSubCommands(sender, label, extraArgument, args) && this.checkForPermission(sender)) {
-            new DebugMessage(this.getClass(), debugable, "sender has permission, proceed with execute method...");
+            ConsoleMessage.debug(this.getClass(), debugable, "sender has permission, proceed with execute method...");
             if (!this.execute(sender, label, extraArgument, args)) {
                 sendColorMessage(sender, prefix + this.getUsageLine());
             }
@@ -346,12 +356,12 @@ public abstract class AlexSubCommand implements TabExecutor {
         if (args.length > 0) {
             AlexSubCommand subCommand = this.getSubCommandForString(args[0]);
             if (subCommand != null) {
-                new DebugMessage(this.getClass(), debugable, "found sub-command" + subCommand.getName());
+                ConsoleMessage.debug(this.getClass(), debugable, "found sub-command" + subCommand.getName());
                 subCommand.internalExecute(sender, label, extraArgument, Arrays.copyOfRange(args, 1, args.length));
                 return true;
             }
         }
-        new DebugMessage(this.getClass(), debugable, "found no sub-command, proceed with internalExecute...");
+        ConsoleMessage.debug(this.getClass(), debugable, "found no sub-command, proceed with internalExecute...");
         return false;
     }
 
@@ -383,16 +393,24 @@ public abstract class AlexSubCommand implements TabExecutor {
     protected abstract boolean execute(CommandSender sender, String label, String extraArgument, String[] args);
 
     /**
-     * Gets called when no subCommand for this subCommand was found and adds the returned list to the available subCommandNames on tab-complete.
-     * These options should be additional possibilities for certain args in the execute method.
+     * Adds additional tabCompleterOptions.
+     * <p>Gets called when no subCommand for this subCommand was found and adds the returned list to the available subCommandNames on tab-complete. </p>
+     * <p>Note: These options should be additional possibilities for certain args in the execute method and get added to the available sub-cmd names on tab-complete.</p>
      * @param sender the CommandSender
-     * @return a list of additional options added to the available subCommandNames on tab-complete
+     * @return a list of additional options
+     * @see AlexSubCommand#getTabCompletion(CommandSender, String, String[])
      */
     @NotNull
     protected List<String> additionalTabCompleterOptions(CommandSender sender) {
         return new ArrayList<>();
     }
 
+    /**
+     * Adds additional tabCompleterOptions for extra argument.
+     * <p>This is only relevant if this sub-cmd has an extra argument.</p>
+     * @param sender the CommandSender
+     * @return a list of additional options
+     */
     @NotNull
     protected List<String> additionalTabCompleterOptionsExtraArgument(CommandSender sender) {
         return new ArrayList<>();
@@ -400,6 +418,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     /**
      * Gets the tabCompletion by args and may call another tabCompletion with shorten args, this should only get overwritten by last subCmd!
+     * <p>This method should only get overwritten by last sub-cmd! To add another TabCompletion option use {@link AlexSubCommand#additionalTabCompleterOptions(CommandSender)}</p>
      * @param sender the consoleSender
      * @param args the args (without args used in other subCommands)
      * @param extraArgument the extraArgument, only changed if a subCmd has an extraArgument.
@@ -425,7 +444,7 @@ public abstract class AlexSubCommand implements TabExecutor {
             AlexSubCommand subCommand = this.getSubCommandForString(args[i]);
             if (subCommand != null) {
 
-                new DebugMessage(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion.");
+                ConsoleMessage.debug(this.getClass(), debugable, "found subCommand " + subCommand.getName() + " for tabCompletion.");
                 return subCommand.getTabCompletion(sender, extraArgument, Arrays.copyOfRange(args, i + 1, args.length));
             }
 
@@ -440,7 +459,7 @@ public abstract class AlexSubCommand implements TabExecutor {
     }
 
     /**
-     * Re-directs method to internalExecute. Do not touch.
+     * Do not touch. Re-directs method to internalExecute.
      * @param sender the commandSender
      * @param command the command
      * @param label the label
@@ -449,13 +468,13 @@ public abstract class AlexSubCommand implements TabExecutor {
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        new DebugMessage(this.getClass(), debugable, "onCommand called.");
+        ConsoleMessage.debug(this.getClass(), debugable, "onCommand called.");
         this.internalExecute(sender, label, "", args);
         return true;
     }
 
     /**
-     * Re-directs method to getTabCompletion. Do not touch.
+     * Do not touch. Re-directs method to getTabCompletion.
      * @param sender the commandSender
      * @param command the command
      * @param alias the alias (not used)
@@ -464,7 +483,7 @@ public abstract class AlexSubCommand implements TabExecutor {
      */
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        new DebugMessage(this.getClass(), debugable, "onTabComplete called");
+        ConsoleMessage.debug(this.getClass(), debugable, "onTabComplete called");
         return this.getTabCompletion(sender, "", args);
     }
 }
