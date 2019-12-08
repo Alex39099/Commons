@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="deprecated all constructors&#10;ConsoleMsg: added static methods to send messages (also debug)&#10;ConsoleMsg: added annotations and edited javaDoc">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Alex_.xml" afterDir="false" />
+    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/AlexCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/AlexCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/AlexSubCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/config/ConfigChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/config/ConfigChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/config/ConfigurationSerializableCheckable.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/config/ConfigurationSerializableCheckable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/config/ConsoleErrorType.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/config/ConsoleErrorType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/dataHandler/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/dataHandler/DataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/dataHandler/LoadSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/dataHandler/LoadSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/ConsoleErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/ConsoleErrorMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/ConsoleMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/ConsoleMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/ConsoleWarningMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/ConsoleWarningMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/DebugMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/DebugMessage.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,48 +69,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00041" summary="bugfix tabCompletion">
-      <created>1561826646192</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1561826646192</updated>
-    </task>
-    <task id="LOCAL-00042" summary="bugfix tabCompletion">
-      <created>1561826935625</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1561826935625</updated>
-    </task>
-    <task id="LOCAL-00043" summary="bugfix tabCompletion">
-      <created>1561827175234</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1561827175234</updated>
-    </task>
-    <task id="LOCAL-00044" summary="disabled debugMode">
-      <created>1561828209171</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1561828209171</updated>
-    </task>
-    <task id="LOCAL-00045" summary="added cmdParamLine">
-      <created>1561839896069</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1561839896069</updated>
-    </task>
-    <task id="LOCAL-00046" summary="added javadoc&#10;changed version to 1.3.0">
-      <created>1561842624895</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1561842624895</updated>
     </task>
     <task id="LOCAL-00047" summary="added javadoc for ConfigurationSerializableCheckable&#10;fixed a bug for checkConfigurationSerializable: value&#10;changed version to 1.3.1">
       <created>1562583764227</created>
@@ -425,17 +371,50 @@
       <option name="project" value="LOCAL" />
       <updated>1570558954624</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="deprecated all constructors&#10;ConsoleMsg: added static methods to send messages (also debug)&#10;ConsoleMsg: added annotations and edited javaDoc">
+      <created>1575798622377</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1575798622377</updated>
+    </task>
+    <task id="LOCAL-00091" summary="added chatColor, javaDoc">
+      <created>1575798684731</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1575798684731</updated>
+    </task>
+    <task id="LOCAL-00092" summary="added annotations and edited javadoc&#10;reworked the ConsoleMessage parts.">
+      <created>1575798747347</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1575798747347</updated>
+    </task>
+    <task id="LOCAL-00093" summary="added class javadoc">
+      <created>1575798763177</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1575798763177</updated>
+    </task>
+    <task id="LOCAL-00094" summary="added/reworked javaDoc">
+      <created>1575798798119</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1575798798119</updated>
+    </task>
+    <task id="LOCAL-00095" summary="reworked the ConsoleMessage parts&#10;completed/edited javaDoc">
+      <created>1575798835131</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1575798835131</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -461,11 +440,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed critical bug with execute." />
-    <MESSAGE value="added extraArgument to tabCompletion" />
-    <MESSAGE value="replaced sectionPath with sectionName" />
-    <MESSAGE value="fixed javadoc" />
-    <MESSAGE value="fixed a bug for constructor with AlexCmd" />
     <MESSAGE value="fixed a IOE for tabCompletion" />
     <MESSAGE value="fixed cast exception" />
     <MESSAGE value="changed version to 1.4.0" />
@@ -486,7 +460,12 @@
     <MESSAGE value="changed package structure" />
     <MESSAGE value="sending messages is now done static." />
     <MESSAGE value="deprecated all constructors&#10;ConsoleMsg: added static methods to send messages (also debug)&#10;ConsoleMsg: added annotations and edited javaDoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="deprecated all constructors&#10;ConsoleMsg: added static methods to send messages (also debug)&#10;ConsoleMsg: added annotations and edited javaDoc" />
+    <MESSAGE value="added chatColor, javaDoc" />
+    <MESSAGE value="added annotations and edited javadoc&#10;reworked the ConsoleMessage parts." />
+    <MESSAGE value="added class javadoc" />
+    <MESSAGE value="added/reworked javaDoc" />
+    <MESSAGE value="reworked the ConsoleMessage parts&#10;completed/edited javaDoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="reworked the ConsoleMessage parts&#10;completed/edited javaDoc" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
