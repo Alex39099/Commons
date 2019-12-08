@@ -9,6 +9,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+/**
+ * @deprecated use {@link ConsoleMessage} instead.
+ */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class DebugMessage {
 

@@ -4,6 +4,9 @@ import org.jetbrains.annotations.NotNull;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * @deprecated use {@link ConsoleMessage} instead.
+ */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class ConsoleErrorMessage extends ConsoleMessage {
 
