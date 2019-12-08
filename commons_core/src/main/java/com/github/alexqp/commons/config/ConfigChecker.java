@@ -1,16 +1,15 @@
 package com.github.alexqp.commons.config;
 
-import com.github.alexqp.commons.messages.ConsoleErrorMessage;
-import com.github.alexqp.commons.messages.ConsoleWarningMessage;
-import com.github.alexqp.commons.messages.DebugMessage;
+import com.github.alexqp.commons.messages.ConsoleMessage;
 import com.google.common.collect.Range;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings({"unused", "WeakerAccess", "FieldCanBeLocal"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class ConfigChecker {
 
     public final String noPathMsg = "path is not existent.";
@@ -27,76 +26,80 @@ public class ConfigChecker {
     private JavaPlugin plugin;
     private String configFileName;
 
-    public ConfigChecker(JavaPlugin plugin) {
+    /**
+     * Constructs a ConfigChecker.
+     * <p>If the section's name is empty in any check, this will replace its name with the plugin's name.</p>
+     * @param plugin the plugin.
+     * @see ConfigChecker#ConfigChecker(JavaPlugin, FileConfiguration)
+     */
+    public ConfigChecker(@NotNull JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
-    public ConfigChecker(JavaPlugin plugin, FileConfiguration configFile) {
+    /**
+     * Constructs a ConfigChecker.
+     * <p>If the section's name is empty in any check, this will replace its name with the configFile's name (or if this is also empty with the plugin's name)</p>
+     * @param plugin the plugin.
+     * @param configFile the configFile.
+     * @see ConfigChecker#ConfigChecker(JavaPlugin)
+     */
+    public ConfigChecker(@NotNull JavaPlugin plugin, @NotNull FileConfiguration configFile) {
         this(plugin);
         this.configFileName = configFile.getName();
     }
 
     /**
      * Attempts to send a console msg.
+     * <p>ConsoleErrorType must be either ERROR, WARN or NONE. This will add an "(used default value ... instead)" ending if value is not null.</p>
      * @param errorType the errorType (controls console msg)
-     * @param sectionPath the section's current path.
+     * @param sectionPath the section's current path
      * @param path the path
      * @param value the defValue (can be null)
      * @param msg the specific error msg
+     * @see ConsoleMessage#send(ConsoleErrorType, String, String, String, String)
      */
-    public void attemptConsoleMsg(ConsoleErrorType errorType, String sectionPath, String path, Object value, String msg) {
-        if (errorType.equals(ConsoleErrorType.WARN)) {
-            String valueWarnMsg = "";
-            if (value != null)
-                valueWarnMsg = " (used default value " + value.toString() + " instead)";
-            new ConsoleWarningMessage(plugin, this.getSaveSectionName(sectionPath), path, msg + valueWarnMsg);
-        } else if (errorType.equals(ConsoleErrorType.ERROR)) {
-            new ConsoleErrorMessage(plugin, this.getSaveSectionName(sectionPath), path, msg);
-        } else {
-            new DebugMessage(this.getClass(), plugin, "Something is not quite right with section = " + this.getSaveSectionName(sectionPath) + " -> " + path + "! Msg = " + msg);
+    public void attemptConsoleMsg(@NotNull ConsoleErrorType errorType, @Nullable String sectionPath, @Nullable String path, @Nullable Object value, @Nullable String msg) {
+        if (value != null) {
+            ConsoleMessage.send(errorType, this.getSaveSectionName(sectionPath), path, msg + " (used default value " + value.toString() + " instead)");
+            return;
         }
+        ConsoleMessage.send(errorType, this.getSaveSectionName(sectionPath), path, msg);
     }
 
     /**
      * Attempts to send a console msg.
-     * @param errorType the errorType (controls console msg)
-     * @param sectionPath the section's current path.
-     * @param path the path
-     * @param msg the specific error msg
+     * <p>This will pass null for Object value to the see also method.</p>
+     * @see ConfigChecker#attemptConsoleMsg(ConsoleErrorType, String, String, Object, String)
      */
-    public void attemptConsoleMsg(ConsoleErrorType errorType, String sectionPath, String path, String msg) {
+    public void attemptConsoleMsg(@NotNull ConsoleErrorType errorType, @Nullable String sectionPath, @Nullable String path, @Nullable String msg) {
         this.attemptConsoleMsg(errorType, sectionPath, path, null, msg);
     }
 
     /**
      * Attempts to send a console msg.
-     * @param errorType the errorType (controls console msg)
-     * @param section the section
-     * @param path the path
-     * @param msg the specific error msg
+     * <p>The section's current path will be used in the see also method.</p>
+     * @see ConfigChecker#attemptConsoleMsg(ConsoleErrorType, String, String, Object, String)
      */
-    public void attemptConsoleMsg(ConsoleErrorType errorType, ConfigurationSection section, String path, String msg) {
+    public void attemptConsoleMsg(@NotNull ConsoleErrorType errorType, @NotNull ConfigurationSection section,  @Nullable String path,  @Nullable String msg) {
         this.attemptConsoleMsg(errorType, section.getCurrentPath(), path, null, msg);
     }
 
     /**
      * Attempts to send a console msg.
-     * @param errorType the errorType (controls console msg)
-     * @param section the section
-     * @param path the path
-     * @param value the defValue (can be null)
-     * @param msg the specific error msg
+     * <p>The section's current path will be used in the see also method.</p>
+     * @see ConfigChecker#attemptConsoleMsg(ConsoleErrorType, String, String, Object, String)
      */
-    public void attemptConsoleMsg(ConsoleErrorType errorType, ConfigurationSection section, String path, Object value, String msg) {
+    public void attemptConsoleMsg(@NotNull ConsoleErrorType errorType, @NotNull ConfigurationSection section, @Nullable String path, @Nullable Object value, @Nullable String msg) {
         this.attemptConsoleMsg(errorType, section.getCurrentPath(), path, value, msg);
     }
 
     /**
-     * Gets the default range message of configChecker .
+     * Gets the default range message of configChecker.
      * @param range the range
      * @return value must be element of range.toString()
      */
-    public String getRangeMsg(Range<?> range) {
+    @NotNull
+    public static String getRangeMsg(Range<?> range) {
         return "value must be element of " + range.toString();
     }
 
@@ -110,14 +113,14 @@ public class ConfigChecker {
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a boolean, returning a default value if not found.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @return config value (if set correctly) or value
      */
-    public boolean checkBoolean(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final boolean value) {
+    public boolean checkBoolean(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final boolean value) {
         if (section.contains(path)) {
             if (!section.isBoolean(path)) {
                 this.attemptConsoleMsg(errorType, section, path, value, booleanMsg);
@@ -130,13 +133,13 @@ public class ConfigChecker {
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a boolean.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @return true if config value is set correctly, false otherwise
      */
-    public boolean checkBoolean(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+    public boolean checkBoolean(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isBoolean(path)) {
                 this.attemptConsoleMsg(errorType, section, path, null, booleanMsg);
@@ -149,14 +152,14 @@ public class ConfigChecker {
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks an integer, returning a default value if not found.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @return config value (if set correctly) or value
      */
-    public int checkInt(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value) {
+    public int checkInt(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value) {
         if (section.contains(path)) {
             if (!section.isInt(path)) {
                 this.attemptConsoleMsg(errorType, section, path, value, intMsg);
@@ -169,13 +172,13 @@ public class ConfigChecker {
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks an integer.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @return true if config value is set correctly, false otherwise
      */
-    public boolean checkInt(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+    public boolean checkInt(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isInt(path)) {
                 this.attemptConsoleMsg(errorType, section, path, null, intMsg);
@@ -188,57 +191,57 @@ public class ConfigChecker {
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks an integer, returning a default value if not found or within the given range.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @param range range config value or value must be element of
      * @return config value if set correctly and in range, value otherwise
      * @throws IllegalArgumentException if value is not within the given range
      */
-    public int checkInt(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value, final Range<Integer> range)
+    public int checkInt(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value, @NotNull final Range<Integer> range)
         throws IllegalArgumentException {
         if (!range.contains(value))
-            throw new IllegalArgumentException(this.getRangeMsg(range));
+            throw new IllegalArgumentException(getRangeMsg(range));
 
         int testValue = this.checkInt(section, path, errorType, value);
 
         if (range.contains(testValue)) {
             return testValue;
         } else {
-            this.attemptConsoleMsg(errorType, section, path, value, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, value, getRangeMsg(range));
             return value;
         }
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks an integer.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param range range config value or value must be element of
      * @return true if set correctly and in range, false otherwise
      */
-    public boolean checkInt(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Range<Integer> range) {
+    public boolean checkInt(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @NotNull final Range<Integer> range) {
         boolean configStatus = this.checkInt(section, path, errorType);
         if (configStatus && !range.contains(section.getInt(path))) {
-            this.attemptConsoleMsg(errorType, section, path, null, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, null, getRangeMsg(range));
             return false;
         }
         return configStatus;
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a double, returning a default value if not found.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @param forceDouble should config value be strictly double?
      * @return config value (if set correctly) or value
      */
-    public double checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final double value, final boolean forceDouble) {
+    public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final double value, final boolean forceDouble) {
         String doubleMsg;
         if (forceDouble)
             doubleMsg = this.forceDoubleMsg;
@@ -257,51 +260,39 @@ public class ConfigChecker {
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @return config value (if set correctly (int or double)) or value
+     * Checks a double, returning a default value if not found.
+     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, double, boolean)
      */
-    public double checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final double value) {
+    public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final double value) {
         return this.checkDouble(section, path, errorType, value, false);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @param forceDouble should config value be strictly double?
-     * @return config value (if set correctly) or value
+     * Checks a double, returning a default value if not found.
+     * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, double, boolean)
      */
-    public double checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value, final boolean forceDouble) {
+    public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value, final boolean forceDouble) {
         return this.checkDouble(section, path, errorType, (double) value, forceDouble);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @return config value (if set correctly (int or double)) or value
+     * Checks a double, returning a default value if not found.
+     * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, double)
      */
-    public double checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value) {
+    public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value) {
         return this.checkDouble(section, path, errorType, (double) value);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a double.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param forceDouble should config value be strictly double?
      * @return true if config value is set correctly, false otherwise
      */
-    public boolean checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final boolean forceDouble) {
+    public boolean checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final boolean forceDouble) {
         String doubleMsg;
         if (forceDouble)
             doubleMsg = this.forceDoubleMsg;
@@ -320,21 +311,19 @@ public class ConfigChecker {
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @return true if config value is set correctly (int or double), false otherwise
+     * Checks a double.
+     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, boolean)
      */
-    public boolean checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+    public boolean checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType) {
         return this.checkDouble(section, path, errorType, false);
     }
 
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a double, returning a default value if not found or within the given range.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @param range range config value or value must be element of
@@ -342,106 +331,86 @@ public class ConfigChecker {
      * @return config value if set correctly and in range, value otherwise
      * @throws IllegalArgumentException if value is not within the given range
      */
-    public double checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final double value, final Range<Double> range, final boolean forceDouble)
+    public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final double value, @NotNull final Range<Double> range, final boolean forceDouble)
         throws IllegalArgumentException {
         if (!range.contains(value))
-            throw new IllegalArgumentException(this.getRangeMsg(range));
+            throw new IllegalArgumentException(getRangeMsg(range));
 
         double testValue = this.checkDouble(section, path, errorType, value, forceDouble);
         if (range.contains(testValue)) {
             return testValue;
         } else {
-            this.attemptConsoleMsg(errorType, section, path, value, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, value, getRangeMsg(range));
             return value;
         }
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @param range range config value or value must be element of
-     * @return config value if set correctly (int or double) and in range, value otherwise
-     * @throws IllegalArgumentException if value is not within the given range
+     * Checks a double, returning a default value if not found or within the given range.
+     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, double, Range, boolean)
      */
-    public double checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final double value, final Range<Double> range)
+    public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final double value, @NotNull final Range<Double> range)
             throws IllegalArgumentException {
         return this.checkDouble(section, path, errorType, value, range, false);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @param range range config value or value must be element of
-     * @param forceDouble should config value be strictly double?
-     * @return config value if set correctly and in range, value otherwise
-     * @throws IllegalArgumentException if value is not within the given range
+     * Checks a double, returning a default value if not found or within the given range.
+     * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, double, Range, boolean)
      */
-    public double checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value, final Range<Double> range, final boolean forceDouble)
+    public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value, @NotNull final Range<Double> range, final boolean forceDouble)
         throws IllegalArgumentException {
         return this.checkDouble(section, path, errorType, (double) value, range, forceDouble);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @param range range config value or value must be element of
-     * @return config value if set correctly (int or double) and in range, value otherwise
-     * @throws IllegalArgumentException if value is not within the given range
+     * Checks a double, returning a default value if not found or within the given range.
+     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, double, Range, boolean)
      */
-    public double checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value, final Range<Double> range)
+    public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value, @NotNull final Range<Double> range)
         throws IllegalArgumentException {
         return this.checkDouble(section, path, errorType, (double) value, range, false);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a double.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param range range config value or value must be element of
      * @param forceDouble should config value be strictly double?
      * @return true if set correctly and in range, false otherwise
      */
-    public boolean checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Range<Double> range, final boolean forceDouble) {
+    public boolean checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @NotNull final Range<Double> range, final boolean forceDouble) {
         boolean configStatus = this.checkDouble(section, path, errorType, forceDouble);
         if (configStatus && !range.contains(section.getDouble(path))) {
-            this.attemptConsoleMsg(errorType, section, path, null, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, null, getRangeMsg(range));
             return false;
         }
         return configStatus;
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param range range config value or value must be element of
-     * @return true if set correctly (int or double) and in range, false otherwise
+     * Checks a double.
+     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, Range, boolean)
      */
-    public boolean checkDouble(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Range<Double> range) {
+    public boolean checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @NotNull final Range<Double> range) {
         return this.checkDouble(section, path, errorType, range, false);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a long, returning a default value if not found.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @param forceLong should config value be strictly long?
      * @return config value (if set correctly) or value
      */
-    public long checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final long value, final boolean forceLong) {
+    public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final long value, final boolean forceLong) {
         String longMsg;
         if (forceLong)
             longMsg = this.forceLongMsg;
@@ -460,51 +429,40 @@ public class ConfigChecker {
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @return config value (if set correctly (int or long)) or value
+     * Checks a long, returning a default value if not found.
+     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, boolean)
      */
-    public long checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final long value) {
+    public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final long value) {
         return this.checkLong(section, path, errorType, value, false);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @param forceLong should config value be strictly long?
-     * @return config value (if set correctly) or value
+     * Checks a long, returning a default value if not found.
+     * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, boolean)
      */
-    public long checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value, final boolean forceLong) {
+    public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value, final boolean forceLong) {
         return checkLong(section, path, errorType, (long) value, forceLong);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @return config value (if set correctly (int or long)) or value
+     * Checks a long, returning a default value if not found.
+     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, boolean)
      */
-    public long checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value) {
+    public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value) {
         return this.checkLong(section, path, errorType, (long) value);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a long.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param forceLong should config value be strictly double?
      * @return true if config value is set correctly, false otherwise
      */
-    public boolean checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final boolean forceLong) {
+    public boolean checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final boolean forceLong) {
         String longMsg;
         if (forceLong)
             longMsg = this.forceLongMsg;
@@ -523,18 +481,16 @@ public class ConfigChecker {
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @return true if config value is set correctly (int or long), false otherwise
+     * Checks a long.
+     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, boolean)
      */
-    public boolean checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+    public boolean checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType) {
         return this.checkLong(section, path, errorType, false);
     }
 
     /**
-     *
+     * Checks a long, returning a default value if not found or within the given range.
      * @param section the section to check.
      * @param path the path within the section.
      * @param errorType the ConsoleErrorType (controls console msg)
@@ -544,106 +500,88 @@ public class ConfigChecker {
      * @return config value if set correctly and in range, value otherwise
      * @throws IllegalArgumentException if value is not within the given range
      */
-    public long checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final long value, final Range<Long> range, final boolean forceLong)
+    public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final long value, @NotNull final Range<Long> range, final boolean forceLong)
         throws IllegalArgumentException {
         if (!range.contains(value))
-            throw new IllegalArgumentException(this.getRangeMsg(range));
+            throw new IllegalArgumentException(getRangeMsg(range));
 
         long testValue = this.checkLong(section, path, errorType, value, forceLong);
         if (range.contains(testValue)) {
             return testValue;
         } else {
-            this.attemptConsoleMsg(errorType, section, path, value, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, value, getRangeMsg(range));
             return value;
         }
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @param range range config value or value must be element of
-     * @return config value if set correctly (int or long) and in range, value otherwise
-     * @throws IllegalArgumentException if value is not within the given range
+     * Checks a long, returning a default value if not found or within the given range.
+     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, Range, boolean)
      */
-    public long checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final long value, final Range<Long> range)
+    public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final long value, @NotNull final Range<Long> range)
         throws IllegalArgumentException {
         return this.checkLong(section, path, errorType, value, range, false);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @param range range config value or value must be element of
-     * @param forceLong should config value be strictly long?
-     * @return config value if set correctly and in range, value otherwise
-     * @throws IllegalArgumentException if value is not within the given range
+     * Checks a long, returning a default value if not found or within the given range.
+     * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, Range, boolean)
      */
-    public long checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value, final Range<Long> range, final boolean forceLong)
+    public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value, @NotNull final Range<Long> range, final boolean forceLong)
         throws IllegalArgumentException {
         return this.checkLong(section, path, errorType, (long) value, forceLong);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param value the default value
-     * @param range range config value or value must be element of
-     * @return config value if set correctly (int or long) and in range, value otherwise
-     * @throws IllegalArgumentException if value is not within the given range
+     * Checks a long, returning a default value if not found or within the given range.
+     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, Range, boolean)
      */
-    public long checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final int value, final Range<Long> range)
+    public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value, @NotNull final Range<Long> range)
         throws IllegalArgumentException {
         return this.checkLong(section, path, errorType, (long) value, range, false);
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a long.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param range range config value or value must be element of
      * @param forceLong should config value be strictly long?
      * @return true if set correctly and in range, false otherwise
      */
-    public boolean checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Range<Long> range, final boolean forceLong) {
+    public boolean checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @NotNull final Range<Long> range, final boolean forceLong) {
         boolean configStatus = this.checkDouble(section, path, errorType, forceLong);
         if (configStatus && !range.contains(section.getLong(path))) {
-            this.attemptConsoleMsg(errorType, section, path, null, this.getRangeMsg(range));
+            this.attemptConsoleMsg(errorType, section, path, null, getRangeMsg(range));
             return false;
         }
         return configStatus;
     }
 
     /**
-     *
-     * @param section the section to check.
-     * @param path the path within the section.
-     * @param errorType the ConsoleErrorType (controls console msg)
-     * @param range range config value or value must be element of
-     * @return true if set correctly (int or long) and in range, false otherwise
+     * Checks a long.
+     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, Range, boolean)
      */
-    public boolean checkLong(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Range<Long> range) {
+    public boolean checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @NotNull final Range<Long> range) {
         return this.checkLong(section, path, errorType, range, false);
     }
 
 
     /**
-     * Checks if the specified path is a string.
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a string, returning a default value if not found.
+     * <p>Note: This method might be null if config value is not set correctly and the default value is null.</p>
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @return config value (if set correctly) or value
      */
-    public String checkString(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, String value) {
+    @Nullable
+    public String checkString(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @Nullable String value) {
         if (section.contains(path)) {
             if (!section.isString(path)) {
                 this.attemptConsoleMsg(errorType, section, path, value, stringMsg);
@@ -656,13 +594,13 @@ public class ConfigChecker {
     }
 
     /**
-     * Checks if the specified path is a string.
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Checks a string.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @return true if config value is set correctly, false otherwise
      */
-    public boolean checkString(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+    public boolean checkString(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isString(path)) {
                 this.attemptConsoleMsg(errorType, section, path, null, stringMsg);
@@ -675,13 +613,14 @@ public class ConfigChecker {
     }
 
     /**
-     * Gets the requested section by path.
-     * @param section the section to check.
-     * @param path the path within the section.
+     * Gets a configSection by path.
+     * @param section the section to check
+     * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @return ConfigurationSection (if set correctly) or null
      */
-    @Nullable public ConfigurationSection checkConfigSection(final ConfigurationSection section, final String path, final ConsoleErrorType errorType) {
+    @Nullable
+    public ConfigurationSection checkConfigSection(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isConfigurationSection(path)) {
                 this.attemptConsoleMsg(errorType, section, path, null, configSectionMsg);
@@ -694,18 +633,18 @@ public class ConfigChecker {
     }
 
     /**
-     * Gets the requested ConfigurationSerializableCheckable by path or value.
-     * Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()
+     * Gets the requested ConfigurationSerializableCheckable.
+     * <p>Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()</p>
      * @param section the section to check
      * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param clazz the serializable class
      * @param overwriteValues should values get overwritten?
      * @param <T> the type of ConfigurationSerializableCheckable
-     * @return config value (if data-types are set correctly) or null.
+     * @return config value (if data-types are set correctly) or null
      */
     @Nullable
-    public <T extends ConfigurationSerializableCheckable> T checkSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final Class<T> clazz, final boolean overwriteValues) {
+    public <T extends ConfigurationSerializableCheckable> T checkSerializable(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @NotNull final Class<T> clazz, final boolean overwriteValues) {
         if (!section.contains(path)) {
             this.attemptConsoleMsg(errorType, section, path, " of " + clazz.getSimpleName(), noPathMsg);
             return null;
@@ -724,16 +663,17 @@ public class ConfigChecker {
 
     /**
      * Gets the requested ConfigurationSerializableCheckable by path or value.
-     * Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()
+     * <p>Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()</p>
      * @param section the section to check
      * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @param overwriteValues should values get overwritten?
      * @param <T> the type of ConfigurationSerializableCheckable
-     * @return config value (if data-types are set correctly) or value.
+     * @return config value (if data-types are set correctly) or value
      */
-    public <T extends ConfigurationSerializableCheckable> T checkSerializable(final ConfigurationSection section, final String path, final ConsoleErrorType errorType, final T value, final boolean overwriteValues) {
+    @NotNull
+    public <T extends ConfigurationSerializableCheckable> T checkSerializable(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @NotNull final T value, final boolean overwriteValues) {
         if (!section.contains(path)) {
             this.attemptConsoleMsg(errorType, section, path, " of " + value.getClass().getSimpleName(), noPathMsg);
             return value;
@@ -752,14 +692,16 @@ public class ConfigChecker {
     }
 
     /**
-     *
+     * Checks a vector, returning a default value if not found.
+     * <p>Note: This method might be null if config value is not set correctly and the default value is null.</p>
      * @param section the section to check.
      * @param path the path within the section.
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @return config value (if set correctly) or value
      */
-    public Vector checkVector(final ConfigurationSection section, final String path, ConsoleErrorType errorType, Vector value) {
+    @Nullable
+    public Vector checkVector(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull ConsoleErrorType errorType, @Nullable Vector value) {
         if (section.contains(path)) {
             if (!section.isVector(path)) {
                 this.attemptConsoleMsg(errorType, section, path, value, vectorMsg);
@@ -772,13 +714,13 @@ public class ConfigChecker {
     }
 
     /**
-     *
+     * Checks a vector.
      * @param section the section to check.
      * @param path the path within the section.
      * @param errorType the ConsoleErrorType (controls console msg)
      * @return true if config value is set correctly, false otherwise
      */
-    public boolean checkVector(final ConfigurationSection section, final String path, ConsoleErrorType errorType) {
+    public boolean checkVector(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull ConsoleErrorType errorType) {
         if (section.contains(path)) {
             if (!section.isVector(path)) {
                 this.attemptConsoleMsg(errorType, section, path, null, intMsg);
@@ -795,20 +737,22 @@ public class ConfigChecker {
     // =================================================================
 
     /**
-     *
+     * Checks a value like ConfigChecker.
+     * <p>Note: This method might be null if config value is not set correctly and the default value is null.</p>
      * @param checkValue the value to check
      * @param sectionPath the sectionPath
      * @param path the specific path of the given value within the section
      * @param errorType the ConsoleErrorType (controls console msg)
      * @param value the default value
      * @param range the range to check
-     * @param <T> the comparable such as Integer, double etc.
+     * @param <T> the comparable such as Integer, Double etc.
      * @return checkValue (if within the range) or value
      */
-    public <T extends Comparable> T checkValue(final T checkValue, final String sectionPath, final String path, final ConsoleErrorType errorType, final T value, final Range<Comparable> range) {
+    @Nullable
+    public <T extends Comparable> T checkValue(@NotNull final T checkValue, @Nullable final String sectionPath, @Nullable final String path, @NotNull final ConsoleErrorType errorType, @Nullable final T value, @NotNull final Range<Comparable> range) {
         if (range.contains(checkValue))
             return checkValue;
-        this.attemptConsoleMsg(errorType, sectionPath, path, value, this.getRangeMsg(range));
+        this.attemptConsoleMsg(errorType, sectionPath, path, value, getRangeMsg(range));
         return value;
     }
 }
