@@ -44,12 +44,8 @@ public class ConsoleMessage {
         if (msg != null) {
             String prefix = "[" + pluginName + "] ";
 
-            if (errorType.equals(ConsoleErrorType.ERROR)) {
-                Bukkit.getLogger().severe(prefix + msg);
-            } else if (errorType.equals(ConsoleErrorType.WARN)) {
-                Bukkit.getLogger().warning(prefix + msg);
-            } else if (!errorType.equals(ConsoleErrorType.NONE)) {
-                Bukkit.getLogger().info(prefix + msg);
+            if (!errorType.equals(ConsoleErrorType.NONE)) {
+                Bukkit.getConsoleSender().sendMessage(prefix + msg);
             }
         }
     }
@@ -144,7 +140,7 @@ public class ConsoleMessage {
      */
     public static void debug(@NotNull Debugable debugable, String msg) {
         if (debugable.getDebug()) {
-            Bukkit.getLogger().info(getDebugPrefix(debugable) + msg);
+            Bukkit.getConsoleSender().sendMessage(getDebugPrefix(debugable) + msg);
         }
     }
 
