@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
+    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="fixed color on plain send">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/ConsoleMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/messages/ConsoleMessage.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +35,11 @@
   </component>
   <component name="ProjectId" id="1PPVWUgOCeUP5VU1CG0p9CWQ78X" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -45,15 +49,15 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Mercurial" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -70,20 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00048" summary="edited javadoc for more clearance">
-      <created>1563137092513</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1563137092513</updated>
-    </task>
-    <task id="LOCAL-00049" summary="made messages public.">
-      <created>1563181920005</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1563181920005</updated>
     </task>
     <task id="LOCAL-00050" summary="small change getSaveSectionName">
       <created>1563182040296</created>
@@ -414,7 +404,21 @@
       <option name="project" value="LOCAL" />
       <updated>1575799101576</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Logger does not display color codes">
+      <created>1575983192463</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1575983192463</updated>
+    </task>
+    <task id="LOCAL-00098" summary="changed version to 1.7.1">
+      <created>1575983274283</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1575983274283</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -441,9 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed cast exception" />
-    <MESSAGE value="changed version to 1.4.0" />
-    <MESSAGE value="reworked configurationSerializableCheckable" />
     <MESSAGE value="removed deprecated stuff" />
     <MESSAGE value="added more options to attemptConsoleMsg, improved msg itself" />
     <MESSAGE value="made getRangeMsg public" />
@@ -466,7 +467,16 @@
     <MESSAGE value="added/reworked javaDoc" />
     <MESSAGE value="reworked the ConsoleMessage parts&#10;completed/edited javaDoc" />
     <MESSAGE value="changed version to 1.7.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed version to 1.7.0" />
+    <MESSAGE value="Logger does not display color codes" />
+    <MESSAGE value="changed version to 1.7.1" />
+    <MESSAGE value="fixed color on plain send" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed color on plain send" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="537" y="114" key="CommitChangelistDialog2" timestamp="1582801023947">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801023947" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

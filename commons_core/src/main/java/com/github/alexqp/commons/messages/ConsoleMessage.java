@@ -45,7 +45,7 @@ public class ConsoleMessage {
             String prefix = "[" + pluginName + "] ";
 
             if (!errorType.equals(ConsoleErrorType.NONE)) {
-                Bukkit.getConsoleSender().sendMessage(prefix + msg);
+                Bukkit.getConsoleSender().sendMessage(prefix + errorType.getColor() + msg);
             }
         }
     }
@@ -70,10 +70,10 @@ public class ConsoleMessage {
     public static void send(@NotNull final ConsoleErrorType errorType, @NotNull final String pluginName, @Nullable final String section, @Nullable final String path)
                 throws IllegalArgumentException {
         if (errorType.equals(ConsoleErrorType.ERROR)) {
-            send(errorType, pluginName, errorType.getColor() + "Error for " + highlight(errorType, section) + ". Please check " + highlight(errorType, path));
+            send(errorType, pluginName, "Error for " + highlight(errorType, section) + ". Please check " + highlight(errorType, path));
             return;
         } else if (errorType.equals(ConsoleErrorType.WARN)) {
-            send(errorType, pluginName, errorType.getColor() + "Warning for " + highlight(errorType, section) + ". Please check " + highlight(errorType, path));
+            send(errorType, pluginName, "Warning for " + highlight(errorType, section) + ". Please check " + highlight(errorType, path));
             return;
         } else if (errorType.equals(ConsoleErrorType.NONE)) {
             return;
@@ -106,9 +106,9 @@ public class ConsoleMessage {
         send(errorType, pluginName, section, path); // already throws IllegalArgumentException
         if (msg != null) {
             if (errorType.equals(ConsoleErrorType.ERROR)) {
-                send(errorType, pluginName, errorType.getColor() + "Specific Error: " + msg);
+                send(errorType, pluginName, "Specific Error: " + msg);
             } else if (errorType.equals(ConsoleErrorType.WARN)) {
-                send(errorType, pluginName, errorType.getColor() + "Specific Warning: " + msg);
+                send(errorType, pluginName, "Specific Warning: " + msg);
             }
         }
     }
@@ -161,7 +161,7 @@ public class ConsoleMessage {
      * @param debugable the debugable
      * @param msg the actual message
      */
-    public static void debug(@NotNull Class clazz, @NotNull Debugable debugable, String msg) {
+    public static void debug(@NotNull Class<?> clazz, @NotNull Debugable debugable, String msg) {
         debug(debugable, ChatColor.YELLOW + clazz.getSimpleName() + ": " + debugColor + msg);
     }
 
@@ -170,7 +170,7 @@ public class ConsoleMessage {
      * <p>The JavaPlugin must be instance of Debugable</p>
      * @see ConsoleMessage#debug(Class, Debugable, String)
      */
-    public static void debug(@NotNull Class clazz, @NotNull JavaPlugin plugin, String msg) {
+    public static void debug(@NotNull Class<?> clazz, @NotNull JavaPlugin plugin, String msg) {
         if (plugin instanceof Debugable) {
             debug(clazz, (Debugable) plugin, msg);
         }
