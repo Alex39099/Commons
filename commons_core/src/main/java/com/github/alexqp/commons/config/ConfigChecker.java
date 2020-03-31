@@ -749,7 +749,7 @@ public class ConfigChecker {
      * @return checkValue (if within the range) or value
      */
     @Nullable
-    public <T extends Comparable> T checkValue(@NotNull final T checkValue, @Nullable final String sectionPath, @Nullable final String path, @NotNull final ConsoleErrorType errorType, @Nullable final T value, @NotNull final Range<Comparable> range) {
+    public <T extends Comparable<?>> T checkValue(@NotNull final T checkValue, @Nullable final String sectionPath, @Nullable final String path, @NotNull final ConsoleErrorType errorType, @Nullable final T value, @NotNull final Range<Comparable<?>> range) {
         if (range.contains(checkValue))
             return checkValue;
         this.attemptConsoleMsg(errorType, sectionPath, path, value, getRangeMsg(range));
