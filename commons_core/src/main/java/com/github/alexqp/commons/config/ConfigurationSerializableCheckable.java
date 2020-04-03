@@ -4,11 +4,11 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
 /**
- * This class is used in {@link ConfigChecker}.
+ * This interface is used in {@link ConfigChecker}.
  * @see ConfigChecker#checkSerializable(ConfigurationSection, String, ConsoleErrorType, ConfigurationSerializableCheckable, boolean)
  * @see ConfigChecker#checkSerializable(ConfigurationSection, String, ConsoleErrorType, Class, boolean)
  */
-@SuppressWarnings("WeakerAccess")
+
 public interface ConfigurationSerializableCheckable extends ConfigurationSerializable {
 
     /**
