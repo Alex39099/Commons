@@ -9,7 +9,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
  * @see ConfigChecker#checkSerializable(ConfigurationSection, String, ConsoleErrorType, Class, boolean)
  */
 @SuppressWarnings("WeakerAccess")
-public abstract class ConfigurationSerializableCheckable implements ConfigurationSerializable {
+public interface ConfigurationSerializableCheckable extends ConfigurationSerializable {
 
     /**
      * Gets executed by ConfigChecker to check an instance.
@@ -21,5 +21,5 @@ public abstract class ConfigurationSerializableCheckable implements Configuratio
      * @return true if all values are set correctly, false otherwise. This has no impact on ConfigChecker if overwrite is false (i. e. no extra msg)
      */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    abstract public boolean checkValues(ConfigChecker checker, ConfigurationSection section, String path, ConsoleErrorType errorType, boolean overwrite);
+    boolean checkValues(ConfigChecker checker, ConfigurationSection section, String path, ConsoleErrorType errorType, boolean overwrite);
 }
