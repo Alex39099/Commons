@@ -187,7 +187,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     /**
      * Sets the helpLine.
-     * <p>This line is used in the corresponding main AlexCommand to give a brief description of the command on /help. However this will only be used if this is a sub-cmd directly after AlexCommand.</p>
+     * <p>This line is used in the corresponding main AlexCommand to give a brief description of the command on /help. However this will only be used if this is a sub-cmd directly after AlexCommand.
      * @param helpLine the helpLine
      * @return the instance
      * @see AlexSubCommand#setCmdParamLine(String)
@@ -278,7 +278,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     /**
      * Get if a sender can execute the cmd.
-     * <p>Note: The permission check will return true if perm is null.</p>
+     * <p>Note: The permission check will return true if perm is null.
      * @param sender the commandSender
      * @return if commandSender is able to perform this cmd (does not check permission if not set)
      */
@@ -394,8 +394,8 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     /**
      * Adds additional tabCompleterOptions.
-     * <p>Gets called when no subCommand for this subCommand was found and adds the returned list to the available subCommandNames on tab-complete. </p>
-     * <p>Note: These options should be additional possibilities for certain args in the execute method and get added to the available sub-cmd names on tab-complete.</p>
+     * <p>Gets called when no subCommand for this subCommand was found and adds the returned list to the available subCommandNames on tab-complete.
+     * <p>Note: These options should be additional possibilities for certain args in the execute method and get added to the available sub-cmd names on tab-complete.
      * @param sender the CommandSender
      * @return a list of additional options
      * @see AlexSubCommand#getTabCompletion(CommandSender, String, String[])
@@ -407,7 +407,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     /**
      * Adds additional tabCompleterOptions for extra argument.
-     * <p>This is only relevant if this sub-cmd has an extra argument.</p>
+     * <p>This is only relevant if this sub-cmd has an extra argument.
      * @param sender the CommandSender
      * @return a list of additional options
      */
@@ -418,7 +418,7 @@ public abstract class AlexSubCommand implements TabExecutor {
 
     /**
      * Gets the tabCompletion by args and may call another tabCompletion with shorten args, this should only get overwritten by last subCmd!
-     * <p>This method should only get overwritten by last sub-cmd! To add another TabCompletion option use {@link AlexSubCommand#additionalTabCompleterOptions(CommandSender)}</p>
+     * <p>This method should only get overwritten by last sub-cmd! To add another TabCompletion option use {@link AlexSubCommand#additionalTabCompleterOptions(CommandSender)}
      * @param sender the consoleSender
      * @param args the args (without args used in other subCommands)
      * @param extraArgument the extraArgument, only changed if a subCmd has an extraArgument.

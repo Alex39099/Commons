@@ -28,7 +28,7 @@ public class ConfigChecker {
 
     /**
      * Constructs a ConfigChecker.
-     * <p>If the section's name is empty in any check, this will replace its name with the plugin's name.</p>
+     * <p>If the section's name is empty in any check, this will replace its name with the plugin's name.
      * @param plugin the plugin.
      * @see ConfigChecker#ConfigChecker(JavaPlugin, FileConfiguration)
      */
@@ -38,7 +38,7 @@ public class ConfigChecker {
 
     /**
      * Constructs a ConfigChecker.
-     * <p>If the section's name is empty in any check, this will replace its name with the configFile's name (or if this is also empty with the plugin's name)</p>
+     * <p>If the section's name is empty in any check, this will replace its name with the configFile's name (or if this is also empty with the plugin's name)
      * @param plugin the plugin.
      * @param configFile the configFile.
      * @see ConfigChecker#ConfigChecker(JavaPlugin)
@@ -50,7 +50,7 @@ public class ConfigChecker {
 
     /**
      * Attempts to send a console msg.
-     * <p>ConsoleErrorType must be either ERROR, WARN or NONE. This will add an "(used default value ... instead)" ending if value is not null.</p>
+     * <p>ConsoleErrorType must be either ERROR, WARN or NONE. This will add an "(used default value ... instead)" ending if value is not null.
      * @param errorType the errorType (controls console msg)
      * @param sectionPath the section's current path
      * @param path the path
@@ -68,7 +68,7 @@ public class ConfigChecker {
 
     /**
      * Attempts to send a console msg.
-     * <p>This will pass null for Object value to the see also method.</p>
+     * <p>This will pass null for Object value to the see also method.
      * @see ConfigChecker#attemptConsoleMsg(ConsoleErrorType, String, String, Object, String)
      */
     public void attemptConsoleMsg(@NotNull ConsoleErrorType errorType, @Nullable String sectionPath, @Nullable String path, @Nullable String msg) {
@@ -77,7 +77,7 @@ public class ConfigChecker {
 
     /**
      * Attempts to send a console msg.
-     * <p>The section's current path will be used in the see also method.</p>
+     * <p>The section's current path will be used in the see also method.
      * @see ConfigChecker#attemptConsoleMsg(ConsoleErrorType, String, String, Object, String)
      */
     public void attemptConsoleMsg(@NotNull ConsoleErrorType errorType, @NotNull ConfigurationSection section,  @Nullable String path,  @Nullable String msg) {
@@ -86,7 +86,7 @@ public class ConfigChecker {
 
     /**
      * Attempts to send a console msg.
-     * <p>The section's current path will be used in the see also method.</p>
+     * <p>The section's current path will be used in the see also method.
      * @see ConfigChecker#attemptConsoleMsg(ConsoleErrorType, String, String, Object, String)
      */
     public void attemptConsoleMsg(@NotNull ConsoleErrorType errorType, @NotNull ConfigurationSection section, @Nullable String path, @Nullable Object value, @Nullable String msg) {
@@ -261,7 +261,7 @@ public class ConfigChecker {
 
     /**
      * Checks a double, returning a default value if not found.
-     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * <p>This method does not check for a strict double value (forceDouble = false).
      * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, double, boolean)
      */
     public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final double value) {
@@ -312,7 +312,7 @@ public class ConfigChecker {
 
     /**
      * Checks a double.
-     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * <p>This method does not check for a strict double value (forceDouble = false).
      * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, boolean)
      */
     public boolean checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType) {
@@ -347,7 +347,7 @@ public class ConfigChecker {
 
     /**
      * Checks a double, returning a default value if not found or within the given range.
-     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * <p>This method does not check for a strict double value (forceDouble = false).
      * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, double, Range, boolean)
      */
     public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final double value, @NotNull final Range<Double> range)
@@ -366,7 +366,7 @@ public class ConfigChecker {
 
     /**
      * Checks a double, returning a default value if not found or within the given range.
-     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * <p>This method does not check for a strict double value (forceDouble = false).
      * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, double, Range, boolean)
      */
     public double checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value, @NotNull final Range<Double> range)
@@ -394,7 +394,7 @@ public class ConfigChecker {
 
     /**
      * Checks a double.
-     * <p>This method does not check for a strict double value (forceDouble = false).</p>
+     * <p>This method does not check for a strict double value (forceDouble = false).
      * @see ConfigChecker#checkDouble(ConfigurationSection, String, ConsoleErrorType, Range, boolean)
      */
     public boolean checkDouble(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @NotNull final Range<Double> range) {
@@ -430,7 +430,7 @@ public class ConfigChecker {
 
     /**
      * Checks a long, returning a default value if not found.
-     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * <p>This method does not check for a strict long value (forceLong = false).
      * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, boolean)
      */
     public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final long value) {
@@ -447,7 +447,7 @@ public class ConfigChecker {
 
     /**
      * Checks a long, returning a default value if not found.
-     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * <p>This method does not check for a strict long value (forceLong = false).
      * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, boolean)
      */
     public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value) {
@@ -482,7 +482,7 @@ public class ConfigChecker {
 
     /**
      * Checks a long.
-     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * <p>This method does not check for a strict long value (forceLong = false).
      * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, boolean)
      */
     public boolean checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType) {
@@ -516,7 +516,7 @@ public class ConfigChecker {
 
     /**
      * Checks a long, returning a default value if not found or within the given range.
-     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * <p>This method does not check for a strict long value (forceLong = false).
      * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, Range, boolean)
      */
     public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final long value, @NotNull final Range<Long> range)
@@ -535,7 +535,7 @@ public class ConfigChecker {
 
     /**
      * Checks a long, returning a default value if not found or within the given range.
-     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * <p>This method does not check for a strict long value (forceLong = false).
      * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, long, Range, boolean)
      */
     public long checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, final int value, @NotNull final Range<Long> range)
@@ -563,7 +563,7 @@ public class ConfigChecker {
 
     /**
      * Checks a long.
-     * <p>This method does not check for a strict long value (forceLong = false).</p>
+     * <p>This method does not check for a strict long value (forceLong = false).
      * @see ConfigChecker#checkLong(ConfigurationSection, String, ConsoleErrorType, Range, boolean)
      */
     public boolean checkLong(@NotNull final ConfigurationSection section, @NotNull final String path, @NotNull final ConsoleErrorType errorType, @NotNull final Range<Long> range) {
@@ -573,7 +573,7 @@ public class ConfigChecker {
 
     /**
      * Checks a string, returning a default value if not found.
-     * <p>Note: This method might be null if config value is not set correctly and the default value is null.</p>
+     * <p>Note: This method might be null if config value is not set correctly and the default value is null.
      * @param section the section to check
      * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
@@ -634,7 +634,7 @@ public class ConfigChecker {
 
     /**
      * Gets the requested ConfigurationSerializableCheckable.
-     * <p>Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()</p>
+     * <p>Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()
      * @param section the section to check
      * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
@@ -663,7 +663,7 @@ public class ConfigChecker {
 
     /**
      * Gets the requested ConfigurationSerializableCheckable by path or value.
-     * <p>Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()</p>
+     * <p>Note: In case of an error-msg this will print the simpleClassName of T instead of value.toString()
      * @param section the section to check
      * @param path the path within the section
      * @param errorType the ConsoleErrorType (controls console msg)
@@ -693,7 +693,7 @@ public class ConfigChecker {
 
     /**
      * Checks a vector, returning a default value if not found.
-     * <p>Note: This method might be null if config value is not set correctly and the default value is null.</p>
+     * <p>Note: This method might be null if config value is not set correctly and the default value is null.
      * @param section the section to check.
      * @param path the path within the section.
      * @param errorType the ConsoleErrorType (controls console msg)
@@ -738,7 +738,7 @@ public class ConfigChecker {
 
     /**
      * Checks a value like ConfigChecker.
-     * <p>Note: This method might be null if config value is not set correctly and the default value is null.</p>
+     * <p>Note: This method might be null if config value is not set correctly and the default value is null.
      * @param checkValue the value to check
      * @param sectionPath the sectionPath
      * @param path the specific path of the given value within the section

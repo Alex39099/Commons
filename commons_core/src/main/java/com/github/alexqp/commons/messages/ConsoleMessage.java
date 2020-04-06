@@ -34,7 +34,7 @@ public class ConsoleMessage {
 
     /**
      * Sends a console message by name.
-     * <p>Messages look like: "[PluginName] {errorType#ChatColor} Msg</p>
+     * <p>Messages look like: "[PluginName] {errorType#ChatColor} Msg
      * @param errorType the error type (controls color)
      * @param pluginName the plugin's name
      * @param msg the actual message
@@ -60,7 +60,7 @@ public class ConsoleMessage {
 
     /**
      * Sends a console warning or error message by name.
-     * <p>Messages look like: "[PluginName] {errorType#ChatColor} Error/Warning for section. Please check path.</p>
+     * <p>Messages look like: "[PluginName] {errorType#ChatColor} Error/Warning for section. Please check path.
      * @param errorType the error type (controls color)
      * @param pluginName the plugin's name
      * @param section the configSection's name or full path
@@ -92,7 +92,7 @@ public class ConsoleMessage {
 
     /**
      * Sends a console warning or error message by name followed by an extra message.
-     * <p>The extra message will be sent in an extra line like "[PluginName] {errorType#ChatColor} Specific Error/Warning: Msg</p>
+     * <p>The extra message will be sent in an extra line like "[PluginName] {errorType#ChatColor} Specific Error/Warning: Msg
      * @param errorType the error type (controls color)
      * @param pluginName the plugin's name
      * @param section the configSection's name or full path
@@ -134,7 +134,7 @@ public class ConsoleMessage {
 
     /**
      * Sends a debug message.
-     * <p>No messages are sent if debug mode is disabled for the given debugable. Messages look like: [DebugableName] [DEBUG] Msg</p>
+     * <p>No messages are sent if debug mode is disabled for the given debugable. Messages look like: [DebugableName] [DEBUG] Msg
      * @param debugable the debugable
      * @param msg the actual message
      */
@@ -146,7 +146,7 @@ public class ConsoleMessage {
 
     /**
      * Sends a debug message.
-     * <p>The JavaPlugin must be instance of Debugable</p>
+     * <p>The JavaPlugin must be instance of Debugable
      * @see ConsoleMessage#debug(Debugable, String)
      */
     public static void debug(@NotNull JavaPlugin plugin, String msg) {
@@ -167,7 +167,7 @@ public class ConsoleMessage {
 
     /**
      * Sends a debug message with a class reference.
-     * <p>The JavaPlugin must be instance of Debugable</p>
+     * <p>The JavaPlugin must be instance of Debugable
      * @see ConsoleMessage#debug(Class, Debugable, String)
      */
     public static void debug(@NotNull Class<?> clazz, @NotNull JavaPlugin plugin, String msg) {
