@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_dist/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons_dist/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,13 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00059" summary="removed constructor.">
-      <created>1563797064765</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1563797064766</updated>
     </task>
     <task id="LOCAL-00060" summary="added methods to add multiple lines">
       <created>1563797500753</created>
@@ -419,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586262102868</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="testing jetbrains scope compile">
+      <created>1586262689422</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1586262689423</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -446,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added resetSubDirectory, deleteFile, edited javaDoc" />
     <MESSAGE value="added deleteYmlFilesExcept(List), renamed deleteFile to deleteYmlFile" />
     <MESSAGE value="improved deleteYmlFilesExcept" />
     <MESSAGE value="relocated bstats to com.github.alexqp.bstats" />
@@ -471,48 +469,49 @@
     <MESSAGE value="reworked command API" />
     <MESSAGE value="AlexCommand will now add a first creditLine" />
     <MESSAGE value="updated javaDoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated javaDoc" />
+    <MESSAGE value="testing jetbrains scope compile" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing jetbrains scope compile" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172925490" />
-    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586262129124">
+    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586263377405">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
-    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586262129124" />
+    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586263377405" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="537" y="114" key="CommitChangelistDialog2" timestamp="1586262102463">
+    <state x="537" y="114" key="CommitChangelistDialog2" timestamp="1586262689052">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586262102463" />
+    <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586262689052" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585652516822" />
-    <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586262650709">
+    <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586265077165">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586262650709" />
+    <state width="1877" height="256" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586265077165" />
     <state width="1637" height="256" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state width="1877" height="256" key="GridCell.Tab.0.center" timestamp="1586262650709">
+    <state width="1877" height="256" key="GridCell.Tab.0.center" timestamp="1586265077165">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586262650709" />
+    <state width="1877" height="256" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586265077165" />
     <state width="1637" height="256" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state width="1877" height="256" key="GridCell.Tab.0.left" timestamp="1586262650708">
+    <state width="1877" height="256" key="GridCell.Tab.0.left" timestamp="1586265077165">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586262650708" />
+    <state width="1877" height="256" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586265077165" />
     <state width="1637" height="256" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state width="1877" height="256" key="GridCell.Tab.0.right" timestamp="1586262650709">
+    <state width="1877" height="256" key="GridCell.Tab.0.right" timestamp="1586265077165">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586262650709" />
+    <state width="1877" height="256" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586265077165" />
     <state width="1637" height="256" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1586172787694">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -522,11 +521,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="261" width="579" height="524" key="StructurePopup/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172851445" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586262113194">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586269152941">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801224205" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586262113194" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586269152941" />
     <state x="2403" y="283" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585652541190" />
     <state x="-244" y="157" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586262364663">
       <screen x="0" y="0" width="1920" height="1040" />

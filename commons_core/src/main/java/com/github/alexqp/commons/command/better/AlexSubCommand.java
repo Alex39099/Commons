@@ -48,15 +48,15 @@ public class AlexSubCommand {
 
     private @NotNull TextComponent cmdChain = new TextComponent();
     private @NotNull TextComponent helpLine;
-    private @NotNull TextComponent cmdParamLine = new TextComponent("<subCmd>");
+    private @Nullable TextComponent cmdParamLine;
 
-    private @NotNull BaseComponent[] usageLine = new BaseComponent[0]; // gets finalized
+    private @NotNull BaseComponent[] usageLine = new TextComponent[0]; // gets finalized
     private @NotNull TextComponent usagePrefix = new TextComponent();
 
     private boolean isPlayerCmd = true;
     private boolean isConsoleCmd = true;
     private @Nullable String permission;
-    private @NotNull BaseComponent[] noPermissionLine = new BaseComponent[0]; // gets finalized
+    private @NotNull BaseComponent[] noPermissionLine = new TextComponent[0]; // gets finalized
 
     private List<HashSet<String>> extraArgumentOptions = new ArrayList<>();
 
@@ -64,7 +64,7 @@ public class AlexSubCommand {
     private boolean isFinal = false; // will be set to true if a subCmd is added. Blocks all critical set functions.
 
     /**
-     * Creates an AlexSubCommand and copies everything from the (non-final) parent.
+     * Creates an AlexSubCommand and copies nearly everything from the (non-final) parent.
      * <p>Note: The permission is inherited like "parentPermission.subCmdName" by default.
      * @see AlexSubCommand#isFinal()
      * @see AlexSubCommand#makeFinal()
@@ -256,9 +256,10 @@ public class AlexSubCommand {
      * <p><b>IMPORTANT: The default implementation just forwards to {@link AlexSubCommand#internalMakeFinal()}. Make sure to call this method when overwriting! This method is also expected to be called multiple times so use {@link AlexSubCommand#isFinal()} in order to not do formatting etc. twice.</b>
      * @see AlexSubCommand#internalMakeFinal()
      * @see AlexSubCommand#isFinal()
+     * @throws IllegalStateException if mandatory values are not set
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
-    public void makeFinal() {
+    public void makeFinal() throws IllegalStateException {
         this.internalMakeFinal();
     }
 
@@ -267,17 +268,26 @@ public class AlexSubCommand {
      * <p>Note: This method is expected to only be called by {@link AlexSubCommand#makeFinal()}. It finalizes all preset fields and blocks all critical set methods.
      * <p><b>IMPORTANT: Do not overwrite this method!</b>
      * @see AlexSubCommand#makeFinal()
+     * @throws IllegalStateException if mandatory values are not set
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
-    protected void internalMakeFinal() {
+    protected void internalMakeFinal() throws IllegalStateException {
         if (!isFinal) {
             this.isFinal = true;
+
+            if (this.cmdParamLine == null && !this.subCommands.isEmpty()) {
+                this.cmdParamLine = new TextComponent("<subCmd>");
+            }
 
             // creating helpCmd
             Set<String> subCmdNames = new TreeSet<>(subCommands.keySet());
             for (String subCmdName : subCmdNames) {
                 AlexSubCommand subCmd = subCommands.get(subCmdName);
-                helpCmd.add(new ComponentBuilder(cmdChain).color(ChatColor.GOLD).append(" ").append(subCmd.cmdParamLine).append(": ").reset().append(subCmd.helpLine).create());
+                ComponentBuilder builder = new ComponentBuilder(cmdChain).color(ChatColor.GOLD);
+                if (subCmd.cmdParamLine != null) {
+                    builder.append(" ").append(subCmd.cmdParamLine);
+                }
+                helpCmd.add(builder.append(": ").reset().append(subCmd.helpLine).create());
             }
 
             List<BaseComponent[]> helpCmdFormat = new ArrayList<>();
@@ -286,8 +296,15 @@ public class AlexSubCommand {
             }
             helpCmd = helpCmdFormat;
 
-            this.noPermissionLine = this.getPrefixMessage(noPermissionLine);
-            this.usageLine = this.getPrefixMessage(new ComponentBuilder("").append(usagePrefix).append(" ").append(usageLine).create());
+            if (this.noPermissionLine.length == 0)
+                throw new IllegalStateException("noPermissionLine must be set.");
+
+            this.noPermissionLine = this.getPrefixMessage(this.noPermissionLine);
+
+            if (this.usageLine.length == 0)
+                throw new IllegalStateException("usageLine must be set.");
+
+            this.usageLine = this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(" ").append(usageLine).create());
         }
     }
 
@@ -395,6 +412,7 @@ public class AlexSubCommand {
 
     /**
      * Sets the command parameter line used in the integrated help subCmd.
+     * <p>This line should add all parameters that are not added by any other method, i. e. all parameter beyond extraArguments.
      * <p>Note: Set lines should not include prefixes or similar. All default formatting is done by finalizing.
      * @see AlexSubCommand#makeFinal()
      * @param line the line
@@ -563,7 +581,7 @@ public class AlexSubCommand {
     /**
      * Executes this command.
      * <p>Gets called by {@link AlexSubCommand#internalExecute(CommandSender, String, List, List, String[], int) } when {@link AlexSubCommand#internalCanExecute(CommandSender)} is true (i. e. sender meets all criteria and {@link AlexSubCommand#canExecute(CommandSender)} is true), all extraArguments are satisfied and no subCmd is found.
-     * <p>Note: The startIndex will point to the first argument which was not already processed (i.e. the first arg this execute method should process). The previousCmds and previousExtraArguments will have been updated by the {@link AlexSubCommand#internalExecute(CommandSender, String, List, List, String[], int)} respectively.
+     * <p>Note: The startIndex will point to the first argument which was not already processed (i.e. the first arg this execute method should process/after extraArguments). The previousCmds and previousExtraArguments will have been updated by the {@link AlexSubCommand#internalExecute(CommandSender, String, List, List, String[], int)} respectively.
      * @see AlexSubCommand#internalExecute(CommandSender, String, List, List, String[], int)
      * @see AlexSubCommand#canExecute(CommandSender)
      * @see AlexSubCommand#internalCanExecute(CommandSender)
