@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Alex_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Alex_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" afterDir="false" />
     </list>
@@ -75,13 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00066" summary="integrated SetDebugable">
-      <created>1563823632434</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1563823632434</updated>
     </task>
     <task id="LOCAL-00067" summary="fixed critical bug with execute.">
       <created>1563823851110</created>
@@ -419,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586274053152</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="fixed spacing bug with help, therefore edited cmdChain">
+      <created>1586275660680</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1586275660680</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -446,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sending messages is now done static." />
     <MESSAGE value="deprecated all constructors&#10;ConsoleMsg: added static methods to send messages (also debug)&#10;ConsoleMsg: added annotations and edited javaDoc" />
     <MESSAGE value="added chatColor, javaDoc" />
     <MESSAGE value="added annotations and edited javadoc&#10;reworked the ConsoleMessage parts." />
@@ -471,7 +469,8 @@
     <MESSAGE value="made usageLine not mandatory" />
     <MESSAGE value="fixed critical makeFinal bug" />
     <MESSAGE value="fixed bug with help" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with help" />
+    <MESSAGE value="fixed spacing bug with help, therefore edited cmdChain" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed spacing bug with help, therefore edited cmdChain" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
@@ -484,11 +483,11 @@
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586271805865" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586274052558">
+    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586275660043">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586274052558" />
+    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586275660043" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586272977903" />
     <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586274589072">
       <screen x="0" y="0" width="1920" height="1040" />

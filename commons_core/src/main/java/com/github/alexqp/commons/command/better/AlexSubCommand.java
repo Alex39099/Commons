@@ -19,6 +19,7 @@ import java.util.*;
 /**
  * This class is a part of the AlexCommand API. Instances of this class are supposed to be either direct or indirect children of an {@link AlexCommand}. It is designed to provide an relatively easy way of building a plugin command.
  * <p>The messaging system utilizes the <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/package-summary.html">Chat Component API of Bungee</a>. A basic tutorial can be found in the <a href="https://www.spigotmc.org/wiki/the-chat-component-api/">Spigot wiki</a>.
+ * <p><b>Help-Command:</b> Every instance will have its own help command via /... subCmd help and will show an description for every direct child. If there is no child and no header lines were added via {@link AlexSubCommand#addHelpCmdHeaderLine(BaseComponent[])} it will show the description of this subCmd.
  * <p><b>Finalization:</b> If an instance is finalized (for example) by {@link AlexSubCommand#makeFinal()} it will format every message by default in order to save computing power when the message is requested. Finalizing custom messages should be done by overwriting {@link AlexSubCommand#makeFinal()}. {@link AlexSubCommand#getPrefixMessage(BaseComponent[])} may help with prefixing.
  */
 public class AlexSubCommand {
