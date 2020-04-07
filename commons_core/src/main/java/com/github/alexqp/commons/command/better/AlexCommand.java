@@ -60,6 +60,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
 
     /**
      * Creates an AlexCommand
+     * <p>Note: The default credit line will be set as well.
      * @param name the name
      * @param plugin the plugin
      * @param pluginPrefixColor the prefixColor for the plugin's name
@@ -73,6 +74,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
 
     /**
      * Creates an AlexCommand
+     * <p>Note: The default credit line will be set as well.
      * @param name the name
      * @param plugin the plugin
      * @param pluginPrefixColor the prefixColor for the plugin's name
