@@ -174,16 +174,21 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     }
 
     /**
+     * Makes the command final.
+     * Note: In addition to its super method this will also format the creditLines.
+     *
+     * <p><b>Documentation inherited from {@link AlexSubCommand#makeFinal()}:</b>
+     * <p>
      * {@inheritDoc}
      */
     @Override
-    public void internalMakeFinal() throws IllegalStateException {
+    public void makeFinal() throws IllegalStateException {
         List<BaseComponent[]> newCreditLines = new ArrayList<>();
         for (BaseComponent[] creditLine : creditLines) {
             newCreditLines.add(this.getPrefixMessage(creditLine));
         }
         this.creditLines = newCreditLines;
-        ((AlexSubCommand) this).internalMakeFinal();
+        this.internalMakeFinal();
     }
 
     /**
