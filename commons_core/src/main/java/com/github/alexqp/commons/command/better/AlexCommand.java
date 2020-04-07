@@ -89,7 +89,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
 
     /**
      * Sets this AlexCommand as TabExecutor.
-     * @see AlexSubCommand#makeFinal()
+     * @see AlexCommand#makeFinal()
      * @throws IllegalStateException if this instance is not final
      * @return true if it was successful, false otherwise
      */
@@ -123,7 +123,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     /**
      * Adds a creditLine.
      * <p>Note: Added lines should not include prefixes or similar. All default formatting is done by finalizing.
-     * @see AlexSubCommand#makeFinal()
+     * @see AlexCommand#makeFinal()
      * @see AlexCommand#onCommand(CommandSender, Command, String, String[])
      * @param line the line
      * @throws IllegalStateException if the cmd is already final
@@ -159,10 +159,25 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     // ================================================================================================================================================
 
     /**
+     * Deactivates internal checks.
+     * The idea is that an AlexCommand can be executed anytime and the permission is just set for inheritance. If you wish to limit the access please overwrite this method again.
+     * <p>IMPORTANT: A permission must be set regardless because it is a mandatory value at finalizing!
+     * @see AlexCommand#makeFinal()
+     * @see AlexCommand#internalMakeFinal()
+     * @param sender the sender
+     * @return always true
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    @Override
+    public boolean internalCanExecute(@NotNull CommandSender sender) {
+        return this.canExecute(sender);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
-    public void internalMakeFinal() {
+    public void internalMakeFinal() throws IllegalStateException {
         List<BaseComponent[]> newCreditLines = new ArrayList<>();
         for (BaseComponent[] creditLine : creditLines) {
             newCreditLines.add(this.getPrefixMessage(creditLine));
@@ -173,9 +188,9 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
 
     /**
      * Bukkit interface method.
-     * <p>If args is empty, the creditLines will be sent to the sender. Otherwise this method redirects the arguments to {@link AlexSubCommand#internalExecute(CommandSender, String, List, List, String[], int)}.
+     * <p>If args is empty, the creditLines will be sent to the sender. Otherwise this method redirects the arguments to {@link AlexCommand#internalExecute(CommandSender, String, List, List, String[], int)}.
      * <p><b>IMPORTANT: This method is strictly internal. DO NOT TOUCH!</b>
-     * @see AlexSubCommand#internalExecute(CommandSender, String, List, List, String[], int)
+     * @see AlexCommand#internalExecute(CommandSender, String, List, List, String[], int)
      * @param sender the sender
      * @param command the command
      * @param label the label
@@ -198,7 +213,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
      * Bukkit interface method.
      * <p>This method redirects the arguments to the internal tabCompletion.
      * <p><b>IMPORTANT: This method is strictly internal. DO NOT TOUCH!</b>
-     * @see AlexSubCommand#getInternalTabCompletion(CommandSender, String, List, List, String[], int)
+     * @see AlexCommand#getInternalTabCompletion(CommandSender, String, List, List, String[], int)
      * @param sender the sender
      * @param command the command
      * @param label the label
