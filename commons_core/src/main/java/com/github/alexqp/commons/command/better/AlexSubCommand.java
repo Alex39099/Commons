@@ -301,8 +301,13 @@ public class AlexSubCommand {
 
             this.noPermissionLine = this.getPrefixMessage(this.noPermissionLine);
 
-            if (this.usageLine.length == 0)
-                throw new IllegalStateException("usageLine must be set.");
+            if (this.usageLine.length == 0) {
+                ComponentBuilder builder = new ComponentBuilder(cmdChain);
+                if (cmdParamLine != null) {
+                    builder.append(" ").append(cmdParamLine);
+                }
+                this.usageLine = builder.create();
+            }
 
             this.usageLine = this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(" ").append(usageLine).create());
         }

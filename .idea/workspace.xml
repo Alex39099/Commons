@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="reworked javaDoc, overwrote internal">
+    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,13 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00061" summary="made constructor public.">
-      <created>1563798759565</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1563798759565</updated>
     </task>
     <task id="LOCAL-00062" summary="made getter public">
       <created>1563800348050</created>
@@ -418,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586269180773</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="deactivated internalCanExecute, small changes to javaDoc">
+      <created>1586270287198</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1586270287198</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -445,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improved deleteYmlFilesExcept" />
     <MESSAGE value="relocated bstats to com.github.alexqp.bstats" />
     <MESSAGE value="changed version to 1.6.0" />
     <MESSAGE value="changed package structure" />
@@ -470,7 +469,8 @@
     <MESSAGE value="updated javaDoc" />
     <MESSAGE value="testing jetbrains scope compile" />
     <MESSAGE value="fixed critical bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed critical bugs" />
+    <MESSAGE value="deactivated internalCanExecute, small changes to javaDoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="deactivated internalCanExecute, small changes to javaDoc" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
@@ -483,11 +483,11 @@
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586270084263" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586270189360">
+    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586270286729">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586270189360" />
+    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586270286729" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585652516822" />
     <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586270084310">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -521,11 +521,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="261" width="579" height="524" key="StructurePopup/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172851445" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586269187070">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586270294495">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801224205" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586269187070" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586270294495" />
     <state x="2403" y="283" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585652541190" />
     <state x="-244" y="157" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586262364663">
       <screen x="0" y="0" width="1920" height="1040" />
