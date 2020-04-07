@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @deprecated use {@link com.github.alexqp.commons.command.better.AlexCommand}
+ */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class AlexCommand extends AlexSubCommand {
 

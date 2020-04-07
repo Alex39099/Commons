@@ -11,6 +11,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * @deprecated use {@link com.github.alexqp.commons.command.better.AlexSubCommand}
+ */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class AlexSubCommand implements TabExecutor {
 

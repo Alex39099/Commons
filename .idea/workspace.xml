@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Alex_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Alex_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/config/ConfigurationSerializableCheckable.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/config/ConfigurationSerializableCheckable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/AlexCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/AlexCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/AlexSubCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -48,7 +50,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Mercurial" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -75,34 +77,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00052" summary="added checkVector">
-      <created>1563198685788</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1563198685788</updated>
-    </task>
-    <task id="LOCAL-00053" summary="added javadoc to checkVector">
-      <created>1563198810655</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1563198810655</updated>
-    </task>
-    <task id="LOCAL-00054" summary="added setDebug to static debugable">
-      <created>1563450207038</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1563450207038</updated>
-    </task>
-    <task id="LOCAL-00055" summary="sendColorMsg &amp; sendPrefixColorMsg will not send a msg if null or empty.">
-      <created>1563450564803</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1563450564803</updated>
     </task>
     <task id="LOCAL-00056" summary="no setter requires blankets in argument, added javadoc">
       <created>1563795998400</created>
@@ -419,7 +393,35 @@
       <option name="project" value="LOCAL" />
       <updated>1585652517457</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="made to Interface">
+      <created>1585943331039</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1585943331039</updated>
+    </task>
+    <task id="LOCAL-00102" summary="made to Interface">
+      <created>1585943379900</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1585943379901</updated>
+    </task>
+    <task id="LOCAL-00103" summary="removed unnecessary &lt;/p&gt;">
+      <created>1586180726473</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1586180726473</updated>
+    </task>
+    <task id="LOCAL-00104" summary="updated spigot and jetbrains annotations">
+      <created>1586182064405</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1586182064405</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -446,9 +448,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made getRangeMsg public" />
-    <MESSAGE value="fixed wrong checkValues check for checkSerializable" />
-    <MESSAGE value="changed version to 1.5.0" />
     <MESSAGE value="added checkValue method" />
     <MESSAGE value="added nullable checkSerializable" />
     <MESSAGE value="added saveYmlFile without Exception" />
@@ -471,53 +470,65 @@
     <MESSAGE value="fixed color on plain send" />
     <MESSAGE value="fixed color on plain send&#10;added type of class parameter" />
     <MESSAGE value="fixed raw use of Comparable" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed raw use of Comparable" />
+    <MESSAGE value="made to Interface" />
+    <MESSAGE value="removed unnecessary &lt;/p&gt;" />
+    <MESSAGE value="updated spigot and jetbrains annotations" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated spigot and jetbrains annotations" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1585921561918">
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1585921561918" />
-    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1585911332416">
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172925490" />
+    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586181752219">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
-    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1585911332416" />
+    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586181752219" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="537" y="114" key="CommitChangelistDialog2" timestamp="1585943330424">
+    <state x="537" y="114" key="CommitChangelistDialog2" timestamp="1586182064015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1585943330424" />
+    <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586182064015" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585652516822" />
-    <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1585934468652">
+    <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586185041392">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1585934468652" />
+    <state width="1877" height="256" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586185041392" />
     <state width="1637" height="256" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state width="1877" height="256" key="GridCell.Tab.0.center" timestamp="1585934468652">
+    <state width="1877" height="256" key="GridCell.Tab.0.center" timestamp="1586185041392">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1585934468652" />
+    <state width="1877" height="256" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586185041392" />
     <state width="1637" height="256" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state width="1877" height="256" key="GridCell.Tab.0.left" timestamp="1585934468652">
+    <state width="1877" height="256" key="GridCell.Tab.0.left" timestamp="1586185041392">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1585934468652" />
+    <state width="1877" height="256" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586185041392" />
     <state width="1637" height="256" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state width="1877" height="256" key="GridCell.Tab.0.right" timestamp="1585934468652">
+    <state width="1877" height="256" key="GridCell.Tab.0.right" timestamp="1586185041392">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1585934468652" />
+    <state width="1877" height="256" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586185041392" />
     <state width="1637" height="256" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state x="2403" y="283" key="Vcs.Push.Dialog.v2" timestamp="1585652541190">
-      <screen x="1920" y="38" width="1680" height="1010" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1586172787694">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172787694" />
+    <state x="681" y="261" width="579" height="524" key="StructurePopup" timestamp="1586172851445">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="681" y="261" width="579" height="524" key="StructurePopup/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172851445" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1585943394688">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801224205" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1585943394688" />
     <state x="2403" y="283" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585652541190" />
     <state x="2494" y="371" key="com.intellij.ide.util.TipDialog" timestamp="1585683312789">
       <screen x="1920" y="38" width="1680" height="1010" />
@@ -529,6 +540,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801215417" />
+    <state x="591" y="222" width="737" height="596" key="find.popup" timestamp="1586180650686">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="591" y="222" width="737" height="596" key="find.popup/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586180650686" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
