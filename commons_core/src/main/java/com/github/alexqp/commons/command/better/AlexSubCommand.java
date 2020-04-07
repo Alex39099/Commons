@@ -47,7 +47,7 @@ public class AlexSubCommand {
 
     private @NotNull List<BaseComponent[]> helpCmdHeader = new ArrayList<>(); // gets finalized
 
-    private @Nullable TextComponent cmdChain = new TextComponent();
+    private @Nullable TextComponent cmdChain;
     private @NotNull BaseComponent[] helpLine; // gets finalized
     private @Nullable TextComponent cmdParamLine;
 
@@ -313,7 +313,7 @@ public class AlexSubCommand {
                 this.usageLine = builder.create();
             }
 
-            this.usageLine = this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(usageLine).create());
+            this.usageLine = this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(" ").append(usageLine).create());
         }
     }
 
