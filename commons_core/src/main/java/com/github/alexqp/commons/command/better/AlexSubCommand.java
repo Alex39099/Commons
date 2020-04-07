@@ -313,7 +313,7 @@ public class AlexSubCommand {
                 this.usageLine = builder.create();
             }
 
-            this.usageLine = this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(" ").append(usageLine).create());
+            this.usageLine = this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(usageLine).create());
         }
     }
 
