@@ -4,6 +4,7 @@ import com.github.alexqp.commons.messages.ConsoleMessage;
 import com.github.alexqp.commons.messages.SetDebugable;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.apiguardian.api.API;
@@ -51,6 +52,12 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     private @NotNull JavaPlugin plugin;
     private @NotNull List<BaseComponent[]> creditLines = new ArrayList<>();
 
+    private AlexCommand(@NotNull String name, @NotNull JavaPlugin plugin) {
+        super(name, new TextComponent("All Commands."));
+        this.plugin = plugin;
+        this.addCreditLine(this.getBasicCreditLine(plugin));
+    }
+
     /**
      * Creates an AlexCommand
      * @param name the name
@@ -59,8 +66,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
      */
     @API(status = API.Status.STABLE, since = "1.8.0")
     public AlexCommand(@NotNull String name, @NotNull JavaPlugin plugin, @NotNull ChatColor pluginPrefixColor) {
-        super(name, new TextComponent("All Commands."));
-        this.plugin = plugin;
+        this(name, plugin);
         ComponentBuilder prefix = new ComponentBuilder("[").append(plugin.getName()).color(pluginPrefixColor).append("]", ComponentBuilder.FormatRetention.NONE);
         this.setPrefix(new TextComponent(prefix.create()));
     }
@@ -74,8 +80,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
      */
     @API(status = API.Status.STABLE, since = "1.8.0")
     public AlexCommand(@NotNull String name, @NotNull JavaPlugin plugin, @NotNull ChatColor pluginPrefixColor, @NotNull ChatColor defTextColor) {
-        super(name, new TextComponent("All Commands."));
-        this.plugin = plugin;
+        this(name, plugin);
         ComponentBuilder prefix = new ComponentBuilder("[").color(defTextColor).append(plugin.getName()).color(pluginPrefixColor).append("]", ComponentBuilder.FormatRetention.NONE).color(defTextColor);
         this.setPrefix(new TextComponent(prefix.create()));
     }
@@ -106,6 +111,12 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     // ================================================================================================================================================
     //  CREDIT LINE STUFF
     // ================================================================================================================================================
+
+    private BaseComponent[] getBasicCreditLine(@NotNull JavaPlugin plugin) {
+        ComponentBuilder builder = new ComponentBuilder("version " + plugin.getDescription().getVersion()).append(new TextComponent(", author alex_qp"));
+        builder.event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/members/alex_qp.306806/"));
+        return builder.create();
+    }
 
     /**
      * Adds a creditLine.
