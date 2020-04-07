@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * This class is a part of the AlexCommand API. Instances of this class are supposed to be either direct or indirect children of an {@link AlexCommand}. It is designed to provide an relatively easy way of building a plugin command.
  * <p>The messaging system utilizes the <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/package-summary.html">Chat Component API of Bungee</a>. A basic tutorial can be found in the <a href="https://www.spigotmc.org/wiki/the-chat-component-api/">Spigot wiki</a>.
- * <p><b>Help-Command:</b> Every instance will have its own help command via /... subCmd help and will show an description for every direct child. If there is no child and no header lines were added via {@link AlexSubCommand#addHelpCmdHeaderLine(BaseComponent[])} it will show the description of this subCmd.
+ * <p><b>Help-Command:</b> Every instance will have its own help command via "/... subCmd help" and will show a description for every direct child the sender has permission to. To add a header before that list of commands, use {@link AlexSubCommand#addHelpCmdHeaderLine(BaseComponent[])}
  * <p><b>Finalization:</b> If an instance is finalized (for example) by {@link AlexSubCommand#makeFinal()} it will format every message by default in order to save computing power when the message is requested. Finalizing custom messages should be done by overwriting {@link AlexSubCommand#makeFinal()}. {@link AlexSubCommand#getPrefixMessage(BaseComponent[])} may help with prefixing.
  */
 public class AlexSubCommand {
@@ -45,10 +45,10 @@ public class AlexSubCommand {
     private @NotNull String name;
     private @NotNull TextComponent prefix = new TextComponent();
 
-    private @NotNull List<BaseComponent[]> helpCmd = new ArrayList<>(); // gets finalized
+    private @NotNull List<BaseComponent[]> helpCmdHeader = new ArrayList<>(); // gets finalized
 
     private @Nullable TextComponent cmdChain = new TextComponent();
-    private @NotNull TextComponent helpLine;
+    private @NotNull BaseComponent[] helpLine; // gets finalized
     private @Nullable TextComponent cmdParamLine;
 
     private @NotNull BaseComponent[] usageLine = new TextComponent[0]; // gets finalized
@@ -111,7 +111,7 @@ public class AlexSubCommand {
     @API(status = API.Status.INTERNAL, since="1.8.0")
     AlexSubCommand(@NotNull String name, @NotNull TextComponent helpLine) {
         this.name = Objects.requireNonNull(name, "name must not be null");
-        this.helpLine = new TextComponent(Objects.requireNonNull(helpLine, "helpLine must not be null."));
+        this.helpLine = new ComponentBuilder(Objects.requireNonNull(helpLine, "helpLine must not be null.")).create();
     }
 
     /**
@@ -285,15 +285,20 @@ public class AlexSubCommand {
                 this.cmdParamLine = new TextComponent("<subCmd>");
             }
 
-            // creating helpCmd
-            Set<String> subCmdNames = new TreeSet<>(subCommands.keySet());
-            for (String subCmdName : subCmdNames) {
-                helpCmd.add(this.getHelpCmdLineForSubCmd(this.subCommands.get(subCmdName)));
+            // creating helpCmdHeader...
+            List<BaseComponent[]> header = new ArrayList<>();
+            for (BaseComponent[] baseComponents : this.helpCmdHeader) {
+                header.add(this.getPrefixMessage(baseComponents));
             }
+            this.helpCmdHeader = header;
 
-            if (helpCmd.isEmpty()) {
-                helpCmd.add(this.getHelpCmdLineForSubCmd(this));
+            // creating help line...
+            ComponentBuilder helpLineBuilder = new ComponentBuilder(this.cmdChain);
+            if (this.cmdParamLine != null) {
+                helpLineBuilder.append(" ").append(this.cmdParamLine);
             }
+            this.helpLine = helpLineBuilder.append(": ").append(this.helpLine).color(prefix.getColor()).create();
+
 
             if (this.noPermissionLine.length == 0)
                 throw new IllegalStateException("noPermissionLine must be set.");
@@ -310,15 +315,6 @@ public class AlexSubCommand {
 
             this.usageLine = this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(" ").append(usageLine).create());
         }
-    }
-
-    private BaseComponent[] getHelpCmdLineForSubCmd(@NotNull AlexSubCommand subCmd) {
-        ComponentBuilder builder = new ComponentBuilder(subCmd.cmdChain);
-
-        if (subCmd.cmdParamLine != null) {
-            builder.append(" ").append(subCmd.cmdParamLine);
-        }
-        return builder.append(": ").append(subCmd.helpLine).color(prefix.getColor()).create();
     }
 
     private static IllegalStateException getFinalException(@NotNull String value) {
@@ -424,7 +420,7 @@ public class AlexSubCommand {
         if (isFinal)
             throw getFinalException("noPermissionLine");
         Objects.requireNonNull(line, "line must not be null");
-        this.helpCmd.add(line);
+        this.helpCmdHeader.add(line);
     }
 
     /**
@@ -478,10 +474,22 @@ public class AlexSubCommand {
 
     @API(status = API.Status.INTERNAL, since ="1.8.0")
     private void help(@NotNull CommandSender sender, @NotNull String label, @NotNull List<AlexSubCommand> previousCmds, @NotNull List<String> previousExtraArguments, @NotNull String[] args, final int startIndex) {
-        for (BaseComponent[] baseComponents : helpCmd) {
-
-            sendMessage(sender, new ComponentBuilder(prefix).append("/" + label + " ").color(ChatColor.GOLD).append(baseComponents).create());
+        for (BaseComponent[] baseComponents : helpCmdHeader) {
+            sendMessage(sender, baseComponents);
         }
+
+        if (this.subCommands.keySet().isEmpty()) {
+            sendMessage(sender, this.getHelpLineForSubCmd(label, this));
+        } else {
+            for (String subCmdName : this.subCommands.keySet()) {
+                if (this.subCommands.get(subCmdName).internalCanExecute(sender))
+                    sendMessage(sender, this.getHelpLineForSubCmd(label, subCommands.get(subCmdName)));
+            }
+        }
+    }
+
+    private BaseComponent[] getHelpLineForSubCmd(@NotNull String label, @NotNull AlexSubCommand subCmd) {
+        return new ComponentBuilder(prefix).append("/" + label + " ").color(ChatColor.GOLD).append(subCmd.helpLine).create();
     }
 
     // ================================================================================================================================================
