@@ -80,7 +80,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
      * @param pluginPrefixColor the prefixColor for the plugin's name
      * @param defTextColor the default color to display text messages
      */
-    @API(status = API.Status.STABLE, since = "1.8.0")
+    @API(status = API.Status.DEPRECATED, since = "draft")
     public AlexCommand(@NotNull String name, @NotNull JavaPlugin plugin, @NotNull ChatColor pluginPrefixColor, @NotNull ChatColor defTextColor) {
         this(name, plugin);
         ComponentBuilder prefix = new ComponentBuilder("[").color(defTextColor).append(plugin.getName()).color(pluginPrefixColor).append("]", ComponentBuilder.FormatRetention.NONE).color(defTextColor);
