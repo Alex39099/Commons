@@ -159,6 +159,21 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     // ================================================================================================================================================
 
     /**
+     * Deactivates internal checks.
+     * The idea is that an AlexCommand can be executed anytime and the permission is just set for inheritance. If you wish to limit the access please overwrite this method again.
+     * <p>IMPORTANT: A permission must be set regardless because it is a mandatory value at finalizing!
+     * @see AlexCommand#makeFinal()
+     * @see AlexCommand#internalMakeFinal()
+     * @param sender the sender
+     * @return always true
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    @Override
+    public boolean internalCanExecute(@NotNull CommandSender sender) {
+        return this.canExecute(sender);
+    }
+
+    /**
      * Makes the command final.
      * Note: In addition to its super method this will also format the creditLines.
      *
