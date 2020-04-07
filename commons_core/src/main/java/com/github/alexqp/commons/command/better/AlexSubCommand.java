@@ -489,7 +489,7 @@ public class AlexSubCommand {
     }
 
     private BaseComponent[] getHelpLineForSubCmd(@NotNull String label, @NotNull AlexSubCommand subCmd) {
-        return new ComponentBuilder(prefix).append("/" + label + " ").color(ChatColor.GOLD).append(subCmd.helpLine).create();
+        return new ComponentBuilder(prefix).append(" /" + label).color(ChatColor.GOLD).append(subCmd.helpLine).create();
     }
 
     // ================================================================================================================================================

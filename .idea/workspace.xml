@@ -75,13 +75,6 @@
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
     </task>
-    <task id="LOCAL-00068" summary="added extraArgument to tabCompletion">
-      <created>1563824668941</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1563824668941</updated>
-    </task>
     <task id="LOCAL-00069" summary="replaced sectionPath with sectionName">
       <created>1564085267147</created>
       <option name="number" value="00069" />
@@ -418,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586275924748</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="changed helpCmd">
+      <created>1586278663335</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1586278663335</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -445,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added chatColor, javaDoc" />
     <MESSAGE value="added annotations and edited javadoc&#10;reworked the ConsoleMessage parts." />
     <MESSAGE value="added class javadoc" />
     <MESSAGE value="added/reworked javaDoc" />
@@ -470,7 +469,8 @@
     <MESSAGE value="fixed bug with help" />
     <MESSAGE value="fixed spacing bug with help, therefore edited cmdChain" />
     <MESSAGE value="edited javaDoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="edited javaDoc" />
+    <MESSAGE value="changed helpCmd" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed helpCmd" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
@@ -483,11 +483,11 @@
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586278598278" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586275924203">
+    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586278662752">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586275924203" />
+    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586278662752" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586272977903" />
     <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586278598324">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -521,11 +521,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="261" width="579" height="524" key="StructurePopup/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172851445" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586275931774">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586278669508">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801224205" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586275931774" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586278669508" />
     <state x="2403" y="283" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586272985708" />
     <state x="-244" y="157" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586262364663">
       <screen x="0" y="0" width="1920" height="1040" />
