@@ -293,10 +293,9 @@ public class AlexSubCommand {
             this.helpCmdHeader = header;
 
             // creating help line...
-            if (cmdChain == null) {
-                cmdChain = new TextComponent();
+            if (this.cmdChain == null) {
+                this.cmdChain = new TextComponent("");
             }
-
             ComponentBuilder helpLineBuilder = new ComponentBuilder(this.cmdChain);
             if (this.cmdParamLine != null) {
                 helpLineBuilder.append(" ").append(this.cmdParamLine);
