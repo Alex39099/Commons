@@ -283,7 +283,7 @@ public class AlexSubCommand {
             Set<String> subCmdNames = new TreeSet<>(subCommands.keySet());
             for (String subCmdName : subCmdNames) {
                 AlexSubCommand subCmd = subCommands.get(subCmdName);
-                ComponentBuilder builder = new ComponentBuilder(cmdChain).color(ChatColor.GOLD);
+                ComponentBuilder builder = new ComponentBuilder(subCmd.cmdChain);
                 if (subCmd.cmdParamLine != null) {
                     builder.append(" ").append(subCmd.cmdParamLine);
                 }
@@ -461,7 +461,7 @@ public class AlexSubCommand {
     @API(status = API.Status.INTERNAL, since ="1.8.0")
     private void help(@NotNull CommandSender sender, @NotNull String label, @NotNull List<AlexSubCommand> previousCmds, @NotNull List<String> previousExtraArguments, @NotNull String[] args, final int startIndex) {
         for (BaseComponent[] baseComponents : helpCmd) {
-            sendMessage(sender, new ComponentBuilder(prefix).append("/" + label + " ").append(baseComponents).create());
+            sendMessage(sender, new ComponentBuilder(prefix).append("/" + label + " ").color(ChatColor.GOLD).append(baseComponents).create());
         }
     }
 

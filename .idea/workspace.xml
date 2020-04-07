@@ -75,13 +75,6 @@
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
     </task>
-    <task id="LOCAL-00064" summary="subCommands can now have an extra argument.">
-      <created>1563822970848</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1563822970848</updated>
-    </task>
     <task id="LOCAL-00065" summary="tabCompletion will no longer stop for no perm.">
       <created>1563823039658</created>
       <option name="number" value="00065" />
@@ -418,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586271855214</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="fixed bug with help">
+      <created>1586272978428</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1586272978428</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -445,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed package structure" />
     <MESSAGE value="sending messages is now done static." />
     <MESSAGE value="deprecated all constructors&#10;ConsoleMsg: added static methods to send messages (also debug)&#10;ConsoleMsg: added annotations and edited javaDoc" />
     <MESSAGE value="added chatColor, javaDoc" />
@@ -470,7 +469,8 @@
     <MESSAGE value="deactivated internalCanExecute, small changes to javaDoc" />
     <MESSAGE value="made usageLine not mandatory" />
     <MESSAGE value="fixed critical makeFinal bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed critical makeFinal bug" />
+    <MESSAGE value="fixed bug with help" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with help" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
@@ -483,12 +483,12 @@
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586271805865" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586271854792">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2390" y="149" key="CommitChangelistDialog2" timestamp="1586272977903">
+      <screen x="1920" y="38" width="1680" height="1010" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
     <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586271854792" />
-    <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585652516822" />
+    <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586272977903" />
     <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586271805896">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -521,12 +521,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="261" width="579" height="524" key="StructurePopup/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172851445" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586271859505">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2403" y="283" key="Vcs.Push.Dialog.v2" timestamp="1586272985708">
+      <screen x="1920" y="38" width="1680" height="1010" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801224205" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586271859505" />
-    <state x="2403" y="283" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585652541190" />
+    <state x="2403" y="283" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586272985708" />
     <state x="-244" y="157" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586262364663">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
