@@ -65,6 +65,7 @@ public class AlexSubCommand {
 
     /**
      * Creates an AlexSubCommand and copies nearly everything from the (non-final) parent.
+     * <p>Especially not inherited are: usageLine, output of help
      * <p>Note: The permission is inherited like "parentPermission.subCmdName" by default.
      * @see AlexSubCommand#isFinal()
      * @see AlexSubCommand#makeFinal()
@@ -85,7 +86,6 @@ public class AlexSubCommand {
         this.cmdChain = new TextComponent(parent.cmdChain);
         this.cmdChain.addExtra(" " + name);
 
-        this.usageLine = parent.getUsageLine();
         this.usagePrefix = parent.getUsagePrefix();
 
         this.isPlayerCmd = parent.isPlayerCmd;
@@ -290,12 +290,6 @@ public class AlexSubCommand {
                 helpCmd.add(builder.append(": ").reset().append(subCmd.helpLine).create());
             }
 
-            List<BaseComponent[]> helpCmdFormat = new ArrayList<>();
-            for (BaseComponent[] baseComponents : helpCmd) {
-                helpCmdFormat.add(this.getPrefixMessage(baseComponents));
-            }
-            helpCmd = helpCmdFormat;
-
             if (this.noPermissionLine.length == 0)
                 throw new IllegalStateException("noPermissionLine must be set.");
 
@@ -467,7 +461,7 @@ public class AlexSubCommand {
     @API(status = API.Status.INTERNAL, since ="1.8.0")
     private void help(@NotNull CommandSender sender, @NotNull String label, @NotNull List<AlexSubCommand> previousCmds, @NotNull List<String> previousExtraArguments, @NotNull String[] args, final int startIndex) {
         for (BaseComponent[] baseComponents : helpCmd) {
-            sendMessage(sender, new ComponentBuilder("/" + label + " ").append(baseComponents).create());
+            sendMessage(sender, new ComponentBuilder(prefix).append("/" + label + " ").append(baseComponents).create());
         }
     }
 
