@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * This class is a part of the AlexCommand API. Instances of this class are supposed to be either direct or indirect children of an {@link AlexCommand}. It is designed to provide an relatively easy way of building a plugin command.
  * <p>The messaging system utilizes the <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/package-summary.html">Chat Component API of Bungee</a>. A basic tutorial can be found in the <a href="https://www.spigotmc.org/wiki/the-chat-component-api/">Spigot wiki</a>.
- * <p><b>Help-Command:</b> Every instance will have its own help command via "/... subCmd help" and will show a description for every direct child the sender has permission to. To add a header before that list of commands, use {@link AlexSubCommand#addHelpCmdHeaderLine(BaseComponent[])}
+ * <p><b>Help-Command:</b> Every instance will have its own help command via "/... subCmd help" and will show the output of {@link AlexSubCommand#getHelpLine(String)} for every direct child the sender has permission to. To add a header before that list of commands, use {@link AlexSubCommand#addHelpCmdHeaderLine(BaseComponent[])}.
  * <p><b>Finalization:</b> If an instance is finalized (for example) by {@link AlexSubCommand#makeFinal()} it will format every message by default in order to save computing power when the message is requested. Finalizing custom messages should be done by overwriting {@link AlexSubCommand#makeFinal()}. {@link AlexSubCommand#getPrefixMessage(BaseComponent[])} may help with prefixing.
  */
 public class AlexSubCommand {
@@ -51,7 +51,7 @@ public class AlexSubCommand {
     private @NotNull BaseComponent[] helpLine; // gets finalized
     private @Nullable TextComponent cmdParamLine;
 
-    private @NotNull BaseComponent[] usageLine = new TextComponent[0]; // gets finalized
+    private @Nullable BaseComponent[] usageLine; // gets finalized
     private @NotNull TextComponent usagePrefix = new TextComponent();
 
     private boolean isPlayerCmd = true;
@@ -77,7 +77,7 @@ public class AlexSubCommand {
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
     protected AlexSubCommand(@NotNull String name, @NotNull TextComponent helpLine, @NotNull AlexSubCommand parent) throws IllegalArgumentException {
-        this(name,helpLine);
+        this(name, helpLine);
         if (parent.isFinal)
             throw new IllegalArgumentException("parent must not be final");
 
@@ -85,12 +85,11 @@ public class AlexSubCommand {
         this.prefix = parent.getPrefix();
 
         if (parent.cmdChain == null) {
-            this.cmdChain = new TextComponent();
+            this.cmdChain = new TextComponent(name);
         } else {
-            this.cmdChain = new TextComponent(parent.cmdChain);
+            this.cmdChain = new TextComponent(parent.cmdChain + " " + name);
+            this.cmdChain.addExtra(" " + name);
         }
-
-        this.cmdChain.addExtra(" " + name);
 
         this.usagePrefix = parent.getUsagePrefix();
 
@@ -166,6 +165,21 @@ public class AlexSubCommand {
     }
 
     /**
+     * Gets the helpLine (changes upon finalization!).
+     * <p>Note: This line is sent if it gets requested by a parent's help command. It changes up finalization.
+     * <p>Note 2: The default helpLine will be build/finalized using the prefix, the label, the cmdChain, the internal parameters, the cmdParamLine and finally the set helpLine.
+     * <p>Note 3: If you want to interfere with the output, use the provided methods or overwrite this one.
+     * @see AlexSubCommand#setCmdParamLine(TextComponent) 
+     * @param label the label
+     * @return the helpLine
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    @NotNull
+    public BaseComponent[] getHelpLine(@NotNull String label) {
+        return this.getPrefixMessage(new ComponentBuilder(" /" + label + " ").color(ChatColor.GOLD).append(this.helpLine).create());
+    }
+
+    /**
      * Gets the prefix.
      * @return the prefix
      */
@@ -178,19 +192,27 @@ public class AlexSubCommand {
     /**
      * Gets the usage line (changes upon finalization!)
      * <p>Note: This line is sent to indicate wrong usage. It changes up finalization.
+     * <p>Note 2: The default usageLine will be build/finalized using the prefix, the usagePrefix, the label, the cmdChain, the internal parameters and the cmdParamLine.
+     * <p>Note 3: If you want to interfere with the output, use the provided methods or overwrite this one.
+     * @see AlexSubCommand#setUsagePrefix(TextComponent) 
+     * @see AlexSubCommand#setCmdParamLine(TextComponent)
      * @see AlexSubCommand#makeFinal()
      * @return the usage line
+     * @throws IllegalStateException if this subCmd is not final.
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
     @NotNull
-    public BaseComponent[] getUsageLine() {
-        return this.usageLine.clone();
+    public BaseComponent[] getUsageLine(@NotNull String label) throws IllegalStateException {
+        if (!this.isFinal)
+            throw new IllegalStateException("usageLine can only be requested after finalization.");
+        assert usageLine != null;
+        return this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(" ").append("/" + label + " ").append(usageLine).create());
     }
 
     /**
      * Gets the usage prefix (changes upon finalization!).
      * <p>Note: This value should not include the basic prefix and is used to build the usage line upon finalization.
-     * @see AlexSubCommand#getUsageLine()
+     * @see AlexSubCommand#getUsageLine(String)
      * @see AlexSubCommand#makeFinal()
      * @return the usage prefix.
      */
@@ -293,8 +315,8 @@ public class AlexSubCommand {
             this.helpCmdHeader = header;
 
             // creating help line...
-            if (this.cmdChain == null) {
-                this.cmdChain = new TextComponent("");
+            if (this.cmdChain == null) { // should only appear for AlexCommand
+                this.cmdChain = new TextComponent();
             }
             ComponentBuilder helpLineBuilder = new ComponentBuilder(this.cmdChain);
             if (this.cmdParamLine != null) {
@@ -305,18 +327,13 @@ public class AlexSubCommand {
 
             if (this.noPermissionLine.length == 0)
                 throw new IllegalStateException("noPermissionLine must be set.");
-
             this.noPermissionLine = this.getPrefixMessage(this.noPermissionLine);
-
-            if (this.usageLine.length == 0) {
-                ComponentBuilder builder = new ComponentBuilder(cmdChain);
-                if (cmdParamLine != null) {
-                    builder.append(" ").append(cmdParamLine);
-                }
-                this.usageLine = builder.create();
+            
+            ComponentBuilder usageLineBuilder = new ComponentBuilder(cmdChain);
+            if (cmdParamLine != null) {
+                usageLineBuilder.append(" ").append(cmdParamLine);
             }
-
-            this.usageLine = this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(" ").append(usageLine).create());
+            this.usageLine = usageLineBuilder.create();
         }
     }
 
@@ -350,8 +367,26 @@ public class AlexSubCommand {
         this.extraArgumentOptions.add(new HashSet<>(options));
     }
 
+    /**
+     * Edits an extraArgument's options.
+     * <p>Note: The index just refers to the extraArguments, so in order to edit the first extraArgument's option it would be index 0 and so on.
+     * <p><b>IMPORTANT: There must already be an extraArgument in order to edit its options!</b>
+     * @see AlexSubCommand#addExtraArgument(TextComponent, Collection)
+     * @param index the index of the extraArgument
+     * @param options the new options
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    public void editExtraArgumentOption(int index, @NotNull Collection<String> options) {
+        this.extraArgumentOptions.set(index, new HashSet<>(options));
+    }
+
+    /**
+     * Sets the prefix.
+     * @param prefix the prefix
+     * @throws IllegalStateException if the subCmd is already final
+     */
     @API(status = API.Status.STABLE, since="1.8.0")
-    public void setPrefix(@NotNull TextComponent prefix) {
+    public void setPrefix(@NotNull TextComponent prefix) throws IllegalStateException {
         if (isFinal)
             throw getFinalException("prefix");
 
@@ -443,21 +478,6 @@ public class AlexSubCommand {
     }
 
     /**
-     * Sets the usage line to indicate wrong usage.
-     * <p>Note: Set lines should not include prefixes or similar. All default formatting is done by finalizing.
-     * @see AlexSubCommand#makeFinal()
-     * @param line the line
-     * @throws IllegalStateException if the subCmd is already final
-     */
-    @API(status = API.Status.STABLE, since ="1.8.0")
-    public void setUsageLine(@NotNull BaseComponent[] line) throws IllegalStateException {
-        if (isFinal)
-            throw getFinalException("UsageLine");
-        Objects.requireNonNull(line, "line must not be null");
-        this.usageLine = line.clone();
-    }
-
-    /**
      * Sets the usage prefix used in the usage line.
      * <p>Note: The prefix should not include the main subCmd prefix. All default formatting is done by finalizing.
      * @param line the prefix
@@ -482,17 +502,14 @@ public class AlexSubCommand {
         }
 
         if (this.subCommands.keySet().isEmpty()) {
-            sendMessage(sender, this.getHelpLineForSubCmd(label, this));
+            sendMessage(sender, this.getHelpLine(label));
         } else {
             for (String subCmdName : this.subCommands.keySet()) {
-                if (this.subCommands.get(subCmdName).internalCanExecute(sender))
-                    sendMessage(sender, this.getHelpLineForSubCmd(label, subCommands.get(subCmdName)));
+                AlexSubCommand subCmd = this.subCommands.get(subCmdName);
+                if (subCmd.internalCanExecute(sender))
+                    sendMessage(sender, subCmd.getHelpLine(label));
             }
         }
-    }
-
-    private BaseComponent[] getHelpLineForSubCmd(@NotNull String label, @NotNull AlexSubCommand subCmd) {
-        return new ComponentBuilder(prefix).append(" /" + label).color(ChatColor.GOLD).append(subCmd.helpLine).create();
     }
 
     // ================================================================================================================================================
@@ -583,7 +600,7 @@ public class AlexSubCommand {
         List<String> newExtraArguments = this.getNewExtraArguments(previousExtraArguments, args, startIndex);
         if (newExtraArguments == null) { // too little arguments, an extraArgument is set wrong
             ConsoleMessage.debug(this.getClass(), debugable, "EXECUTION: newExtraArguments is null");
-            sendMessage(sender, usageLine);
+            sendMessage(sender, this.getUsageLine(label));
             return;
         }
 
@@ -602,7 +619,7 @@ public class AlexSubCommand {
 
         ConsoleMessage.debug(this.getClass(), debugable, "EXECUTION: calling execute method...");
         if (!this.execute(sender, label, previousCmds, newExtraArguments, args, startIndexAfterExtraArguments)) {
-            sendMessage(sender, usageLine);
+            sendMessage(sender, this.getUsageLine(label));
         }
 
     }
