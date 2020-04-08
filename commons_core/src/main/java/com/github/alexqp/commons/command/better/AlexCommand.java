@@ -55,6 +55,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     private AlexCommand(@NotNull String name, @NotNull JavaPlugin plugin) {
         super(name, new TextComponent("All Commands."));
         this.plugin = plugin;
+        this.setPermission(plugin.getName().toLowerCase());
         this.addCreditLine(this.getBasicCreditLine(plugin));
     }
 

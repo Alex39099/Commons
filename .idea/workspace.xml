@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
+    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,13 +73,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00080" summary="changed version to 1.5.0">
-      <created>1568276618778</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1568276618778</updated>
     </task>
     <task id="LOCAL-00081" summary="added checkValue method">
       <created>1568375931983</created>
@@ -418,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586340683903</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="constructor will set a default permission">
+      <created>1586341011694</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1586341011694</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -445,8 +444,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed color on plain send&#10;added type of class parameter" />
-    <MESSAGE value="fixed raw use of Comparable" />
     <MESSAGE value="made to Interface" />
     <MESSAGE value="removed unnecessary &lt;/p&gt;" />
     <MESSAGE value="updated spigot and jetbrains annotations" />
@@ -470,7 +467,9 @@
     <MESSAGE value="reworked usageLine and helpLine" />
     <MESSAGE value="usagePrefix will contain prefix after finalization" />
     <MESSAGE value="fixed small typo in javaDoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed small typo in javaDoc" />
+    <MESSAGE value="constructor will set a default permission" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
@@ -483,11 +482,11 @@
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340502774" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586340683378">
+    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586341067174">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340683378" />
+    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586341067174" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586281917694" />
     <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586340502802">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -521,11 +520,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="261" width="579" height="524" key="StructurePopup/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172851445" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586340513714">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586341060250">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801224205" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340513714" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586341060250" />
     <state x="2403" y="283" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586281931127" />
     <state x="-244" y="157" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586262364663">
       <screen x="0" y="0" width="1920" height="1040" />
