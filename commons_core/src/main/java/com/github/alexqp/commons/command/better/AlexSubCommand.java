@@ -84,9 +84,7 @@ public class AlexSubCommand {
         this.debugable = parent.debugable;
         this.prefix = parent.getPrefix();
 
-        if (parent.cmdChain == null) {
-            this.cmdChain = new TextComponent(name);
-        } else {
+        if (parent.cmdChain != null) {
             this.cmdChain = new TextComponent(parent.cmdChain + " " + name);
             this.cmdChain.addExtra(" " + name);
         }
@@ -143,6 +141,18 @@ public class AlexSubCommand {
     @NotNull
     public BaseComponent[] getPrefixMessage(@NotNull BaseComponent[] baseComponents) {
         return new ComponentBuilder(prefix).append(" ").append(baseComponents, ComponentBuilder.FormatRetention.FORMATTING).create();
+    }
+
+    /**
+     * Returns a message with the prefix upfront.
+     * <p>Note: The baseComponent are appended using <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/ComponentBuilder.FormatRetention.html#FORMATTING">ComponentBuilder.FormatRetention#FORMATTING</a>
+     * @param baseComponent all before the prefix
+     * @return the prefixed message
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    @NotNull
+    public BaseComponent[] getPrefixMessage(@NotNull BaseComponent baseComponent) {
+        return new ComponentBuilder(prefix).append(" ").append(baseComponent, ComponentBuilder.FormatRetention.FORMATTING).create();
     }
 
     // ================================================================================================================================================
@@ -206,7 +216,7 @@ public class AlexSubCommand {
         if (!this.isFinal)
             throw new IllegalStateException("usageLine can only be requested after finalization.");
         assert usageLine != null;
-        return this.getPrefixMessage(new ComponentBuilder(usagePrefix).append(" ").append("/" + label + " ").append(usageLine).create());
+        return new ComponentBuilder(usagePrefix).append(" ").append("/" + label + " ").append(usageLine).create();
     }
 
     /**
@@ -279,6 +289,24 @@ public class AlexSubCommand {
     }
 
     /**
+     * Adds subCmds to this subCmd and makes it final.
+     * <p>Note: Every added child must have an unique (lowercase) name. If this method does not throw an IAE it will make the parent final.
+     * @see AlexSubCommand#makeFinal()
+     * @param child the final child
+     * @throws IllegalArgumentException if at least one child is not final, is named "help" or has a name which was already added.
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    public void addSubCmds(@NotNull AlexSubCommand child) throws IllegalArgumentException {
+        if (child.isFinal && !child.getName().equalsIgnoreCase("help") &&!subCommands.containsKey(child.name.toLowerCase())) {
+            subCommands.put(child.name.toLowerCase(), child);
+        } else {
+            subCommands.clear();
+            throw new IllegalArgumentException("added child must be final, not named \"help\" and unique (except lower-/uppercase) by name.");
+        }
+        this.makeFinal();
+    }
+
+    /**
      * Makes the subCmd final.
      * <p>Note: This method finalizes all messages meaning it applies all needed formats (i.e. prefix etc.). After finalization critical (custom) set methods should usually be blocked using {@link AlexSubCommand#isFinal()}.
      * <p><b>IMPORTANT: The default implementation just forwards to {@link AlexSubCommand#internalMakeFinal()}. Make sure to call this method when overwriting! This method is also expected to be called multiple times so use {@link AlexSubCommand#isFinal()} in order to not do formatting etc. twice.</b>
@@ -324,11 +352,13 @@ public class AlexSubCommand {
             }
             this.helpLine = helpLineBuilder.append(": ").append(this.helpLine).color(prefix.getColor()).create();
 
-
+            // permission stuff...
             if (this.noPermissionLine.length == 0)
                 throw new IllegalStateException("noPermissionLine must be set.");
             this.noPermissionLine = this.getPrefixMessage(this.noPermissionLine);
-            
+
+            // usageLine stuff...
+            this.usagePrefix = new TextComponent(this.getPrefixMessage(usagePrefix));
             ComponentBuilder usageLineBuilder = new ComponentBuilder(cmdChain);
             if (cmdParamLine != null) {
                 usageLineBuilder.append(" ").append(cmdParamLine);
