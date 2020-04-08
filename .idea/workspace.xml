@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,20 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00078" summary="made getRangeMsg public">
-      <created>1567422506760</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1567422506760</updated>
-    </task>
-    <task id="LOCAL-00079" summary="fixed wrong checkValues check for checkSerializable">
-      <created>1567423607200</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1567423607200</updated>
     </task>
     <task id="LOCAL-00080" summary="changed version to 1.5.0">
       <created>1568276618778</created>
@@ -418,7 +404,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586339531317</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="usagePrefix will contain prefix after finalization">
+      <created>1586340493578</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1586340493578</updated>
+    </task>
+    <task id="LOCAL-00128" summary="fixed small typo in javaDoc">
+      <created>1586340683903</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1586340683903</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -445,8 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed version to 1.7.1" />
-    <MESSAGE value="fixed color on plain send" />
     <MESSAGE value="fixed color on plain send&#10;added type of class parameter" />
     <MESSAGE value="fixed raw use of Comparable" />
     <MESSAGE value="made to Interface" />
@@ -470,7 +468,9 @@
     <MESSAGE value="internalCanExecute no longer gets overwritten because it produced a bug in tabCompletion" />
     <MESSAGE value="please work" />
     <MESSAGE value="reworked usageLine and helpLine" />
-    <option name="LAST_COMMIT_MESSAGE" value="reworked usageLine and helpLine" />
+    <MESSAGE value="usagePrefix will contain prefix after finalization" />
+    <MESSAGE value="fixed small typo in javaDoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed small typo in javaDoc" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
@@ -483,11 +483,11 @@
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340502774" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586340492993">
+    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586340683378">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340492993" />
+    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340683378" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586281917694" />
     <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586340502802">
       <screen x="0" y="0" width="1920" height="1040" />
