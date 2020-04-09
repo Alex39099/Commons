@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexCommand.java" afterDir="false" />
+    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="fixed javaDoc of getPrefixMessage">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,20 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00087" summary="relocated bstats to com.github.alexqp.bstats">
-      <created>1569226343060</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1569226343061</updated>
-    </task>
-    <task id="LOCAL-00088" summary="changed version to 1.6.0">
-      <created>1570555902213</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1570555902213</updated>
     </task>
     <task id="LOCAL-00089" summary="changed package structure">
       <created>1570558954624</created>
@@ -417,7 +404,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586448861186</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="overloaded addCreditLine">
+      <created>1586448943886</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1586448943886</updated>
+    </task>
+    <task id="LOCAL-00137" summary="fixed javaDoc of getPrefixMessage">
+      <created>1586449066982</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1586449066982</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -444,8 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="testing jetbrains scope compile" />
-    <MESSAGE value="fixed critical bugs" />
     <MESSAGE value="deactivated internalCanExecute, small changes to javaDoc" />
     <MESSAGE value="made usageLine not mandatory" />
     <MESSAGE value="fixed critical makeFinal bug" />
@@ -469,7 +468,9 @@
     <MESSAGE value="fixed spacing bug in cmdChain" />
     <MESSAGE value="fixed spacing bug in helpLine" />
     <MESSAGE value="reworked to use single BaseComponents" />
-    <option name="LAST_COMMIT_MESSAGE" value="reworked to use single BaseComponents" />
+    <MESSAGE value="overloaded addCreditLine" />
+    <MESSAGE value="fixed javaDoc of getPrefixMessage" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed javaDoc of getPrefixMessage" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
@@ -482,11 +483,11 @@
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586448709854" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="664" y="198" key="CommitChangelistDialog2" timestamp="1586448943466">
+    <state x="664" y="198" key="CommitChangelistDialog2" timestamp="1586449072204">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="664" y="198" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586448943466" />
+    <state x="664" y="198" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586449072204" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586281917694" />
     <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586448709886">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -520,11 +521,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="261" width="579" height="524" key="StructurePopup/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172851445" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586448955407">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586449076418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801224205" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586448955407" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586449076418" />
     <state x="2403" y="283" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586281931127" />
     <state x="-244" y="157" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586262364663">
       <screen x="0" y="0" width="1920" height="1040" />

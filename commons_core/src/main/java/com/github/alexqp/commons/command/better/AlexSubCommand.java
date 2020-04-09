@@ -394,7 +394,9 @@ public class AlexSubCommand {
                 this.helpLine = new TextComponent(new ComponentBuilder().append(this.helpLine).color(prefix.getColor()).create());
             }
 
-            this.usagePrefix = this.getPrefixMessage(usagePrefix);
+            BaseComponent[] usagePrefix = new ComponentBuilder(this.getPrefix()).append(" ").append(this.usagePrefix).create();
+            this.usagePrefix = new TextComponent(usagePrefix);
+            this.usagePrefix.setColor(usagePrefix[usagePrefix.length - 1].getColor());
             if (usageLineBuilder != null) {
                 this.usageLine = new TextComponent(usageLineBuilder.create());
             }
