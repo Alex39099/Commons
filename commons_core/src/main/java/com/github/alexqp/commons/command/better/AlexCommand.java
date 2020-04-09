@@ -142,6 +142,24 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     }
 
     /**
+     * Adds a creditLine.
+     * <p>Note: Added lines should not include prefixes or similar. All default formatting is done by finalizing.
+     * Note 2: The idea is to use <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/ComponentBuilder.html">ComponentBuilder</a> in order to get the baseComponents.
+     * @see <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/ComponentBuilder.html">ComponentBuilder</a>
+     * @see AlexCommand#makeFinal()
+     * @see AlexCommand#onCommand(CommandSender, Command, String, String[])
+     * @param line the line
+     * @throws IllegalStateException if the cmd is already final
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    public void addCreditLine(@NotNull BaseComponent[] line) throws IllegalStateException {
+        if (isFinal())
+            throw new IllegalStateException("creditLines cannot be edited ");
+        Objects.requireNonNull(line, "line must not be null");
+        creditLines.add(new TextComponent(line));
+    }
+
+    /**
      * Removes all creditLines.
      * @see AlexCommand#onCommand(CommandSender, Command, String, String[])
      * @throws IllegalStateException if the cmd is already final
