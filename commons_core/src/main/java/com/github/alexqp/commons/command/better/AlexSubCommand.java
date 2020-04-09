@@ -148,22 +148,6 @@ public class AlexSubCommand {
 
     /**
      * Returns a message with the prefix upfront.
-     * <p>Note: The baseComponents are appended using <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/ComponentBuilder.FormatRetention.html#FORMATTING">ComponentBuilder.FormatRetention#FORMATTING</a>
-     * @param baseComponents all before the prefix
-     * @return the prefixed message
-     */
-    @API(status = API.Status.STABLE, since ="1.8.0")
-    @NotNull
-    public BaseComponent getPrefixMessage(@NotNull BaseComponent[] baseComponents) {
-        BaseComponent prefix = this.getPrefix();
-        prefix.addExtra(" ");
-        prefix.addExtra(new TextComponent(baseComponents));
-        return prefix;
-    }
-
-    /**
-     * Returns a message with the prefix upfront.
-     * <p>Note: The baseComponent are appended using <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/ComponentBuilder.FormatRetention.html#FORMATTING">ComponentBuilder.FormatRetention#FORMATTING</a>
      * @param baseComponent all before the prefix
      * @return the prefixed message
      */
@@ -173,6 +157,20 @@ public class AlexSubCommand {
         BaseComponent prefix = this.getPrefix();
         prefix.addExtra(" ");
         prefix.addExtra(baseComponent);
+        return prefix;
+    }
+
+    /**
+     * Returns a message with the prefix upfront.
+     * @param baseComponents all before the prefix
+     * @return the prefixed message
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    @NotNull
+    public BaseComponent getPrefixMessage(@NotNull BaseComponent[] baseComponents) {
+        BaseComponent prefix = this.getPrefix();
+        prefix.addExtra(" ");
+        prefix.addExtra(new TextComponent(baseComponents));
         return prefix;
     }
 
