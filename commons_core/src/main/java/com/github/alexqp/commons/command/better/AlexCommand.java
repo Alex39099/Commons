@@ -50,7 +50,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     };
 
     private @NotNull JavaPlugin plugin;
-    private @NotNull List<BaseComponent[]> creditLines = new ArrayList<>();
+    private @NotNull List<BaseComponent> creditLines = new ArrayList<>();
 
     private AlexCommand(@NotNull String name, @NotNull JavaPlugin plugin) {
         super(name, new TextComponent("All Commands."));
@@ -69,9 +69,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
      */
     @API(status = API.Status.STABLE, since = "1.8.0")
     public AlexCommand(@NotNull String name, @NotNull JavaPlugin plugin, @NotNull ChatColor pluginPrefixColor) {
-        this(name, plugin);
-        ComponentBuilder prefix = new ComponentBuilder("[").append(plugin.getName()).color(pluginPrefixColor).append("]", ComponentBuilder.FormatRetention.NONE);
-        this.setPrefix(new TextComponent(prefix.create()));
+        this(name, plugin, pluginPrefixColor, ChatColor.WHITE);
     }
 
     /**
@@ -81,13 +79,17 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
      * @param plugin the plugin
      * @param pluginPrefixColor the prefixColor for the plugin's name
      * @param defTextColor the default color to display text messages
-     * @deprecated draft
      */
-    @API(status = API.Status.DEPRECATED, since = "draft")
+    @API(status = API.Status.STABLE, since = "1.8.0")
     public AlexCommand(@NotNull String name, @NotNull JavaPlugin plugin, @NotNull ChatColor pluginPrefixColor, @NotNull ChatColor defTextColor) {
         this(name, plugin);
-        ComponentBuilder prefix = new ComponentBuilder("[").color(defTextColor).append(plugin.getName()).color(pluginPrefixColor).append("]", ComponentBuilder.FormatRetention.NONE).color(defTextColor);
-        this.setPrefix(new TextComponent(prefix.create()));
+        TextComponent prefix = new TextComponent("[");
+        prefix.setColor(defTextColor);
+        TextComponent pluginName = new TextComponent(plugin.getName());
+        pluginName.setColor(pluginPrefixColor);
+        prefix.addExtra(pluginName);
+        prefix.addExtra("]");
+        this.setPrefix(prefix);
     }
 
     /**
@@ -117,10 +119,10 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     //  CREDIT LINE STUFF
     // ================================================================================================================================================
 
-    private BaseComponent[] getBasicCreditLine(@NotNull JavaPlugin plugin) {
+    private BaseComponent getBasicCreditLine(@NotNull JavaPlugin plugin) {
         ComponentBuilder builder = new ComponentBuilder("version " + plugin.getDescription().getVersion()).append(new TextComponent(", author alex_qp"));
         builder.event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/members/alex_qp.306806/"));
-        return builder.create();
+        return new TextComponent(builder.create());
     }
 
     /**
@@ -132,7 +134,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
      * @throws IllegalStateException if the cmd is already final
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
-    public void addCreditLine(@NotNull BaseComponent[] line) throws IllegalStateException {
+    public void addCreditLine(@NotNull BaseComponent line) throws IllegalStateException {
         if (isFinal())
             throw new IllegalStateException("creditLines cannot be edited ");
         Objects.requireNonNull(line, "line must not be null");
@@ -152,7 +154,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
     }
 
     private void credits(@NotNull CommandSender sender) {
-        for (BaseComponent[] creditLine : creditLines) {
+        for (BaseComponent creditLine : creditLines) {
             sendMessage(sender, creditLine);
         }
     }
@@ -186,8 +188,8 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
      */
     @Override
     public void makeFinal() throws IllegalStateException {
-        List<BaseComponent[]> newCreditLines = new ArrayList<>();
-        for (BaseComponent[] creditLine : creditLines) {
+        List<BaseComponent> newCreditLines = new ArrayList<>();
+        for (BaseComponent creditLine : creditLines) {
             newCreditLines.add(this.getPrefixMessage(creditLine));
         }
         this.creditLines = newCreditLines;

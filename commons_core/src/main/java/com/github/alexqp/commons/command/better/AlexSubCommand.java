@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * This class is a part of the AlexCommand API. Instances of this class are supposed to be either direct or indirect children of an {@link AlexCommand}. It is designed to provide a relatively easy way of building a plugin command.
  * <p>The messaging system utilizes the <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/package-summary.html">Chat Component API of Bungee</a>. A basic tutorial can be found in the <a href="https://www.spigotmc.org/wiki/the-chat-component-api/">Spigot wiki</a>. You may want to use {@link com.github.alexqp.commons.messages.MessageTranslator#translateBukkitColorCodes(String) to translate (legacy) color coded messages.}
- * <p><b>Help-Command:</b> Every instance will have its own help command via "/... subCmd help" and will show the output of {@link AlexSubCommand#getHelpLine(String)} for every direct child the sender has permission to. To add a header before that list of commands, use {@link AlexSubCommand#addHelpCmdHeaderLine(BaseComponent[])}.
+ * <p><b>Help-Command:</b> Every instance will have its own help command via "/... subCmd help" and will show the output of {@link AlexSubCommand#getHelpLine(String)} for every direct child the sender has permission to. To add a header before that list of commands, use {@link AlexSubCommand#addHelpCmdHeaderLine(BaseComponent)}.
  * <p><b>Finalization:</b> If an instance is finalized (for example) by {@link AlexSubCommand#makeFinal()} it will format every message by default in order to save computing power when the message is requested. Finalizing custom messages should be done by overwriting {@link AlexSubCommand#makeFinal()}. {@link AlexSubCommand#getPrefixMessage(BaseComponent[])} may help with prefixing.
  */
 public class AlexSubCommand {
@@ -43,21 +43,21 @@ public class AlexSubCommand {
     };
 
     private @NotNull String name;
-    private @NotNull TextComponent prefix = new TextComponent();
+    private @NotNull BaseComponent prefix = new TextComponent();
 
-    private @NotNull List<BaseComponent[]> helpCmdHeader = new ArrayList<>(); // gets finalized
+    private @NotNull List<BaseComponent> helpCmdHeader = new ArrayList<>(); // gets finalized
 
     private @Nullable TextComponent cmdChain;
-    private @NotNull BaseComponent[] helpLine; // gets finalized
-    private @Nullable TextComponent cmdParamLine;
+    private @NotNull BaseComponent helpLine; // gets finalized
+    private @Nullable BaseComponent cmdParamLine;
 
-    private @Nullable BaseComponent[] usageLine; // gets finalized
-    private @NotNull TextComponent usagePrefix = new TextComponent();
+    private @Nullable BaseComponent usageLine; // gets finalized, not null after
+    private @NotNull BaseComponent usagePrefix = new TextComponent(); // must be TextComponent in order to inherit colors correctly
 
     private boolean isPlayerCmd = true;
     private boolean isConsoleCmd = true;
     private @Nullable String permission;
-    private @NotNull BaseComponent[] noPermissionLine = new TextComponent[0]; // gets finalized
+    private @Nullable BaseComponent noPermissionLine; // gets finalized, mandatory, not null after
 
     private List<HashSet<String>> extraArgumentOptions = new ArrayList<>();
 
@@ -109,7 +109,7 @@ public class AlexSubCommand {
     @API(status = API.Status.INTERNAL, since="1.8.0")
     AlexSubCommand(@NotNull String name, @NotNull TextComponent helpLine) {
         this.name = Objects.requireNonNull(name, "name must not be null");
-        this.helpLine = new ComponentBuilder(Objects.requireNonNull(helpLine, "helpLine must not be null.")).create();
+        this.helpLine = helpLine.duplicate();
     }
 
     /**
@@ -133,6 +133,20 @@ public class AlexSubCommand {
     }
 
     /**
+     * Sends a message to the sender.
+     * @param sender the commandSender
+     * @param baseComponent the message
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    public static void sendMessage(@NotNull CommandSender sender, @NotNull BaseComponent baseComponent) {
+        if (sender instanceof Player) {
+            ((Player) sender).spigot().sendMessage(baseComponent);
+        } else {
+            sender.sendMessage(baseComponent.toLegacyText());
+        }
+    }
+
+    /**
      * Returns a message with the prefix upfront.
      * <p>Note: The baseComponents are appended using <a href="https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/ComponentBuilder.FormatRetention.html#FORMATTING">ComponentBuilder.FormatRetention#FORMATTING</a>
      * @param baseComponents all before the prefix
@@ -140,8 +154,11 @@ public class AlexSubCommand {
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
     @NotNull
-    public BaseComponent[] getPrefixMessage(@NotNull BaseComponent[] baseComponents) {
-        return new ComponentBuilder(prefix).append(" ").append(baseComponents, ComponentBuilder.FormatRetention.FORMATTING).create();
+    public BaseComponent getPrefixMessage(@NotNull BaseComponent[] baseComponents) {
+        BaseComponent prefix = this.getPrefix();
+        prefix.addExtra(" ");
+        prefix.addExtra(new TextComponent(baseComponents));
+        return prefix;
     }
 
     /**
@@ -152,8 +169,11 @@ public class AlexSubCommand {
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
     @NotNull
-    public BaseComponent[] getPrefixMessage(@NotNull BaseComponent baseComponent) {
-        return new ComponentBuilder(prefix).append(" ").append(baseComponent, ComponentBuilder.FormatRetention.FORMATTING).create();
+    public BaseComponent getPrefixMessage(@NotNull BaseComponent baseComponent) {
+        BaseComponent prefix = this.getPrefix();
+        prefix.addExtra(" ");
+        prefix.addExtra(baseComponent);
+        return prefix;
     }
 
     // ================================================================================================================================================
@@ -180,13 +200,13 @@ public class AlexSubCommand {
      * <p>Note: This line is sent if it gets requested by a parent's help command. It changes up finalization.
      * <p>Note 2: The default helpLine will be build/finalized using the prefix, the label, the cmdChain, the internal parameters, the cmdParamLine and finally the set helpLine.
      * <p>Note 3: If you want to interfere with the output, use the provided methods or overwrite this one.
-     * @see AlexSubCommand#setCmdParamLine(TextComponent) 
+     * @see AlexSubCommand#setCmdParamLine(BaseComponent)
      * @param label the label
      * @return the helpLine
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
     @NotNull
-    public BaseComponent[] getHelpLine(@NotNull String label) {
+    public BaseComponent getHelpLine(@NotNull String label) {
         return this.getPrefixMessage(new ComponentBuilder("/" + label + " ").color(ChatColor.GOLD).append(this.helpLine).create());
     }
 
@@ -196,31 +216,31 @@ public class AlexSubCommand {
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
     @NotNull
-    public TextComponent getPrefix() {
-        return (TextComponent) prefix.duplicate();
+    public BaseComponent getPrefix() {
+        return prefix.duplicate();
     }
 
     /**
      * Gets the usage line (changes upon finalization!)
      * <p>Note: This line is sent to indicate wrong usage. It changes up finalization.
-     * <p>Note 2: The default usageLine will be build/finalized using the prefix, the usagePrefix, the label, the cmdChain, the internal parameters and the cmdParamLine.
-     * <p>Note 3: If you want to interfere with the output, use the provided methods or overwrite this one.
-     * @see AlexSubCommand#setUsagePrefix(TextComponent) 
-     * @see AlexSubCommand#setCmdParamLine(TextComponent)
+     * <p>Note 2: The default usageLine will be build/finalized using the usagePrefix, the label, the cmdChain, the internal parameters and the cmdParamLine.
+     * <p>Note 3: If you want to interfere with the output, use the provided methods or overwrite this one. Only use usagePrefix, it will be prefixed after finalization.
+     * @see AlexSubCommand#setUsagePrefix(BaseComponent)
+     * @see AlexSubCommand#setCmdParamLine(BaseComponent)
      * @see AlexSubCommand#makeFinal()
      * @return the usage line
      * @throws IllegalStateException if this subCmd is not final.
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
     @NotNull
-    public BaseComponent[] getUsageLine(@NotNull String label) throws IllegalStateException {
+    public BaseComponent getUsageLine(@NotNull String label) throws IllegalStateException {
         if (!this.isFinal)
             throw new IllegalStateException("usageLine can only be requested after finalization.");
-        ComponentBuilder builder = new ComponentBuilder(usagePrefix).append(" /" + label);
-        if (usageLine != null) {
-            builder.append(" ").append(usageLine);
-        }
-        return builder.create();
+        BaseComponent line = usagePrefix.duplicate();
+        line.addExtra(" /" + label + " ");
+        assert usageLine != null; // gets finalized
+        line.addExtra(usageLine);
+        return line;
     }
 
     /**
@@ -232,8 +252,8 @@ public class AlexSubCommand {
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
     @NotNull
-    public TextComponent getUsagePrefix() {
-        return new TextComponent(this.usagePrefix);
+    public BaseComponent getUsagePrefix() {
+        return this.usagePrefix.duplicate();
     }
 
     /**
@@ -253,9 +273,11 @@ public class AlexSubCommand {
      * @return the no permission line
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
-    @NotNull
-    public BaseComponent[] getNoPermissionLine() {
-        return this.noPermissionLine.clone();
+    @Nullable
+    public BaseComponent getNoPermissionLine() {
+        if (this.noPermissionLine != null)
+            return this.noPermissionLine.duplicate();
+        return null;
     }
 
     /**
@@ -340,9 +362,9 @@ public class AlexSubCommand {
             }
 
             // creating helpCmdHeader...
-            List<BaseComponent[]> header = new ArrayList<>();
-            for (BaseComponent[] baseComponents : this.helpCmdHeader) {
-                header.add(this.getPrefixMessage(baseComponents));
+            List<BaseComponent> header = new ArrayList<>();
+            for (BaseComponent line : this.helpCmdHeader) {
+                header.add(this.getPrefixMessage(line));
             }
             this.helpCmdHeader = header;
 
@@ -369,18 +391,18 @@ public class AlexSubCommand {
             }
 
             if (helpLineBuilder != null) {
-                this.helpLine = helpLineBuilder.append(": ").append(this.helpLine).color(prefix.getColor()).create();
+                this.helpLine = new TextComponent(helpLineBuilder.append(": ").append(this.helpLine).color(prefix.getColor()).create());
             } else {
-                this.helpLine = new ComponentBuilder().append(this.helpLine).color(prefix.getColor()).create();
+                this.helpLine = new TextComponent(new ComponentBuilder().append(this.helpLine).color(prefix.getColor()).create());
             }
 
-            this.usagePrefix = new TextComponent(this.getPrefixMessage(usagePrefix));
+            this.usagePrefix = this.getPrefixMessage(usagePrefix);
             if (usageLineBuilder != null) {
-                this.usageLine = usageLineBuilder.create();
+                this.usageLine = new TextComponent(usageLineBuilder.create());
             }
 
             // permission stuff...
-            if (this.noPermissionLine.length == 0)
+            if (this.noPermissionLine == null)
                 throw new IllegalStateException("noPermissionLine must be set.");
             this.noPermissionLine = this.getPrefixMessage(this.noPermissionLine);
         }
@@ -399,7 +421,7 @@ public class AlexSubCommand {
      * @throws IllegalStateException if the subCmd is already final
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
-    public void addExtraArgument(@NotNull TextComponent helpLineParameter, @NotNull Collection<String> options) throws IllegalStateException {
+    public void addExtraArgument(@NotNull BaseComponent helpLineParameter, @NotNull Collection<String> options) throws IllegalStateException {
         if (isFinal)
             throw getFinalException("extraArgument");
 
@@ -419,10 +441,23 @@ public class AlexSubCommand {
     }
 
     /**
+     * Adds an extra argument.
+     * <p>Note: extra arguments claim the next available argument of the executed command successively. They have to be one of the set options or the usage line gets send.
+     * @see AlexSubCommand#execute(CommandSender, String, List, List, String[], int)
+     * @param helpLineParameter the parameter added to the command line chain.
+     * @param options the available options
+     * @throws IllegalStateException if the subCmd is already final
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    public void addExtraArgument(@NotNull String helpLineParameter, @NotNull Collection<String> options) throws IllegalStateException {
+        this.addExtraArgument(new TextComponent(helpLineParameter), options);
+    }
+
+    /**
      * Edits an extraArgument's options.
      * <p>Note: The index just refers to the extraArguments, so in order to edit the first extraArgument's option it would be index 0 and so on.
      * <p><b>IMPORTANT: There must already be an extraArgument in order to edit its options!</b>
-     * @see AlexSubCommand#addExtraArgument(TextComponent, Collection)
+     * @see AlexSubCommand#addExtraArgument(BaseComponent, Collection)
      * @param index the index of the extraArgument
      * @param options the new options
      */
@@ -437,11 +472,28 @@ public class AlexSubCommand {
      * @throws IllegalStateException if the subCmd is already final
      */
     @API(status = API.Status.STABLE, since="1.8.0")
-    public void setPrefix(@NotNull TextComponent prefix) throws IllegalStateException {
+    public void setPrefix(@NotNull BaseComponent prefix) throws IllegalStateException {
         if (isFinal)
             throw getFinalException("prefix");
 
-        this.prefix = new TextComponent(Objects.requireNonNull(prefix, "prefix must not be null"));
+        this.prefix = prefix.duplicate();
+    }
+
+    /**
+     * Sets the prefix.
+     * <p>Note: The color will be set to the last baseComponent's color. Therefore not explicitly set colors in the array might change.
+     * @param prefix the prefix
+     * @throws IllegalStateException if the subCmd is already final
+     * @throws IllegalArgumentException if prefix is empty
+     */
+    @API(status = API.Status.STABLE, since="1.8.0")
+    public void setPrefix(@NotNull BaseComponent[] prefix) throws IllegalStateException, IllegalArgumentException {
+        if (prefix.length == 0)
+            throw new IllegalArgumentException("prefix is empty");
+
+        TextComponent newPrefix = new TextComponent(prefix);
+        newPrefix.setColor(prefix[prefix.length - 1].getColor());
+        this.setPrefix(newPrefix);
     }
 
     /**
@@ -490,11 +542,36 @@ public class AlexSubCommand {
      * @throws IllegalStateException if the subCmd is already final
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
-    public void setNoPermissionLine(@NotNull BaseComponent[] line) throws IllegalStateException {
+    public void setNoPermissionLine(@NotNull BaseComponent line) throws IllegalStateException {
         if (isFinal)
             throw getFinalException("noPermissionLine");
-        Objects.requireNonNull(line, "line must not be null");
-        this.noPermissionLine = line;
+        this.noPermissionLine = line.duplicate();
+    }
+
+    /**
+     * Sets the line to indicate missing permissions.
+     * <p>Note: Set lines should not include prefixes or similar. All default formatting is done by finalizing.
+     * @see AlexSubCommand#makeFinal()
+     * @param line the no permission line
+     * @throws IllegalStateException if the subCmd is already final
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    public void setNoPermissionLine(@NotNull BaseComponent[] line) throws IllegalStateException {
+        this.setNoPermissionLine(new TextComponent(line));
+    }
+
+    /**
+     * Adds a header line above the integrated help subCmd.
+     * <p>Note: Added lines should not include prefixes or similar. All default formatting is done by finalizing.
+     * @see AlexSubCommand#makeFinal()
+     * @param line the line
+     * @throws IllegalStateException if the subCmd is already final
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    public void addHelpCmdHeaderLine(@NotNull BaseComponent line) throws IllegalStateException {
+        if (isFinal)
+            throw getFinalException("noPermissionLine");
+        this.helpCmdHeader.add(line.duplicate());
     }
 
     /**
@@ -506,10 +583,7 @@ public class AlexSubCommand {
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
     public void addHelpCmdHeaderLine(@NotNull BaseComponent[] line) throws IllegalStateException {
-        if (isFinal)
-            throw getFinalException("noPermissionLine");
-        Objects.requireNonNull(line, "line must not be null");
-        this.helpCmdHeader.add(line);
+        this.helpCmdHeader.add(new TextComponent(line));
     }
 
     /**
@@ -521,11 +595,10 @@ public class AlexSubCommand {
      * @throws IllegalStateException if the subCmd is already final
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
-    public void setCmdParamLine(@NotNull TextComponent line) throws IllegalStateException {
+    public void setCmdParamLine(@NotNull BaseComponent line) throws IllegalStateException {
         if (isFinal)
             throw getFinalException("CmdParamLine");
-        Objects.requireNonNull(line, "line must not be null");
-        this.cmdParamLine = new TextComponent(line);
+        this.cmdParamLine = line.duplicate();
     }
 
     /**
@@ -535,11 +608,30 @@ public class AlexSubCommand {
      * @throws IllegalStateException if the subCmd is already final
      */
     @API(status = API.Status.STABLE, since ="1.8.0")
-    public void setUsagePrefix(@NotNull TextComponent line) throws IllegalStateException {
+    public void setUsagePrefix(@NotNull final BaseComponent line) throws IllegalStateException {
         if (isFinal)
             throw getFinalException("UsagePrefix");
-        Objects.requireNonNull(line, "line must not be null");
-        this.usagePrefix = new TextComponent(line);
+        this.usagePrefix = line.duplicate();
+    }
+
+    /**
+     * Sets the usage prefix used in the usage line.
+     * <p>Note: The prefix should not include the main subCmd prefix. All default formatting is done by finalizing.
+     * <p>Note 2: The color will be set to the last baseComponent's color. Therefore not explicitly set colors in the array might change.
+     * @param line the prefix
+     * @throws IllegalStateException if the subCmd is already final
+     * @throws IllegalArgumentException if line is empty
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    public void setUsagePrefix(@NotNull final BaseComponent[] line) throws IllegalStateException, IllegalArgumentException {
+        if (isFinal)
+            throw getFinalException("UsagePrefix");
+        if (line.length == 0)
+            throw new IllegalArgumentException("line is empty");
+
+        TextComponent newUsagePrefix = new TextComponent(line);
+        newUsagePrefix.setColor(line[line.length - 1].getColor());
+        this.setUsagePrefix(newUsagePrefix);
     }
 
     // ================================================================================================================================================
@@ -548,8 +640,8 @@ public class AlexSubCommand {
 
     @API(status = API.Status.INTERNAL, since ="1.8.0")
     private void help(@NotNull CommandSender sender, @NotNull String label, @NotNull List<AlexSubCommand> previousCmds, @NotNull List<String> previousExtraArguments, @NotNull String[] args, final int startIndex) {
-        for (BaseComponent[] baseComponents : helpCmdHeader) {
-            sendMessage(sender, baseComponents);
+        for (BaseComponent baseComponent : helpCmdHeader) {
+            sendMessage(sender, baseComponent);
         }
 
         if (this.subCommands.keySet().isEmpty()) {
@@ -638,6 +730,7 @@ public class AlexSubCommand {
     protected void internalExecute(@NotNull CommandSender sender, @NotNull String label, @NotNull List<AlexSubCommand> previousCmds, @NotNull List<String> previousExtraArguments, @NotNull final String[] args, int startIndex) {
         if (!this.internalCanExecute(sender)) {
             ConsoleMessage.debug(this.getClass(), debugable, "EXECUTION: sender did not pass internalCanExecute");
+            assert noPermissionLine != null; // is mandatory
             sendMessage(sender, noPermissionLine);
             return;
         }
