@@ -187,7 +187,7 @@ public class AlexSubCommand {
     @API(status = API.Status.STABLE, since ="1.8.0")
     @NotNull
     public BaseComponent[] getHelpLine(@NotNull String label) {
-        return this.getPrefixMessage(new ComponentBuilder(" /" + label + " ").color(ChatColor.GOLD).append(this.helpLine).create());
+        return this.getPrefixMessage(new ComponentBuilder("/" + label + " ").color(ChatColor.GOLD).append(this.helpLine).create());
     }
 
     /**
