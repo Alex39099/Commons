@@ -85,10 +85,10 @@ public class AlexSubCommand {
         this.prefix = parent.getPrefix();
 
         if (parent.cmdChain != null) {
-            this.cmdChain = new TextComponent(parent.cmdChain + " " + name);
-        } else {
-            this.cmdChain = new TextComponent(name);
+            this.cmdChain = new TextComponent(parent.cmdChain);
+            this.cmdChain.addExtra(" ");
         }
+        this.cmdChain = new TextComponent(name);
 
         this.usagePrefix = parent.getUsagePrefix();
 
@@ -393,7 +393,6 @@ public class AlexSubCommand {
             } else {
                 this.helpLine = new TextComponent(new ComponentBuilder().append(this.helpLine).color(prefix.getColor()).create());
             }
-
             BaseComponent[] usagePrefix = new ComponentBuilder(this.getPrefix()).append(" ").append(this.usagePrefix).create();
             this.usagePrefix = new TextComponent(usagePrefix);
             this.usagePrefix.setColor(usagePrefix[usagePrefix.length - 1].getColor());
