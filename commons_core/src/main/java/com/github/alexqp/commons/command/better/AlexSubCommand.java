@@ -86,7 +86,8 @@ public class AlexSubCommand {
 
         if (parent.cmdChain != null) {
             this.cmdChain = new TextComponent(parent.cmdChain + " " + name);
-            this.cmdChain.addExtra(" " + name);
+        } else {
+            this.cmdChain = new TextComponent(name);
         }
 
         this.usagePrefix = parent.getUsagePrefix();
@@ -215,8 +216,11 @@ public class AlexSubCommand {
     public BaseComponent[] getUsageLine(@NotNull String label) throws IllegalStateException {
         if (!this.isFinal)
             throw new IllegalStateException("usageLine can only be requested after finalization.");
-        assert usageLine != null;
-        return new ComponentBuilder(usagePrefix).append(" ").append("/" + label + " ").append(usageLine).create();
+        ComponentBuilder builder = new ComponentBuilder(usagePrefix).append(" /" + label);
+        if (usageLine != null) {
+            builder.append(" ").append(usageLine);
+        }
+        return builder.create();
     }
 
     /**
@@ -342,28 +346,43 @@ public class AlexSubCommand {
             }
             this.helpCmdHeader = header;
 
-            // creating help line...
-            if (this.cmdChain == null) { // should only appear for AlexCommand
-                this.cmdChain = new TextComponent();
+            // creating help & usage line...
+            ComponentBuilder helpLineBuilder = null;
+            ComponentBuilder usageLineBuilder = null;
+            if (this.cmdChain != null) {
+                helpLineBuilder = new ComponentBuilder(cmdChain);
+                usageLineBuilder = new ComponentBuilder(cmdChain);
             }
-            ComponentBuilder helpLineBuilder = new ComponentBuilder(this.cmdChain);
+
             if (this.cmdParamLine != null) {
-                helpLineBuilder.append(" ").append(this.cmdParamLine);
+                if (helpLineBuilder != null) {
+                    helpLineBuilder.append(" ").append(this.cmdParamLine);
+                } else {
+                    helpLineBuilder = new ComponentBuilder(this.cmdParamLine);
+                }
+
+                if (usageLineBuilder != null) {
+                    usageLineBuilder.append(" ").append(this.cmdParamLine);
+                } else {
+                    usageLineBuilder = new ComponentBuilder(this.cmdParamLine);
+                }
             }
-            this.helpLine = helpLineBuilder.append(": ").append(this.helpLine).color(prefix.getColor()).create();
+
+            if (helpLineBuilder != null) {
+                this.helpLine = helpLineBuilder.append(": ").append(this.helpLine).color(prefix.getColor()).create();
+            } else {
+                this.helpLine = new ComponentBuilder().append(this.helpLine).color(prefix.getColor()).create();
+            }
+
+            this.usagePrefix = new TextComponent(this.getPrefixMessage(usagePrefix));
+            if (usageLineBuilder != null) {
+                this.usageLine = usageLineBuilder.create();
+            }
 
             // permission stuff...
             if (this.noPermissionLine.length == 0)
                 throw new IllegalStateException("noPermissionLine must be set.");
             this.noPermissionLine = this.getPrefixMessage(this.noPermissionLine);
-
-            // usageLine stuff...
-            this.usagePrefix = new TextComponent(this.getPrefixMessage(usagePrefix));
-            ComponentBuilder usageLineBuilder = new ComponentBuilder(cmdChain);
-            if (cmdParamLine != null) {
-                usageLineBuilder.append(" ").append(cmdParamLine);
-            }
-            this.usageLine = usageLineBuilder.create();
         }
     }
 
@@ -388,12 +407,14 @@ public class AlexSubCommand {
         Objects.requireNonNull(options, "options must not be null");
 
         if (cmdChain == null) {
-            this.cmdChain = new TextComponent();
+            cmdChain = new TextComponent("<");
+        } else {
+            cmdChain.addExtra(" <");
         }
-
-        cmdChain.addExtra(" <");
         cmdChain.addExtra(helpLineParameter);
         cmdChain.addExtra(">");
+
+
         this.extraArgumentOptions.add(new HashSet<>(options));
     }
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment=".">
+    <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -73,27 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00081" summary="added checkValue method">
-      <created>1568375931983</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1568375931983</updated>
-    </task>
-    <task id="LOCAL-00082" summary="added nullable checkSerializable">
-      <created>1568385121104</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1568385121105</updated>
-    </task>
-    <task id="LOCAL-00083" summary="added saveYmlFile without Exception">
-      <created>1568386847288</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1568386847288</updated>
     </task>
     <task id="LOCAL-00084" summary="added resetSubDirectory, deleteFile, edited javaDoc">
       <created>1568744423201</created>
@@ -417,7 +397,28 @@
       <option name="project" value="LOCAL" />
       <updated>1586341011694</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="did not set permission">
+      <created>1586341386427</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1586341386427</updated>
+    </task>
+    <task id="LOCAL-00131" summary="first commit">
+      <created>1586346988948</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1586346988948</updated>
+    </task>
+    <task id="LOCAL-00132" summary="noted MessageTranslator in class description">
+      <created>1586347021364</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1586347021364</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -444,9 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made to Interface" />
-    <MESSAGE value="removed unnecessary &lt;/p&gt;" />
-    <MESSAGE value="updated spigot and jetbrains annotations" />
     <MESSAGE value="reworked command API" />
     <MESSAGE value="AlexCommand will now add a first creditLine" />
     <MESSAGE value="updated javaDoc" />
@@ -469,48 +467,51 @@
     <MESSAGE value="fixed small typo in javaDoc" />
     <MESSAGE value="constructor will set a default permission" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="did not set permission" />
+    <MESSAGE value="first commit" />
+    <MESSAGE value="noted MessageTranslator in class description" />
+    <option name="LAST_COMMIT_MESSAGE" value="noted MessageTranslator in class description" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172925490" />
-    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586340502774">
+    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586346779085">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
-    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340502774" />
+    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586346779085" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="605" y="193" key="CommitChangelistDialog2" timestamp="1586341067174">
+    <state x="664" y="198" key="CommitChangelistDialog2" timestamp="1586347020718">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="605" y="193" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586341067174" />
+    <state x="664" y="198" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586347020718" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586281917694" />
-    <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586340502802">
+    <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586357070134">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340502802" />
+    <state width="1877" height="256" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586357070134" />
     <state width="1637" height="256" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state width="1877" height="256" key="GridCell.Tab.0.center" timestamp="1586340502801">
+    <state width="1877" height="256" key="GridCell.Tab.0.center" timestamp="1586357070134">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340502801" />
+    <state width="1877" height="256" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586357070134" />
     <state width="1637" height="256" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state width="1877" height="256" key="GridCell.Tab.0.left" timestamp="1586340502801">
+    <state width="1877" height="256" key="GridCell.Tab.0.left" timestamp="1586357070134">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340502801" />
+    <state width="1877" height="256" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586357070134" />
     <state width="1637" height="256" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
-    <state width="1877" height="256" key="GridCell.Tab.0.right" timestamp="1586340502801">
+    <state width="1877" height="256" key="GridCell.Tab.0.right" timestamp="1586357070134">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582806625977" />
-    <state width="1877" height="256" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586340502801" />
+    <state width="1877" height="256" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586357070134" />
     <state width="1637" height="256" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585673259486" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1586172787694">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -520,11 +521,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="261" width="579" height="524" key="StructurePopup/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172851445" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586341060250">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1586347030015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801224205" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586341060250" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586347030015" />
     <state x="2403" y="283" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586281931127" />
     <state x="-244" y="157" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586262364663">
       <screen x="0" y="0" width="1920" height="1040" />
