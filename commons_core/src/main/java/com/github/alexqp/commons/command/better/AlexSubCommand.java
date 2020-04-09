@@ -370,21 +370,21 @@ public class AlexSubCommand {
             ComponentBuilder helpLineBuilder = null;
             ComponentBuilder usageLineBuilder = null;
             if (this.cmdChain != null) {
-                helpLineBuilder = new ComponentBuilder(cmdChain);
-                usageLineBuilder = new ComponentBuilder(cmdChain);
+                helpLineBuilder = new ComponentBuilder(cmdChain.duplicate());
+                usageLineBuilder = new ComponentBuilder(cmdChain.duplicate());
             }
 
             if (this.cmdParamLine != null) {
                 if (helpLineBuilder != null) {
-                    helpLineBuilder.append(" ").append(this.cmdParamLine);
+                    helpLineBuilder.append(" ").append(this.cmdParamLine.duplicate());
                 } else {
-                    helpLineBuilder = new ComponentBuilder(this.cmdParamLine);
+                    helpLineBuilder = new ComponentBuilder(this.cmdParamLine.duplicate());
                 }
 
                 if (usageLineBuilder != null) {
-                    usageLineBuilder.append(" ").append(this.cmdParamLine);
+                    usageLineBuilder.append(" ").append(this.cmdParamLine.duplicate());
                 } else {
-                    usageLineBuilder = new ComponentBuilder(this.cmdParamLine);
+                    usageLineBuilder = new ComponentBuilder(this.cmdParamLine.duplicate());
                 }
             }
 
