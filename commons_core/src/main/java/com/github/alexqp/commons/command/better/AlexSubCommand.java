@@ -95,7 +95,7 @@ public class AlexSubCommand {
         this.isPlayerCmd = parent.isPlayerCmd;
         this.isConsoleCmd = parent.isConsoleCmd;
         if (parent.getPermission() != null) {
-            this.permission = parent.getPermission() + "." + name;
+            this.permission = parent.getPermission() + "." + name.toLowerCase();
         }
         this.noPermissionLine = parent.getNoPermissionLine();
     }
