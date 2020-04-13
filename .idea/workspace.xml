@@ -74,13 +74,6 @@
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
     </task>
-    <task id="LOCAL-00092" summary="added annotations and edited javadoc&#10;reworked the ConsoleMessage parts.">
-      <created>1575798747347</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1575798747347</updated>
-    </task>
     <task id="LOCAL-00093" summary="added class javadoc">
       <created>1575798763177</created>
       <option name="number" value="00093" />
@@ -417,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586467209033</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="permission is now lowercased">
+      <created>1586541100872</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1586541100873</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -444,7 +444,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed bug with help" />
     <MESSAGE value="fixed spacing bug with help, therefore edited cmdChain" />
     <MESSAGE value="edited javaDoc" />
     <MESSAGE value="changed helpCmd" />
@@ -469,24 +468,25 @@
     <MESSAGE value="usagePrefix did not overwrite defColor" />
     <MESSAGE value="testing..." />
     <MESSAGE value="fixed bug with toString" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with toString" />
+    <MESSAGE value="permission is now lowercased" />
+    <option name="LAST_COMMIT_MESSAGE" value="permission is now lowercased" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586172925490" />
-    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586448709854">
+    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586794232061">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
-    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586448709854" />
+    <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586794232061" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="664" y="198" key="CommitChangelistDialog2" timestamp="1586467208484">
+    <state x="664" y="198" key="CommitChangelistDialog2" timestamp="1586541100143">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="664" y="198" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586467208484" />
+    <state x="664" y="198" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586541100143" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586281917694" />
     <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586473602018">
       <screen x="0" y="0" width="1920" height="1040" />
