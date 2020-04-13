@@ -88,9 +88,9 @@ public class AlexSubCommand {
             this.cmdChain = new TextComponent(parent.cmdChain);
             this.cmdChain.addExtra(" ");
             this.cmdChain.addExtra(name);
+        } else {
+            this.cmdChain = new TextComponent(name);
         }
-        this.cmdChain = new TextComponent(name);
-
         this.usagePrefix = parent.getUsagePrefix();
 
         this.isPlayerCmd = parent.isPlayerCmd;
