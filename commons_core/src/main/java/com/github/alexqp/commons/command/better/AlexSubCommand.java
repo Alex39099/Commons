@@ -875,10 +875,14 @@ public class AlexSubCommand {
             StringUtil.copyPartialMatches(args[startIndexAfterExtraArguments], this.additionalTabCompleterOptions(sender, label, previousCmds, newExtraArguments, args, startIndexAfterExtraArguments), completions);
 
         } else if (args.length > startIndex) { // extraArgumentIndex
+            Set<String> options = new HashSet<>();
+            if (args.length == startIndex - 1)
+                options.add("help");
 
             for (int i = startIndex; i < startIndexAfterExtraArguments; i++) {
                 if (i == args.length - 1) {
-                    StringUtil.copyPartialMatches(args[i], extraArgumentOptions.get(i - startIndex), completions);
+                    options.addAll(extraArgumentOptions.get(i - startIndex));
+                    StringUtil.copyPartialMatches(args[i], options, completions);
                     ConsoleMessage.debug(this.getClass(), debugable, "TAB-COMPLETION: we are at extraArgumentOptions list index " + (i - startIndex));
                     break;
                 }
