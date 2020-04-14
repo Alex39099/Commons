@@ -13,24 +13,7 @@ import java.util.Objects;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class ConsoleMessage {
 
-    /**
-     * @param plugin the plugin
-     * @param msg the actual message
-     * @deprecated Use the static methods instead.
-     */
-    ConsoleMessage(@NotNull final JavaPlugin plugin, final String msg) {
-        this(Objects.requireNonNull(plugin.getName(), "plugin must not be null"), msg);
-    }
-
-    /**
-     *
-     * @param prefix the prefix (i. e. pluginName)
-     * @param msg the actual message
-     * @deprecated Use the static methods instead.
-     */
-    ConsoleMessage(final String prefix, final String msg) {
-        Bukkit.getConsoleSender().sendMessage("[" + prefix + "] " + msg);
-    }
+    private ConsoleMessage() {}
 
     /**
      * Sends a console message by name.
