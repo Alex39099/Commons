@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8853aa-8663-4b88-8a3c-a730f67793bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons_core/src/main/java/com/github/alexqp/commons/command/better/AlexSubCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,13 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560255292628</updated>
-    </task>
-    <task id="LOCAL-00102" summary="made to Interface">
-      <created>1585943379900</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1585943379901</updated>
     </task>
     <task id="LOCAL-00103" summary="removed unnecessary &lt;/p&gt;">
       <created>1586180726473</created>
@@ -417,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586861089977</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="tabCompletion help was missing in case of no extraArgs">
+      <created>1586867695328</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1586867695328</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -444,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="usagePrefix will contain prefix after finalization" />
     <MESSAGE value="fixed small typo in javaDoc" />
     <MESSAGE value="constructor will set a default permission" />
     <MESSAGE value="." />
@@ -469,7 +469,8 @@
     <MESSAGE value="fixed IBE in internalExecute" />
     <MESSAGE value="getTabCompletion was called with wrong index" />
     <MESSAGE value="getTabCompletion index was right actually" />
-    <option name="LAST_COMMIT_MESSAGE" value="getTabCompletion index was right actually" />
+    <MESSAGE value="tabCompletion help was missing in case of no extraArgs" />
+    <option name="LAST_COMMIT_MESSAGE" value="tabCompletion help was missing in case of no extraArgs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586172925490">
@@ -482,11 +483,11 @@
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582803577018" />
     <state x="707" y="233" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586794232061" />
     <state x="2539" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1585685719281" />
-    <state x="650" y="200" key="CommitChangelistDialog2" timestamp="1586861089591">
+    <state x="650" y="200" key="CommitChangelistDialog2" timestamp="1586867694753">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="537" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1582801203743" />
-    <state x="650" y="200" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586861089591" />
+    <state x="650" y="200" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@0.0.1920.1040" timestamp="1586867694753" />
     <state x="2390" y="149" key="CommitChangelistDialog2/0.0.1920.1040/1920.38.1680.1010@1920.38.1680.1010" timestamp="1586281917694" />
     <state width="1877" height="256" key="GridCell.Tab.0.bottom" timestamp="1586815809068">
       <screen x="0" y="0" width="1920" height="1040" />

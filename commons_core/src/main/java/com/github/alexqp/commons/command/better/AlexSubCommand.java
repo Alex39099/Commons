@@ -102,6 +102,22 @@ public class AlexSubCommand {
     }
 
     /**
+     * Creates an AlexSubCommand and copies nearly everything from the (non-final) parent.
+     * <p>Especially not inherited are: usageLine, output of help
+     * <p>Note: The permission is inherited like "parentPermission.subCmdName" by default.
+     * @see AlexSubCommand#isFinal()
+     * @see AlexSubCommand#makeFinal()
+     * @param name the name
+     * @param helpLine the helpLine aka. description
+     * @param parent the parent subCommand
+     * @throws IllegalArgumentException if parent is already final
+     */
+    @API(status = API.Status.STABLE, since ="1.8.0")
+    protected AlexSubCommand(@NotNull String name, @NotNull String helpLine, @NotNull AlexSubCommand parent) throws IllegalArgumentException {
+        this(name, new TextComponent(helpLine), parent);
+    }
+
+    /**
      * Creates an AlexSubCommand
      * <p>IMPORTANT: This constructor is strictly internal. DO NOT TOUCH.
      * @param name the name
