@@ -664,7 +664,7 @@ public class AlexSubCommand {
         List<String> newExtraArguments = new ArrayList<>(previousExtraArguments);
         int startIndexAfterExtraArguments = startIndex + extraArgumentOptions.size();
 
-        if (args.length <= startIndexAfterExtraArguments) {
+        if (args.length <= startIndexAfterExtraArguments - 1) {
             return null;
         }
 
