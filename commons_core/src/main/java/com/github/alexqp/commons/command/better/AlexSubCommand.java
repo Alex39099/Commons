@@ -751,14 +751,18 @@ public class AlexSubCommand {
         int startIndexAfterExtraArguments = startIndex + extraArgumentOptions.size();
 
         // check for subCmds....
-        AlexSubCommand subCmd = this.getChild(args[startIndexAfterExtraArguments]);
-        if (subCmd != null) {
-            ConsoleMessage.debug(this.getClass(), debugable, "EXECUTION: found subCmd " + subCmd.getName());
-            for (int i = 0; i <= extraArgumentOptions.size(); i++) {
-                previousCmds.add(this);
+        if (args.length > startIndexAfterExtraArguments) {
+            ConsoleMessage.debug(this.getClass(), debugable, "EXECUTION: There is another argument after extraArguments, searching for subCmd...");
+            AlexSubCommand subCmd = this.getChild(args[startIndexAfterExtraArguments]);
+            if (subCmd != null) {
+                ConsoleMessage.debug(this.getClass(), debugable, "EXECUTION: found subCmd " + subCmd.getName());
+                for (int i = 0; i <= extraArgumentOptions.size(); i++) {
+                    previousCmds.add(this);
+                }
+                subCmd.internalExecute(sender, label, previousCmds, newExtraArguments, args, startIndexAfterExtraArguments + 1);
+                return;
             }
-            subCmd.internalExecute(sender, label, previousCmds, newExtraArguments, args, startIndexAfterExtraArguments + 1);
-            return;
+            ConsoleMessage.debug(this.getClass(), debugable, "EXECUTION: Did not find any subCmd named " + args[startIndexAfterExtraArguments]);
         }
 
         ConsoleMessage.debug(this.getClass(), debugable, "EXECUTION: calling execute method...");
