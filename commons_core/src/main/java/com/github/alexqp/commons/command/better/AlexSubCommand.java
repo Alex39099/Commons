@@ -866,7 +866,7 @@ public class AlexSubCommand {
             // is it beyond the subCmd names index?
             if (args.length > startIndexAfterExtraArguments + 1) {
                 ConsoleMessage.debug(this.getClass(), debugable, "TAB-COMPLETION: beyond subCmd names Index, returning getTabCompletion...");
-                return this.getTabCompletion(sender, label, previousCmds, previousExtraArguments, args, startIndexAfterExtraArguments + 1);
+                return this.getTabCompletion(sender, label, previousCmds, previousExtraArguments, args, startIndexAfterExtraArguments);
             }
 
             StringUtil.copyPartialMatches(args[startIndexAfterExtraArguments], subCommands.keySet(), completions);
