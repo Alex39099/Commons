@@ -869,7 +869,15 @@ public class AlexSubCommand {
                 return this.getTabCompletion(sender, label, previousCmds, previousExtraArguments, args, startIndexAfterExtraArguments + 1);
             }
 
-            StringUtil.copyPartialMatches(args[startIndexAfterExtraArguments], subCommands.keySet(), completions);
+            Set<String> subCmdNames = new HashSet<>();
+            for (AlexSubCommand cmd : subCommands.values()) {
+                subCmdNames.add(cmd.getName());
+            }
+
+            if (extraArgumentOptions.size() == 0)
+                subCmdNames.add("help");
+
+            StringUtil.copyPartialMatches(args[startIndexAfterExtraArguments], subCmdNames, completions);
             StringUtil.copyPartialMatches(args[startIndexAfterExtraArguments], this.additionalTabCompleterOptions(sender, label, previousCmds, newExtraArguments, args, startIndexAfterExtraArguments), completions);
 
         } else if (args.length > startIndex) { // extraArgumentIndex
