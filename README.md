@@ -1,6 +1,6 @@
 Commons
 ===================
-A Bunch of Shared Code between multiple projects by Alex_qp.
+A Bunch of Shared Code Between Multiple Projects by Alex_qp.
 ------------------------------
 Commons aims to provide commonly used code within every Minecraft plugin (created by me).
 
