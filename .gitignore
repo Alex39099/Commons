@@ -1,2 +1,2 @@
 /.idea/
-/commons_dist/dependency-reduced-pom.xml
+*dependency-reduced-pom.xml
