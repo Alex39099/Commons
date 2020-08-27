@@ -831,7 +831,7 @@ public class AlexSubCommand {
 
     /**
      * Adds additional tabCompleterOptions to this subCmd.
-     * <p>This method is supposed to add new options alongside the children's names and gets called by {@link AlexSubCommand#getInternalTabCompletion(CommandSender, String, List, List, String[], int)} only if the tabCompletion is not beyond this index.
+     * <p>This method is supposed to add new options alongside the children's names and gets called by {@link AlexSubCommand#getInternalTabCompletion(CommandSender, String, List, List, String[], int)} only if the tabCompletion is not beyond this index. The list is supposed to contain every option for the specific sender and will be sorted etc. internally.
      * <p>Note: For tabCompletions after the children's names (i. e. the first argument which is used within {@link AlexSubCommand#execute(CommandSender, String, List, List, String[], int)}) use/overwrite {@link AlexSubCommand#getTabCompletion(CommandSender, String, List, List, String[], int)}
      * @see AlexSubCommand#getInternalTabCompletion(CommandSender, String, List, List, String[], int)
      * @see AlexSubCommand#getTabCompletion(CommandSender, String, List, List, String[], int)
