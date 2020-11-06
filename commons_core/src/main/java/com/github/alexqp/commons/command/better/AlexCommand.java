@@ -224,6 +224,8 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
      */
     @Override
     public void makeFinal() throws IllegalStateException {
+        if (this.isFinal())
+            return;
         List<BaseComponent> newCreditLines = new ArrayList<>();
         for (BaseComponent creditLine : creditLines) {
             newCreditLines.add(this.getPrefixMessage(creditLine));
