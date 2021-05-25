@@ -77,7 +77,7 @@ public class ConfigChecker {
      */
     public void attemptConsoleMsg(@NotNull ConsoleErrorType errorType, @Nullable String sectionPath, @Nullable String path, @Nullable Object value, @Nullable String msg) {
         if (value != null) {
-            ConsoleMessage.send(errorType, this.getSaveSectionName(sectionPath), path, msg + " (used default value " + value.toString() + " instead)");
+            ConsoleMessage.send(errorType, plugin.getName(), this.getSaveSectionName(sectionPath), path, msg + " (used default value " + value.toString() + " instead)");
             return;
         }
         ConsoleMessage.send(errorType, plugin.getName(), this.getSaveSectionName(sectionPath), path, msg);
