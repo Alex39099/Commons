@@ -40,7 +40,7 @@ public class ConfigChecker {
     public final String configSectionMsg = "value must be a configurationSection";
     public final String vectorMsg = "value must be a vector";
 
-    private JavaPlugin plugin;
+    private final JavaPlugin plugin;
     private String configFileName;
 
     /**
@@ -80,7 +80,7 @@ public class ConfigChecker {
             ConsoleMessage.send(errorType, this.getSaveSectionName(sectionPath), path, msg + " (used default value " + value.toString() + " instead)");
             return;
         }
-        ConsoleMessage.send(errorType, this.getSaveSectionName(sectionPath), path, msg);
+        ConsoleMessage.send(errorType, plugin.getName(), this.getSaveSectionName(sectionPath), path, msg);
     }
 
     /**
