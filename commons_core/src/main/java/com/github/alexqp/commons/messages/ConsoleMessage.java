@@ -130,7 +130,7 @@ public class ConsoleMessage {
     // DEBUGGING
     // -----------------------------------------------------------------------
 
-    private static ChatColor debugColor = ChatColor.LIGHT_PURPLE;
+    private static final ChatColor debugColor = ChatColor.LIGHT_PURPLE;
 
     /**
      * Sends a debug message.
