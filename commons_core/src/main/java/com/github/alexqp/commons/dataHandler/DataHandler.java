@@ -35,7 +35,7 @@ import java.util.Set;
 public class DataHandler {
 
 
-    private JavaPlugin plugin;
+    private final JavaPlugin plugin;
     private File subDirectory;
 
     /**

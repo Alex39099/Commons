@@ -66,7 +66,7 @@ public class AlexCommand extends AlexSubCommand implements TabExecutor {
         }
     };
 
-    private @NotNull JavaPlugin plugin;
+    private final @NotNull JavaPlugin plugin;
     private @NotNull List<BaseComponent> creditLines = new ArrayList<>();
 
     private AlexCommand(@NotNull String name, @NotNull JavaPlugin plugin) {

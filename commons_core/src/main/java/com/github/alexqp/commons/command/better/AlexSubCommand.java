@@ -59,7 +59,7 @@ public class AlexSubCommand {
         }
     };
 
-    private @NotNull String name;
+    private final @NotNull String name;
     private @NotNull BaseComponent prefix = new TextComponent();
 
     private @NotNull List<BaseComponent> helpCmdHeader = new ArrayList<>(); // gets finalized
@@ -76,9 +76,9 @@ public class AlexSubCommand {
     private @Nullable String permission;
     private @Nullable BaseComponent noPermissionLine; // gets finalized, mandatory, not null after
 
-    private List<HashSet<String>> extraArgumentOptions = new ArrayList<>();
+    private final List<HashSet<String>> extraArgumentOptions = new ArrayList<>();
 
-    private @NotNull HashMap<String, AlexSubCommand> subCommands = new HashMap<>();
+    private final @NotNull HashMap<String, AlexSubCommand> subCommands = new HashMap<>();
     private boolean isFinal = false; // will be set to true if a subCmd is added. Blocks all critical set functions.
 
     /**
