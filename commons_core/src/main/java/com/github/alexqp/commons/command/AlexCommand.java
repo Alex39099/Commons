@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.alexqp.commons.command.better;
+package com.github.alexqp.commons.command;
 
 import com.github.alexqp.commons.messages.ConsoleMessage;
 import com.github.alexqp.commons.messages.SetDebugable;
