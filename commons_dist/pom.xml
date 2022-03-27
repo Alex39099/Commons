@@ -22,7 +22,7 @@
     <parent>
         <artifactId>commons-parent</artifactId>
         <groupId>me.alexqp</groupId>
-        <version>1.9.0</version>
+        <version>1.10.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>commons-dist</artifactId>
@@ -44,12 +44,6 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>org.bstats:bstats-bukkit</include>
-                                    <include>me.alexqp:commons-*</include>
-                                </includes>
-                            </artifactSet>
                             <relocations>
                                 <relocation>
                                     <pattern>org.bstats</pattern>
