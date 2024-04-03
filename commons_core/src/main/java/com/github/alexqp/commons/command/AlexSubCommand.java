@@ -189,7 +189,8 @@ public class AlexSubCommand {
     @NotNull
     public BaseComponent getPrefixMessage(@NotNull BaseComponent baseComponent) {
         BaseComponent prefix = this.getPrefix();
-        prefix.addExtra(" ");
+        if (!prefix.toPlainText().isEmpty())
+            prefix.addExtra(" ");
         prefix.addExtra(baseComponent);
         return prefix;
     }
@@ -203,7 +204,8 @@ public class AlexSubCommand {
     @NotNull
     public BaseComponent getPrefixMessage(@NotNull BaseComponent[] baseComponents) {
         BaseComponent prefix = this.getPrefix();
-        prefix.addExtra(" ");
+        if (!prefix.toPlainText().isEmpty())
+            prefix.addExtra(" ");
         prefix.addExtra(new TextComponent(baseComponents));
         return prefix;
     }
