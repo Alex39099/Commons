@@ -17,7 +17,7 @@
 
 package com.github.alexqp.commons.config;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
