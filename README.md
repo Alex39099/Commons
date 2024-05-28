@@ -11,3 +11,5 @@ Commons is maintained by [Alex_qp](https://www.spigotmc.org/resources/authors/al
 Source
 ------
 Source Code is currently available on [GitHub](https://github.com/Alex39099/Commons).
+
+[![](https://jitpack.io/v/Alex39099/Commons.svg)](https://jitpack.io/#Alex39099/Commons)
